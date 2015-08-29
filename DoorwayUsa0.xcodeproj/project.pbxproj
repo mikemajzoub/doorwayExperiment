@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2D53AC311B91FBDA00B3DFC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D53AC301B91FBDA00B3DFC7 /* AppDelegate.swift */; };
-		2D53AC331B91FBDA00B3DFC7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D53AC321B91FBDA00B3DFC7 /* ViewController.swift */; };
 		2D53AC361B91FBDA00B3DFC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D53AC341B91FBDA00B3DFC7 /* Main.storyboard */; };
 		2D53AC381B91FBDA00B3DFC7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D53AC371B91FBDA00B3DFC7 /* Images.xcassets */; };
 		2D53AC3B1B91FBDA00B3DFC7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D53AC391B91FBDA00B3DFC7 /* LaunchScreen.xib */; };
@@ -29,7 +28,6 @@
 		2D53AC2B1B91FBDA00B3DFC7 /* DoorwayUsa0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoorwayUsa0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D53AC2F1B91FBDA00B3DFC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D53AC301B91FBDA00B3DFC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2D53AC321B91FBDA00B3DFC7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2D53AC351B91FBDA00B3DFC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2D53AC371B91FBDA00B3DFC7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2D53AC3A1B91FBDA00B3DFC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -78,7 +76,6 @@
 			isa = PBXGroup;
 			children = (
 				2D53AC301B91FBDA00B3DFC7 /* AppDelegate.swift */,
-				2D53AC321B91FBDA00B3DFC7 /* ViewController.swift */,
 				2D53AC341B91FBDA00B3DFC7 /* Main.storyboard */,
 				2D53AC371B91FBDA00B3DFC7 /* Images.xcassets */,
 				2D53AC391B91FBDA00B3DFC7 /* LaunchScreen.xib */,
@@ -212,7 +209,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D53AC331B91FBDA00B3DFC7 /* ViewController.swift in Sources */,
 				2D53AC311B91FBDA00B3DFC7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -409,6 +405,7 @@
 				2D53AC4C1B91FBDA00B3DFC7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2D53AC4D1B91FBDA00B3DFC7 /* Build configuration list for PBXNativeTarget "DoorwayUsa0Tests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +414,7 @@
 				2D53AC4F1B91FBDA00B3DFC7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

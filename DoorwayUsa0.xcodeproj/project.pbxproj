@@ -12,6 +12,8 @@
 		2D53AC381B91FBDA00B3DFC7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D53AC371B91FBDA00B3DFC7 /* Images.xcassets */; };
 		2D53AC3B1B91FBDA00B3DFC7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D53AC391B91FBDA00B3DFC7 /* LaunchScreen.xib */; };
 		2D53AC471B91FBDA00B3DFC7 /* DoorwayUsa0Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D53AC461B91FBDA00B3DFC7 /* DoorwayUsa0Tests.swift */; };
+		2DE14EDF1B92046200C27CB7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE14EDE1B92046200C27CB7 /* HomeViewController.swift */; };
+		2DE14EE11B92047000C27CB7 /* CivicsPracticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE14EE01B92047000C27CB7 /* CivicsPracticeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +36,8 @@
 		2D53AC401B91FBDA00B3DFC7 /* DoorwayUsa0Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DoorwayUsa0Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D53AC451B91FBDA00B3DFC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D53AC461B91FBDA00B3DFC7 /* DoorwayUsa0Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorwayUsa0Tests.swift; sourceTree = "<group>"; };
+		2DE14EDE1B92046200C27CB7 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		2DE14EE01B92047000C27CB7 /* CivicsPracticeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CivicsPracticeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +80,8 @@
 			isa = PBXGroup;
 			children = (
 				2D53AC301B91FBDA00B3DFC7 /* AppDelegate.swift */,
+				2DE14EDE1B92046200C27CB7 /* HomeViewController.swift */,
+				2DE14EE01B92047000C27CB7 /* CivicsPracticeViewController.swift */,
 				2D53AC341B91FBDA00B3DFC7 /* Main.storyboard */,
 				2D53AC371B91FBDA00B3DFC7 /* Images.xcassets */,
 				2D53AC391B91FBDA00B3DFC7 /* LaunchScreen.xib */,
@@ -210,6 +216,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D53AC311B91FBDA00B3DFC7 /* AppDelegate.swift in Sources */,
+				2DE14EDF1B92046200C27CB7 /* HomeViewController.swift in Sources */,
+				2DE14EE11B92047000C27CB7 /* CivicsPracticeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

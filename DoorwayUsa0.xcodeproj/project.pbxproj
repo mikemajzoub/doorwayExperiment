@@ -18,6 +18,7 @@
 		2DB853CE1B93E70100377750 /* Slt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DB853CA1B93E70100377750 /* Slt.framework */; };
 		2DB853D01B93E7C700377750 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DB853CF1B93E7C700377750 /* AudioToolbox.framework */; };
 		2DB853D21B93E7CC00377750 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DB853D11B93E7CC00377750 /* AVFoundation.framework */; };
+		2DB853D81B93EFA300377750 /* OpenEarsEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB853D71B93EFA300377750 /* OpenEarsEngine.swift */; };
 		2DE14EDF1B92046200C27CB7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE14EDE1B92046200C27CB7 /* HomeViewController.swift */; };
 		2DE14EE11B92047000C27CB7 /* CivicsPracticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE14EE01B92047000C27CB7 /* CivicsPracticeViewController.swift */; };
 /* End PBXBuildFile section */
@@ -49,6 +50,7 @@
 		2DB853CF1B93E7C700377750 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		2DB853D11B93E7CC00377750 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		2DB853D31B93E98800377750 /* DoorwayUsa0-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DoorwayUsa0-Bridging-Header.h"; sourceTree = "<group>"; };
+		2DB853D71B93EFA300377750 /* OpenEarsEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenEarsEngine.swift; sourceTree = "<group>"; };
 		2DE14EDE1B92046200C27CB7 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		2DE14EE01B92047000C27CB7 /* CivicsPracticeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CivicsPracticeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -101,6 +103,7 @@
 			children = (
 				2D53AC301B91FBDA00B3DFC7 /* AppDelegate.swift */,
 				2DE14EDE1B92046200C27CB7 /* HomeViewController.swift */,
+				2DB853D71B93EFA300377750 /* OpenEarsEngine.swift */,
 				2DE14EE01B92047000C27CB7 /* CivicsPracticeViewController.swift */,
 				2D53AC341B91FBDA00B3DFC7 /* Main.storyboard */,
 				2D53AC371B91FBDA00B3DFC7 /* Images.xcassets */,
@@ -252,6 +255,7 @@
 			files = (
 				2D53AC311B91FBDA00B3DFC7 /* AppDelegate.swift in Sources */,
 				2DE14EDF1B92046200C27CB7 /* HomeViewController.swift in Sources */,
+				2DB853D81B93EFA300377750 /* OpenEarsEngine.swift in Sources */,
 				2DE14EE11B92047000C27CB7 /* CivicsPracticeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

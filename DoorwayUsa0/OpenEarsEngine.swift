@@ -10,7 +10,7 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
 {
     var lmPath: String!
     var dicPath: String!
-    var words: Array<String> = ["I WALKED THE DOG", "HEY"]
+    var words: Array<String>!
     
     var openEarsEventsObserver: OEEventsObserver!
     var openEarsFliteController: OEFliteController!
@@ -29,7 +29,10 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
         self.openEarsEventsObserver = OEEventsObserver()
         self.openEarsEventsObserver.delegate = self
         
-        // Listening Language Model????????????????????????????????????????????????????
+        // TODO: learn about this language model, how to switch vocabularies btwn civics/read/write
+        // Listening Language Model
+        loadWords()
+        
         var lmGenerator: OELanguageModelGenerator = OELanguageModelGenerator()
         
         var name = "LanguageModelFileStarSaver"
@@ -48,6 +51,38 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
     
     func stopListening() {
         OEPocketsphinxController.sharedInstance().stopListening()
+    }
+    
+    func loadWords()
+    {
+        words =
+            [
+                "the",
+                "constitution",
+                "sets",
+                "up",
+                "government",
+                "defines",
+                "protects",
+                "basic",
+                "rights",
+                "of",
+                "americans",
+                "we",
+                "people",
+                "a",
+                "change",
+                "an",
+                "addition",
+                "to",
+                "bill",
+                "of",
+                "speech",
+                "religion",
+                "assembly",
+                "press",
+                "petition"
+            ] // vocabulary up through question 6 of civics
     }
     
     // MARK: - Speech

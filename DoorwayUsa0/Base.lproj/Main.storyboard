@@ -358,7 +358,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Writing Practice" id="GWd-7E-NjY">
                         <barButtonItem key="backBarButtonItem" title="Practice" id="zem-9P-8zF"/>
-                        <barButtonItem key="rightBarButtonItem" title="All Questions" id="t6x-zE-DU8"/>
+                        <barButtonItem key="rightBarButtonItem" title="All Questions" id="t6x-zE-DU8">
+                            <connections>
+                                <segue destination="dPg-Jk-tGa" kind="show" id="jM7-pL-Shm"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZIa-X2-GuS" userLabel="First Responder" sceneMemberID="firstResponder"/>

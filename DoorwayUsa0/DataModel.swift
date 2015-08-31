@@ -11,4 +11,8 @@ import Foundation
 class DataModel
 {
     var civicsQuestionBank = CivicsQuestionBank()
+    
+    // TODO:
+    // - serializing/saving
+    // - reading & writing
 }

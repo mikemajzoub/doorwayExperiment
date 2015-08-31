@@ -31,7 +31,7 @@ class HomeViewController: UIViewController
         {
             let navigationController = segue.destinationViewController as! UINavigationController
             let controller = navigationController.topViewController as! CivicsPracticeViewController
-            controller.dataModel = dataModel
+            controller.dataModel = dataModel // TODO: as design firms up, only pass question bank, keeping VC as dumb as possible
             controller.openEarsEngine = openEarsEngine
         }
         else if segue.identifier == "ShowReadingPractice"

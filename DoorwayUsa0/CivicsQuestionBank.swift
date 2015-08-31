@@ -11,7 +11,7 @@ import Foundation
 class CivicsQuestionBank
 {
     var questions = [CivicsQuestion]()
-    var activeBoundaryIndex: Int = 3
+    var activeBoundaryIndex: Int = 3 // as user masters more questions, introduce new ones
     
     init()
     {

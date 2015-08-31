@@ -6,4 +6,12 @@
 //  Copyright (c) 2015 mikemajzoub. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class CivicsPracticeViewController: UIViewController, OEEventsObserverDelegate
+{
+    var dataModel: DataModel!
+    var openEarsEngine: OpenEarsEngine!
+    
+    
+}

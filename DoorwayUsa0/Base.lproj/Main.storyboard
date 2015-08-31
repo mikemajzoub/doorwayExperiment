@@ -129,7 +129,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="1Qg-uB-kjx" kind="show" id="3PC-C5-MT2"/>
+                                    <segue destination="1Qg-uB-kjx" kind="show" identifier="ShowWritingPractice" id="3PC-C5-MT2"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="atq-WL-ng9">
@@ -142,7 +142,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="goN-Qf-EON" kind="show" id="noc-7f-Zd6"/>
+                                    <segue destination="goN-Qf-EON" kind="show" identifier="ShowReadingPractice" id="noc-7f-Zd6"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Yz-Jx-8pn">
@@ -165,7 +165,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Dr9-Ej-hnV" kind="show" id="tcx-eD-OfE"/>
+                                    <segue destination="Dr9-Ej-hnV" kind="show" identifier="ShowCivicsPractice" id="tcx-eD-OfE"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -216,7 +216,7 @@
         <!--Civics Practice-->
         <scene sceneID="EaO-Qc-nEp">
             <objects>
-                <viewController title="Civics Practice" id="Akl-DO-gaB" sceneMemberID="viewController">
+                <viewController title="Civics Practice" id="Akl-DO-gaB" customClass="CivicsPracticeViewController" customModule="DoorwayUsa0" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pOS-3c-efW"/>
                         <viewControllerLayoutGuide type="bottom" id="spe-Oo-d8E"/>

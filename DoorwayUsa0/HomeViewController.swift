@@ -8,27 +8,41 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, OEEventsObserverDelegate
+class HomeViewController: UIViewController
 {
     var dataModel: DataModel!
-    
     var openEarsEngine: OpenEarsEngine!
     
-    
+    // MARK: - View Controller
     override func viewDidLoad()
     {
-        println("lala")
+        println("hvc vdl")
     }
     
     override func viewDidAppear(animated: Bool)
     {
         super.viewDidAppear(animated)
-        
-        let question = dataModel.civicsQuestionBank.nextQuestion()
-        openEarsEngine.say(question!.question)
     }
     
-    
+    // MARK: - Segue
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        if segue.identifier == "ShowCivicsPractice"
+        {
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let controller = navigationController.topViewController as! CivicsPracticeViewController
+            controller.dataModel = dataModel
+            controller.openEarsEngine = openEarsEngine
+        }
+        else if segue.identifier == "ShowReadingPractice"
+        {
+            // TODO:
+        }
+        else if segue.identifier == "ShowWritingPractice"
+        {
+            // TODO:
+        }
+    }
 
 }
 

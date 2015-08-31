@@ -30,6 +30,7 @@ class CivicsQuestionBank
             if !question.isMastered()
             {
                 allMastered = false
+                
                 break
             }
         }

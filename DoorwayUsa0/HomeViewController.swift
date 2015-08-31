@@ -10,8 +10,10 @@ import UIKit
 
 class HomeViewController: UIViewController, OEEventsObserverDelegate
 {
-    var openEarsEngine = OpenEarsEngine()
-    var civicsQuestionBank = CivicsQuestionBank()
+    var dataModel: DataModel!
+    
+    var openEarsEngine: OpenEarsEngine!
+    
     
     override func viewDidLoad()
     {
@@ -22,7 +24,7 @@ class HomeViewController: UIViewController, OEEventsObserverDelegate
     {
         super.viewDidAppear(animated)
         
-        let question = civicsQuestionBank.nextQuestion()
+        let question = dataModel.civicsQuestionBank.nextQuestion()
         openEarsEngine.say(question!.question)
     }
     

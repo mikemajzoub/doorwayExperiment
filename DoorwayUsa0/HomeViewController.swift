@@ -11,10 +11,19 @@ import UIKit
 class HomeViewController: UIViewController, OEEventsObserverDelegate
 {
     var openEarsEngine = OpenEarsEngine()
+    var civicsQuestionBank = CivicsQuestionBank()
     
     override func viewDidLoad()
     {
         println("lala")
+    }
+    
+    override func viewDidAppear(animated: Bool)
+    {
+        super.viewDidAppear(animated)
+        
+        let question = civicsQuestionBank.nextQuestion()
+        openEarsEngine.say(question!.question)
     }
     
     

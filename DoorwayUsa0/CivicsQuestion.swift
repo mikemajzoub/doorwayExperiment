@@ -15,7 +15,7 @@ class CivicsQuestion: NSObject
     
     var totalCount: Int = 0
     var correctCount: Int = 0
-    var weight: Float = 256.0
+    var weight: Int = 256
     
     init(question: String, answer: [String])
     {
@@ -30,7 +30,7 @@ class CivicsQuestion: NSObject
         totalCount++
         correctCount++
         
-        weight *= 0.5
+        weight /= 2
         
     }
     
@@ -39,5 +39,12 @@ class CivicsQuestion: NSObject
         totalCount++
         
         weight *= 2
+    }
+    
+    func isMastered() -> Bool
+    {
+        let percentMastered = Float(correctCount) / Float(totalCount)
+        
+        return percentMastered > 0.8
     }
 }

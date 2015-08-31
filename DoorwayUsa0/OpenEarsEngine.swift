@@ -10,37 +10,28 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
 {
     var lmPath: String!
     var dicPath: String!
-    var words: Array<String> = ["I WALKED THE DOG"]
-    var currentWord: String!
+    var words: Array<String> = ["I WALKED THE DOG", "HEY"]
     
     var openEarsEventsObserver: OEEventsObserver!
-    
     var openEarsFliteController: OEFliteController!
-    
     var slt: Slt!
     
+    // MARK: - Init
     override init()
     {
         super.init()
         
-        loadOpenEars()
-        startListening()
-    }
-    
-    func loadOpenEars()
-    {
+        // Speech
+        self.openEarsFliteController = OEFliteController()
+        self.slt = Slt()
+        
+        // Listening
         self.openEarsEventsObserver = OEEventsObserver()
         self.openEarsEventsObserver.delegate = self
         
-        self.openEarsFliteController = OEFliteController()
-        
-        self.slt = Slt()
-        
-        self.openEarsFliteController.say("one two three four rock and roll baby", withVoice:self.slt)
-        
+        // Listening Language Model????????????????????????????????????????????????????
         var lmGenerator: OELanguageModelGenerator = OELanguageModelGenerator()
         
-        addWords()
         var name = "LanguageModelFileStarSaver"
         lmGenerator.generateLanguageModelFromArray(words, withFilesNamed: name, forAcousticModelAtPath: OEAcousticModel.pathToModel("AcousticModelEnglish"))
         
@@ -48,12 +39,25 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
         dicPath = lmGenerator.pathToSuccessfullyGeneratedDictionaryWithRequestedName(name)
     }
     
+    
+    // MARK: - Listening
+    func startListening() {
+        OEPocketsphinxController.sharedInstance().setActive(true, error: nil)
+        OEPocketsphinxController.sharedInstance().startListeningWithLanguageModelAtPath(lmPath, dictionaryAtPath: dicPath, acousticModelAtPath: OEAcousticModel.pathToModel("AcousticModelEnglish"), languageModelIsJSGF: false)
+    }
+    
+    func stopListening() {
+        OEPocketsphinxController.sharedInstance().stopListening()
+    }
+    
+    // MARK: - Speech
+    func say(sayThis: String)
+    {
+        self.openEarsFliteController.say(sayThis, withVoice:self.slt)
+    }
+    
+    // MARK: - OpenEars Delegate
     func pocketsphinxDidReceiveHypothesis(hypothesis: String!, recognitionScore: String!, utteranceID: String!) {
-        /*
-        if hypothesis == currentWord {
-        //do what you want here when the correct word is recognized
-        }
-        */
         println("The received hypothesis is \(hypothesis) with a score of \(recognitionScore) and an ID of \(utteranceID)")
     }
     
@@ -95,26 +99,5 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
     
     func testRecognitionCompleted() {
         println("A test file that was submitted for recognition is now complete.")
-    }
-    
-    func startListening() {
-        OEPocketsphinxController.sharedInstance().setActive(true, error: nil)
-        OEPocketsphinxController.sharedInstance().startListeningWithLanguageModelAtPath(lmPath, dictionaryAtPath: dicPath, acousticModelAtPath: OEAcousticModel.pathToModel("AcousticModelEnglish"), languageModelIsJSGF: false)
-    }
-    
-    func stopListening() {
-        OEPocketsphinxController.sharedInstance().stopListening()
-    }
-    
-    func addWords() {
-        //add any thing here that you want to be recognized. Must be in capital letters
-        words.append("HELLO")
-        words.append("GOODBYE")
-    }
-    
-    func getNewWord() {
-        var randomWord = Int(arc4random_uniform(UInt32(words.count)))
-        
-        currentWord = words[randomWord]
     }
 }

@@ -11,10 +11,78 @@ import Foundation
 class CivicsQuestionBank
 {
     var questions = [CivicsQuestion]()
+    var activeBoundaryIndex: Int = 3
     
     init()
     {
         loadQuestions()
+        printQuestions()
+    }
+    
+    func update()
+    {
+        var allMastered = true
+        
+        for index in 0...activeBoundaryIndex
+        {
+            let question = questions[index]
+            
+            if !question.isMastered()
+            {
+                allMastered = false
+                break
+            }
+        }
+        
+        if allMastered
+        {
+            activeBoundaryIndex += 3
+            
+            if activeBoundaryIndex > questions.count
+            {
+                activeBoundaryIndex = questions.count
+            }
+        }
+    }
+    
+    func nextQuestion() -> CivicsQuestion?
+    {
+        var totalWeight = 0
+        
+        for index in 0..<activeBoundaryIndex
+        {
+            let q = questions[index]
+            totalWeight += q.weight
+        }
+        
+        
+        let random = Int(arc4random_uniform(UInt32(totalWeight)))
+        
+        
+        // get question
+        var currentWeightSum = 0
+        var questionToReturn: CivicsQuestion?
+        
+        for q in questions
+        {
+            currentWeightSum += q.weight
+            
+            if random < currentWeightSum
+            {
+                questionToReturn = q
+                break
+            }
+        }
+        
+        return questionToReturn
+    }
+    
+    func printQuestions()
+    {
+        for q in questions
+        {
+            println("q: \(q.question), a: \(q.answer)")
+        }
     }
     
     func loadQuestions()

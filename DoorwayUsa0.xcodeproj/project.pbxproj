@@ -12,6 +12,16 @@
 		2D53AC381B91FBDA00B3DFC7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D53AC371B91FBDA00B3DFC7 /* Images.xcassets */; };
 		2D53AC3B1B91FBDA00B3DFC7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D53AC391B91FBDA00B3DFC7 /* LaunchScreen.xib */; };
 		2D53AC471B91FBDA00B3DFC7 /* DoorwayUsa0Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D53AC461B91FBDA00B3DFC7 /* DoorwayUsa0Tests.swift */; };
+		2DB853CB1B93E70100377750 /* AcousticModelEnglish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2DB853C71B93E70100377750 /* AcousticModelEnglish.bundle */; };
+		2DB853CC1B93E70100377750 /* AcousticModelSpanish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2DB853C81B93E70100377750 /* AcousticModelSpanish.bundle */; };
+		2DB853CD1B93E70100377750 /* OpenEars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DB853C91B93E70100377750 /* OpenEars.framework */; };
+		2DB853CE1B93E70100377750 /* Slt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DB853CA1B93E70100377750 /* Slt.framework */; };
+		2DB853D01B93E7C700377750 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DB853CF1B93E7C700377750 /* AudioToolbox.framework */; };
+		2DB853D21B93E7CC00377750 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DB853D11B93E7CC00377750 /* AVFoundation.framework */; };
+		2DB853D81B93EFA300377750 /* OpenEarsEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB853D71B93EFA300377750 /* OpenEarsEngine.swift */; };
+		2DB853DA1B9485BF00377750 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB853D91B9485BF00377750 /* DataModel.swift */; };
+		2DB853DC1B9485CA00377750 /* CivicsQuestionBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB853DB1B9485CA00377750 /* CivicsQuestionBank.swift */; };
+		2DB853DE1B9485D300377750 /* CivicsQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB853DD1B9485D300377750 /* CivicsQuestion.swift */; };
 		2DE14EDF1B92046200C27CB7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE14EDE1B92046200C27CB7 /* HomeViewController.swift */; };
 		2DE14EE11B92047000C27CB7 /* CivicsPracticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE14EE01B92047000C27CB7 /* CivicsPracticeViewController.swift */; };
 /* End PBXBuildFile section */
@@ -36,6 +46,17 @@
 		2D53AC401B91FBDA00B3DFC7 /* DoorwayUsa0Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DoorwayUsa0Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D53AC451B91FBDA00B3DFC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D53AC461B91FBDA00B3DFC7 /* DoorwayUsa0Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorwayUsa0Tests.swift; sourceTree = "<group>"; };
+		2DB853C71B93E70100377750 /* AcousticModelEnglish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AcousticModelEnglish.bundle; sourceTree = "<group>"; };
+		2DB853C81B93E70100377750 /* AcousticModelSpanish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AcousticModelSpanish.bundle; sourceTree = "<group>"; };
+		2DB853C91B93E70100377750 /* OpenEars.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenEars.framework; sourceTree = "<group>"; };
+		2DB853CA1B93E70100377750 /* Slt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Slt.framework; sourceTree = "<group>"; };
+		2DB853CF1B93E7C700377750 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		2DB853D11B93E7CC00377750 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		2DB853D31B93E98800377750 /* DoorwayUsa0-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DoorwayUsa0-Bridging-Header.h"; sourceTree = "<group>"; };
+		2DB853D71B93EFA300377750 /* OpenEarsEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenEarsEngine.swift; sourceTree = "<group>"; };
+		2DB853D91B9485BF00377750 /* DataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		2DB853DB1B9485CA00377750 /* CivicsQuestionBank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CivicsQuestionBank.swift; sourceTree = "<group>"; };
+		2DB853DD1B9485D300377750 /* CivicsQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CivicsQuestion.swift; sourceTree = "<group>"; };
 		2DE14EDE1B92046200C27CB7 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		2DE14EE01B92047000C27CB7 /* CivicsPracticeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CivicsPracticeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -45,6 +66,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DB853D21B93E7CC00377750 /* AVFoundation.framework in Frameworks */,
+				2DB853D01B93E7C700377750 /* AudioToolbox.framework in Frameworks */,
+				2DB853CE1B93E70100377750 /* Slt.framework in Frameworks */,
+				2DB853CD1B93E70100377750 /* OpenEars.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +86,9 @@
 		2D53AC221B91FBDA00B3DFC7 = {
 			isa = PBXGroup;
 			children = (
+				2DB853D11B93E7CC00377750 /* AVFoundation.framework */,
+				2DB853CF1B93E7C700377750 /* AudioToolbox.framework */,
+				2DB853C61B93E70100377750 /* Framework */,
 				2D53AC2D1B91FBDA00B3DFC7 /* DoorwayUsa0 */,
 				2D53AC431B91FBDA00B3DFC7 /* DoorwayUsa0Tests */,
 				2D53AC2C1B91FBDA00B3DFC7 /* Products */,
@@ -81,10 +109,15 @@
 			children = (
 				2D53AC301B91FBDA00B3DFC7 /* AppDelegate.swift */,
 				2DE14EDE1B92046200C27CB7 /* HomeViewController.swift */,
+				2DB853D71B93EFA300377750 /* OpenEarsEngine.swift */,
 				2DE14EE01B92047000C27CB7 /* CivicsPracticeViewController.swift */,
+				2DB853D91B9485BF00377750 /* DataModel.swift */,
+				2DB853DB1B9485CA00377750 /* CivicsQuestionBank.swift */,
+				2DB853DD1B9485D300377750 /* CivicsQuestion.swift */,
 				2D53AC341B91FBDA00B3DFC7 /* Main.storyboard */,
 				2D53AC371B91FBDA00B3DFC7 /* Images.xcassets */,
 				2D53AC391B91FBDA00B3DFC7 /* LaunchScreen.xib */,
+				2DB853D31B93E98800377750 /* DoorwayUsa0-Bridging-Header.h */,
 				2D53AC2E1B91FBDA00B3DFC7 /* Supporting Files */,
 			);
 			path = DoorwayUsa0;
@@ -113,6 +146,17 @@
 				2D53AC451B91FBDA00B3DFC7 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2DB853C61B93E70100377750 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				2DB853C71B93E70100377750 /* AcousticModelEnglish.bundle */,
+				2DB853C81B93E70100377750 /* AcousticModelSpanish.bundle */,
+				2DB853C91B93E70100377750 /* OpenEars.framework */,
+				2DB853CA1B93E70100377750 /* Slt.framework */,
+			);
+			path = Framework;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,6 +241,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D53AC361B91FBDA00B3DFC7 /* Main.storyboard in Resources */,
+				2DB853CC1B93E70100377750 /* AcousticModelSpanish.bundle in Resources */,
+				2DB853CB1B93E70100377750 /* AcousticModelEnglish.bundle in Resources */,
 				2D53AC3B1B91FBDA00B3DFC7 /* LaunchScreen.xib in Resources */,
 				2D53AC381B91FBDA00B3DFC7 /* Images.xcassets in Resources */,
 			);
@@ -216,8 +262,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DB853DA1B9485BF00377750 /* DataModel.swift in Sources */,
+				2DB853DE1B9485D300377750 /* CivicsQuestion.swift in Sources */,
 				2D53AC311B91FBDA00B3DFC7 /* AppDelegate.swift in Sources */,
+				2DB853DC1B9485CA00377750 /* CivicsQuestionBank.swift in Sources */,
 				2DE14EDF1B92046200C27CB7 /* HomeViewController.swift in Sources */,
+				2DB853D81B93EFA300377750 /* OpenEarsEngine.swift in Sources */,
 				2DE14EE11B92047000C27CB7 /* CivicsPracticeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -345,12 +395,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Framework",
+				);
 				INFOPLIST_FILE = DoorwayUsa0/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "DoorwayUsa0/DoorwayUsa0-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -358,12 +415,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Framework",
+				);
 				INFOPLIST_FILE = DoorwayUsa0/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "DoorwayUsa0/DoorwayUsa0-Bridging-Header.h";
 			};
 			name = Release;
 		};

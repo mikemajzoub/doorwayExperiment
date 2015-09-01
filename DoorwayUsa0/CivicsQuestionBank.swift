@@ -23,11 +23,13 @@ class CivicsQuestionBank
     {
         var allMastered = true
         
-        for index in 0...activeBoundaryIndex
+        for index in 0..<activeBoundaryIndex
         {
-            let question = questions[index]
+            let q = questions[index]
             
-            if !question.isMastered()
+            println("\n\nq:\(q.question)\naSpoken:\(q.answersSpoken)\naKeywords:\(q.answersKeywords)\nweight:\(q.weight)\ntotalCount:\(q.totalCount)\ncorrectCount:\(q.correctCount)")
+            
+            if !q.isMastered()
             {
                 allMastered = false
                 
@@ -82,7 +84,7 @@ class CivicsQuestionBank
     {
         for q in questions
         {
-            println("q: \(q.question), a: \(q.answer)")
+            println("q: \(q.question)\naSpoken: \(q.answersSpoken)\naKeywords: \(q.answersKeywords)")
         }
     }
     
@@ -91,38 +93,45 @@ class CivicsQuestionBank
         var question: CivicsQuestion
         
         question = CivicsQuestion(
-            question: "say one or two",
-            answer: ["one", "two"])
+            question: "what is the supreme law of the land?",
+            answersSpoken: ["THE CONSTITUTION"],
+            answersKeywords: [ ["CONSTITUTION"] ])
         questions.append(question)
         
         question = CivicsQuestion(
-            question: "say two or three",
-            answer: ["two", "three"])
+            question: "What does the Constitution do?",
+            answersSpoken: ["SETS UP THE GOVERNMENT", "DEFINES THE GOVERNMENT", "PROTECTS BASIC RIGHTS OF AMERICANS"],
+            answersKeywords:[ ["SETS", "UP", "GOVERNMENT"], ["DEFINES", "GOVERNMENT"], ["PROTECTS", "RIGHTS", "AMERICANS"] ])
         questions.append(question)
         
         question = CivicsQuestion(
-            question: "say three or four",
-            answer: ["three", "four"])
+            question: "The idea of self government is in the first three words of the Constitution. What are these three words?",
+            answersSpoken: ["WE THE PEOPLE"],
+            answersKeywords: [ ["WE", "THE", "PEOPLE"] ])
         questions.append(question)
         
         question = CivicsQuestion(
-            question: "say four or five",
-            answer: ["four", "five"])
+            question: "What is an ammendment?",
+            answersSpoken: ["A CHANGE TO THE CONSTITUTION", "AN ADDITION TO THE CONSTITUTION"],
+        answersKeywords: [ ["CHANGE", "CONSTITUTION"], ["ADDITION", "CONSTITUTION"] ])
         questions.append(question)
         
         question = CivicsQuestion(
-            question: "say five or six",
-            answer: ["five", "six"])
+            question: "What do we call the first ten ammendments to the Constitution",
+            answersSpoken: ["THE BILL OF RIGHTS"],
+        answersKeywords: [ ["BILL", "RIGHTS"] ])
         questions.append(question)
         
         question = CivicsQuestion(
-            question: "say six or seven",
-            answer: ["six", "seven"])
+            question: "What is one right or freedom from the First Ammendment?",
+            answersSpoken: ["SPEECH", "RELIGION", "ASSEMBLY", "PRESS", "PETITION THE GOVERNMENT"],
+        answersKeywords: [ ["SPEECH"], ["RELIGION"], ["ASSEMBLY"], ["PRESS"], ["PETITION", "GOVERNMENT"] ])
         questions.append(question)
         
         question = CivicsQuestion(
-            question: "say seven or eight",
-            answer: ["seven", "eight"])
+            question: "How many ammendments does the Constitution have?",
+            answersSpoken: ["TWENTY-SEVEN"],
+        answersKeywords: [ ["TWENTY", "SEVEN"] ])
         questions.append(question)
     }
 }

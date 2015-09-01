@@ -11,16 +11,18 @@ import Foundation
 class CivicsQuestion: NSObject
 {
     let question: String
-    let answer: [String]
+    let answersSpoken: [String]
+    let answersKeywords: [ [String] ]
     
     var totalCount: Int = 0
     var correctCount: Int = 0
     var weight: Int = 256
     
-    init(question: String, answer: [String])
+    init(question: String, answersSpoken: [String], answersKeywords: [ [String] ])
     {
         self.question = question
-        self.answer = answer
+        self.answersSpoken = answersSpoken
+        self.answersKeywords = answersKeywords
         
         super.init()
     }
@@ -45,6 +47,6 @@ class CivicsQuestion: NSObject
     {
         let percentMastered = Float(correctCount) / Float(totalCount)
         
-        return percentMastered > 0.8
+        return percentMastered > 0.2
     }
 }

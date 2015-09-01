@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DoorwayUsa0/HomeViewController.swift"
-            timestampString = "462732351.069087"
+            filePath = "DoorwayUsa0/CivicsPracticeViewController.swift"
+            timestampString = "462759634.911116"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "prepareForSegue(_:sender:)"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "askQuestion()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

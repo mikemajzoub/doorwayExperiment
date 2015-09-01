@@ -6,6 +6,14 @@
 //  Copyright (c) 2015 mikemajzoub. All rights reserved.
 //
 
+protocol OpenEarsEngineDelegate: class
+{
+    func heardWords(words: String!, withRecognitionScore recognitionScore: String!)
+    func computerFinishedSpeaking()
+    func computerPausedListening()
+    func computerResumedListening()
+}
+
 class OpenEarsEngine: NSObject, OEEventsObserverDelegate
 {
     var lmPath: String!
@@ -15,6 +23,8 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
     var openEarsEventsObserver: OEEventsObserver!
     var openEarsFliteController: OEFliteController!
     var slt: Slt!
+    
+    weak var delegate: OpenEarsEngineDelegate? // TODO: HOOK UP DELEGATE ON INIT OR SEGUE!!!
     
     // MARK: - Init
     override init()
@@ -57,31 +67,34 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
     {
         words =
             [
-                "the",
-                "constitution",
-                "sets",
-                "up",
-                "government",
-                "defines",
-                "protects",
-                "basic",
-                "rights",
-                "of",
-                "americans",
-                "we",
-                "people",
-                "a",
-                "change",
-                "an",
-                "addition",
-                "to",
-                "bill",
-                "of",
-                "speech",
-                "religion",
-                "assembly",
-                "press",
-                "petition"
+                // 1. What is the supreme law of the land?
+                "THE CONSTITUTION",
+                
+                // 2. What does the constitution do?
+                "SETS UP THE GOVERNMENT",
+                "DEFINES THE GOVERNMENT",
+                "PROTECTS BASIC AMERICAN RIGHTS",
+                
+                // 3. The idea of self-government is in the first three words of the constitution. What are these words?
+                "WE THE PEOPLE",
+                
+                // 4. What is an ammendment?
+                "A CHANGE TO THE CONSTITUTION",
+                "AN ADDITION TO THE CONSTITUTION",
+                
+                // 5. What do we call the first ten ammendments to the constitution?
+                "THE BILL OF RIGHTS",
+                
+                // 6. What is one right or freedom from the First Ammendment?
+                "SPEECH",
+                "RELIGION",
+                "ASSEMBLY",
+                "PRESS",
+                "PETITION THE GOVERNMENT",
+                
+                // 7. How many ammendments does the constitution have?
+                "TWENTY-SEVEN"
+                
             ] // vocabulary up through question 6 of civics
     }
     
@@ -92,8 +105,9 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
     }
     
     // MARK: - OpenEars Delegate
-    func pocketsphinxDidReceiveHypothesis(hypothesis: String!, recognitionScore: String!, utteranceID: String!) {
-        println("The received hypothesis is \(hypothesis) with a score of \(recognitionScore) and an ID of \(utteranceID)")
+    func pocketsphinxDidReceiveHypothesis(hypothesis: String!, recognitionScore: String!, utteranceID: String!)
+    {
+        delegate?.heardWords(hypothesis, withRecognitionScore: recognitionScore)
     }
     
     func pocketsphinxDidStartListening() {
@@ -114,10 +128,12 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
     
     func pocketsphinxDidSuspendRecognition() {
         println("Pocketsphinx has suspended recognition.")
+        delegate?.computerPausedListening()
     }
     
     func pocketsphinxDidResumeRecognition() {
         println("Pocketsphinx has resumed recognition.")
+        delegate?.computerResumedListening()
     }
     
     func pocketsphinxDidChangeLanguageModelToFile(newLanguageModelPathAsString: String, newDictionaryPathAsString: String) {
@@ -134,5 +150,10 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
     
     func testRecognitionCompleted() {
         println("A test file that was submitted for recognition is now complete.")
+    }
+    
+    func fliteDidFinishSpeaking()
+    {
+        delegate?.computerFinishedSpeaking()
     }
 }

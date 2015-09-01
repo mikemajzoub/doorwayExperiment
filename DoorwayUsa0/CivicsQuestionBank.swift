@@ -99,7 +99,8 @@ class CivicsQuestionBank: NSObject, NSCoding
         }
     }
     
-    func loadQuestions()
+    // If app is running for first time, initialize questions here.
+    func initializeQuestions()
     {
         var question: CivicsQuestion
         

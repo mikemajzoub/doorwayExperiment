@@ -35,7 +35,7 @@ class DataModel
         let firstTime = userDefaults.boolForKey("FirstTime")
         if firstTime
         {
-            civicsQuestionBank.loadQuestions()
+            civicsQuestionBank.initializeQuestions()
 
             userDefaults.setBool(false, forKey: "FirstTime")
         }

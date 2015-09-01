@@ -18,6 +18,7 @@ class CivicsQuestion: NSObject
     var correctCount: Int = 0
     var weight: Int = 256
     
+    // MARK: - Init
     init(question: String, answersSpoken: [String], answersKeywords: [ [String] ])
     {
         self.question = question
@@ -27,6 +28,32 @@ class CivicsQuestion: NSObject
         super.init()
     }
     
+    // MARK: - Encode/Decode
+    required init(coder aDecoder: NSCoder)
+    {
+        question = aDecoder.decodeObjectForKey("Question") as! String
+        answersSpoken = aDecoder.decodeObjectForKey("AnswersSpoken") as! [String]
+        answersKeywords = aDecoder.decodeObjectForKey("AnswersKeywords") as! [ [String] ]
+        
+        totalCount = aDecoder.decodeIntegerForKey("TotalCount")
+        correctCount = aDecoder.decodeIntegerForKey("CorrectCount")
+        weight = aDecoder.decodeIntegerForKey("Weight")
+        
+        super.init()
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder)
+    {
+        aCoder.encodeObject(question, forKey: "Question")
+        aCoder.encodeObject(answersSpoken, forKey: "AnswersSpoken")
+        aCoder.encodeObject(answersKeywords, forKey: "AnswersKeywords")
+        
+        aCoder.encodeObject(totalCount, forKey: "TotalCount")
+        aCoder.encodeObject(correctCount, forKey: "CorrectCount")
+        aCoder.encodeObject(weight, forKey: "Weight")
+    }
+    
+    // MARK: - Logic
     func correctlyAnswered()
     {
         totalCount++

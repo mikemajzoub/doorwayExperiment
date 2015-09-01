@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>6EDB6FD7-FCC4-4A49-ABDE-1DFAC91B98A0</string>
+	<key>IDESourceControlProjectName</key>
+	<string>DoorwayUsa0</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>AD62C0912CD8FCE39DAD438C4BD6DE6E76B7A21E</key>
+		<string>https://github.com/mikemajzoub/DoorwayUsa0.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>DoorwayUsa0.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>AD62C0912CD8FCE39DAD438C4BD6DE6E76B7A21E</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/mikemajzoub/DoorwayUsa0.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>AD62C0912CD8FCE39DAD438C4BD6DE6E76B7A21E</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>AD62C0912CD8FCE39DAD438C4BD6DE6E76B7A21E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>DoorwayUsa0</string>
+		</dict>
+	</array>
+</dict>
+</plist>

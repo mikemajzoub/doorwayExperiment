@@ -198,6 +198,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Ufu-Oc-Fgv">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gYK-5t-oec" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="U4U-Gm-k93" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0Ee-i2-F82">
@@ -209,7 +210,6 @@
                         <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="f7B-vm-ZKO"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gYK-5t-oec" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="441" y="387"/>
         </scene>
@@ -228,94 +228,12 @@
                     </view>
                     <navigationItem key="navigationItem" title="Civics Practice" id="fse-vm-p9T">
                         <barButtonItem key="backBarButtonItem" title="Practice" id="ozc-Rh-z6u"/>
-                        <barButtonItem key="rightBarButtonItem" title="All Questions" id="ify-tZ-BmQ">
-                            <connections>
-                                <segue destination="Df8-Rx-pOJ" kind="show" id="2cO-NJ-rP3"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="All Questions" id="ify-tZ-BmQ"/>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gaI-Sa-PYW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="441" y="1829"/>
-        </scene>
-        <!--Civics Questions-->
-        <scene sceneID="oWh-3i-32H">
-            <objects>
-                <tableViewController title="Civics Questions" id="Df8-Rx-pOJ" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Boh-eD-9tI">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="xJq-fR-RrQ">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xJq-fR-RrQ" id="dRb-Pi-HqX">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="Df8-Rx-pOJ" id="bZG-eJ-Hgo"/>
-                            <outlet property="delegate" destination="Df8-Rx-pOJ" id="6C7-hg-alx"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5gX-Oq-uYc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="441" y="2553"/>
-        </scene>
-        <!--Reading Questions-->
-        <scene sceneID="GUu-w3-kJe">
-            <objects>
-                <tableViewController title="Reading Questions" id="NbZ-BU-BL1" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="fn3-fa-E8o">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="YS6-Do-fMH">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YS6-Do-fMH" id="7QO-V9-7Xd">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="NbZ-BU-BL1" id="RXI-dc-5Xm"/>
-                            <outlet property="delegate" destination="NbZ-BU-BL1" id="Oyn-cE-orw"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WZ2-5F-bI0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1137" y="2553"/>
-        </scene>
-        <!--Writing Questions-->
-        <scene sceneID="Uhk-p8-7D2">
-            <objects>
-                <tableViewController title="Writing Questions" id="dPg-Jk-tGa" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="grb-LU-NpO">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="LuD-Jw-lMV">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LuD-Jw-lMV" id="ZOA-kT-k16">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="dPg-Jk-tGa" id="DBx-VK-GZf"/>
-                            <outlet property="delegate" destination="dPg-Jk-tGa" id="gXO-bp-Lvh"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="L9d-am-aNi" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1829" y="2553"/>
         </scene>
         <!--Reading Practice-->
         <scene sceneID="lHB-XD-IBw">
@@ -332,11 +250,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Reading Practice" id="GHP-w3-NaC">
                         <barButtonItem key="backBarButtonItem" title="Practice" id="1f6-rg-o1m"/>
-                        <barButtonItem key="rightBarButtonItem" title="All Questions" id="03U-4Z-AGA">
-                            <connections>
-                                <segue destination="NbZ-BU-BL1" kind="show" id="ynf-Ki-BWU"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="All Questions" id="03U-4Z-AGA"/>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4ok-RN-Gcb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -358,11 +272,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Writing Practice" id="GWd-7E-NjY">
                         <barButtonItem key="backBarButtonItem" title="Practice" id="zem-9P-8zF"/>
-                        <barButtonItem key="rightBarButtonItem" title="All Questions" id="t6x-zE-DU8">
-                            <connections>
-                                <segue destination="dPg-Jk-tGa" kind="show" id="jM7-pL-Shm"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="All Questions" id="t6x-zE-DU8"/>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZIa-X2-GuS" userLabel="First Responder" sceneMemberID="firstResponder"/>

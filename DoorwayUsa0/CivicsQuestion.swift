@@ -47,6 +47,6 @@ class CivicsQuestion: NSObject
     {
         let percentMastered = Float(correctCount) / Float(totalCount)
         
-        return percentMastered > 0.2
+        return percentMastered > 0.6
     }
 }

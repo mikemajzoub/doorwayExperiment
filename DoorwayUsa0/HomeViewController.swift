@@ -74,6 +74,9 @@ class HomeViewController: UIViewController
         l1.addSublayer(l2)
         */
         
+        // cancel out gray for storyboard
+        civicsRedCircle.layer.backgroundColor = UIColor.clearColor().CGColor
+        
         // make full red
         let l1 = CALayer()
         l1.frame = civicsRedCircle.bounds

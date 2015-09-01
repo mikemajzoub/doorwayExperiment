@@ -155,35 +155,44 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zZs-40-kjn">
-                                <rect key="frame" x="16" y="520" width="60" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="HTw-qF-37J"/>
-                                    <constraint firstAttribute="width" constant="60" id="n08-V9-LKo"/>
-                                </constraints>
-                                <state key="normal" image="civics-black">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="Dr9-Ej-hnV" kind="show" identifier="ShowCivicsPractice" id="tcx-eD-OfE"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="avi-qj-XuG">
-                                <rect key="frame" x="45" y="408" width="100" height="100"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="avi-qj-XuG">
+                                <rect key="frame" x="16" y="480" width="100" height="100"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zZs-40-kjn">
+                                        <rect key="frame" x="20" y="20" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="HTw-qF-37J"/>
+                                            <constraint firstAttribute="width" constant="60" id="n08-V9-LKo"/>
+                                        </constraints>
+                                        <state key="normal" image="civics-black">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="Dr9-Ej-hnV" kind="show" identifier="ShowCivicsPractice" id="tcx-eD-OfE"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="zZs-40-kjn" firstAttribute="leading" secondItem="avi-qj-XuG" secondAttribute="leading" constant="20" id="8ja-WA-MZu"/>
+                                    <constraint firstAttribute="centerX" secondItem="zZs-40-kjn" secondAttribute="centerX" id="ATe-Pg-U83"/>
+                                    <constraint firstItem="zZs-40-kjn" firstAttribute="top" secondItem="avi-qj-XuG" secondAttribute="top" constant="20" id="ftE-Iu-KQr"/>
+                                    <constraint firstAttribute="centerY" secondItem="zZs-40-kjn" secondAttribute="centerY" id="reR-ka-ANp"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="4Yz-Jx-8pn" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="5Eh-1n-ES8"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="avi-qj-XuG" secondAttribute="bottom" constant="20" id="A04-2R-7Qx"/>
                             <constraint firstItem="6ko-Kd-3WP" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="JlL-Cn-eKC"/>
                             <constraint firstAttribute="centerX" secondItem="atq-WL-ng9" secondAttribute="centerX" id="LDC-nC-rIP"/>
                             <constraint firstItem="4Yz-Jx-8pn" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" constant="80" id="Muq-rv-8Jf"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="zZs-40-kjn" secondAttribute="bottom" constant="20" id="OdW-u8-idX"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="atq-WL-ng9" secondAttribute="bottom" constant="20" id="ZTi-3k-wQ3"/>
-                            <constraint firstItem="zZs-40-kjn" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="h7V-Er-Z16"/>
+                            <constraint firstItem="avi-qj-XuG" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="eBd-Th-Ncn"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="6ko-Kd-3WP" secondAttribute="bottom" constant="20" id="pvM-rw-cVa"/>
                             <constraint firstItem="4Yz-Jx-8pn" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="qqR-Ua-PMP"/>
+                            <constraint firstItem="avi-qj-XuG" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="snc-hK-iKl"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Doorway USA" id="Eja-ZR-jo6">

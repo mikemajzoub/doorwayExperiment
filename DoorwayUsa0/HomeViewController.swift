@@ -58,7 +58,7 @@ class HomeViewController: UIViewController
         let slice1 = CAShapeLayer()
         slice1.fillColor = UIColor.clearColor().CGColor
         slice1.strokeColor = UIColor.redColor().CGColor
-        slice1.lineWidth = 10.0
+        slice1.lineWidth = 1.0
         
         let angle1 = (-90 - 6).degreesToRadians
         let center1 = CGPointMake(civicsRedCircle.frame.width/2, civicsRedCircle.frame.width/2)
@@ -78,7 +78,7 @@ class HomeViewController: UIViewController
         let slice2 = CAShapeLayer()
         slice2.fillColor = UIColor.clearColor().CGColor
         slice2.strokeColor = UIColor.greenColor().CGColor
-        slice2.lineWidth = 10.0
+        slice2.lineWidth = 1.0
         
         let angle = -90.degreesToRadians
         let center = CGPointMake(civicsRedCircle.frame.width/2, civicsRedCircle.frame.width/2)

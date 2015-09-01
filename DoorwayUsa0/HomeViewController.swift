@@ -30,30 +30,7 @@ class HomeViewController: UIViewController
     
     func makeCivicsPieGraph()
     {
-        /*
-        CAShapeLayer *slice = [CAShapeLayer layer];
-        slice.fillColor = [UIColor redColor].CGColor;
-        slice.strokeColor = [UIColor blackColor].CGColor;
-        slice.lineWidth = 3.0;
-        
-        CGFloat angle = DEG2RAD(-60.0);
-        CGPoint center = CGPointMake(100.0, 100.0);
-        CGFloat radius = 100.0;
-        
-        UIBezierPath *piePath = [UIBezierPath bezierPath];
-        [piePath moveToPoint:center];
-        
-        [piePath addLineToPoint:CGPointMake(center.x + radius * cosf(angle), center.y + radius * sinf(angle))];
-        
-        [piePath addArcWithCenter:center radius:radius startAngle:angle endAngle:DEG2RAD(60.0) clockwise:YES];
-        
-        //  [piePath addLineToPoint:center];
-        [piePath closePath]; // this will automatically add a straight line to the center
-        slice.path = piePath.CGPath;
-
-
-*/
-        
+   
         
         
         
@@ -77,21 +54,31 @@ class HomeViewController: UIViewController
         // cancel out gray for storyboard
         civicsRedCircle.layer.backgroundColor = UIColor.clearColor().CGColor
         
-        // make full red
-        let l1 = CALayer()
-        l1.frame = civicsRedCircle.bounds
-        l1.borderColor = UIColor.redColor().CGColor
-        l1.backgroundColor = UIColor.clearColor().CGColor
-        l1.borderWidth = 10.0
-        l1.cornerRadius = l1.frame.width/2
+        // make red slice1
+        let slice1 = CAShapeLayer()
+        slice1.fillColor = UIColor.clearColor().CGColor
+        slice1.strokeColor = UIColor.redColor().CGColor
+        slice1.lineWidth = 10.0
         
-        civicsRedCircle.layer.addSublayer(l1)
+        let angle1 = -95.degreesToRadians
+        let center1 = CGPointMake(civicsRedCircle.frame.width/2, civicsRedCircle.frame.width/2)
+        let radius1 = civicsRedCircle.bounds.width/2 - 5.0
+        let piePath1 = UIBezierPath()
         
-        // make slice
-        let slice = CAShapeLayer()
-        slice.fillColor = UIColor.clearColor().CGColor
-        slice.strokeColor = UIColor.greenColor().CGColor
-        slice.lineWidth = 10.0
+        piePath1.moveToPoint(CGPointMake(center1.x + CGFloat(radius1) * CGFloat(cosf(angle1)), center1.y + CGFloat(radius1) * CGFloat(sinf(angle1))))
+        
+        piePath1.addArcWithCenter(center1, radius: CGFloat(radius1), startAngle: CGFloat(angle1), endAngle: CGFloat(65.degreesToRadians), clockwise: false)
+        
+        slice1.path = piePath1.CGPath
+        
+        civicsRedCircle.layer.addSublayer(slice1)
+
+        
+        // make green slice2
+        let slice2 = CAShapeLayer()
+        slice2.fillColor = UIColor.clearColor().CGColor
+        slice2.strokeColor = UIColor.greenColor().CGColor
+        slice2.lineWidth = 10.0
         
         let angle = -90.degreesToRadians
         let center = CGPointMake(civicsRedCircle.frame.width/2, civicsRedCircle.frame.width/2)
@@ -102,9 +89,9 @@ class HomeViewController: UIViewController
         
         piePath.addArcWithCenter(center, radius: CGFloat(radius), startAngle: CGFloat(angle), endAngle: CGFloat(60.degreesToRadians), clockwise: true)
         
-        slice.path = piePath.CGPath
+        slice2.path = piePath.CGPath
         
-        civicsRedCircle.layer.addSublayer(slice)
+        civicsRedCircle.layer.addSublayer(slice2)
         
         
         

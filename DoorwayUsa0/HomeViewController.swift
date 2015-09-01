@@ -14,11 +14,6 @@ class HomeViewController: UIViewController
     var openEarsEngine: OpenEarsEngine!
     
     // MARK: - View Controller
-    override func viewDidLoad()
-    {
-        println("hvc vdl")
-    }
-    
     override func viewDidAppear(animated: Bool)
     {
         super.viewDidAppear(animated)

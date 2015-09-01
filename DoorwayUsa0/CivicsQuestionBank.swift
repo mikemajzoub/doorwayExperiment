@@ -27,8 +27,6 @@ class CivicsQuestionBank
         {
             let q = questions[index]
             
-            println("\n\nq:\(q.question)\naSpoken:\(q.answersSpoken)\naKeywords:\(q.answersKeywords)\nweight:\(q.weight)\ntotalCount:\(q.totalCount)\ncorrectCount:\(q.correctCount)")
-            
             if !q.isMastered()
             {
                 allMastered = false

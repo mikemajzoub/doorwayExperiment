@@ -10,7 +10,7 @@ import Foundation
 
 class DataModel
 {
-    var civicsQuestionBank: CivicsQuestionBank!
+    var civicsQuestionBank = CivicsQuestionBank()
     // var readingQuestionBank
     // var writingQuestionBank
     
@@ -47,9 +47,9 @@ class DataModel
         // Civics
         let civicsData = NSMutableData()
         let civicsArchiver = NSKeyedArchiver(forWritingWithMutableData: civicsData)
-        civicsArchiver.encodeObject(civicsQuestionBank, forKey: civicsQuestionBank.name)
+        civicsArchiver.encodeObject(civicsQuestionBank, forKey: "CivicsQuestionBank")
         civicsArchiver.finishEncoding()
-        civicsData.writeToFile(dataFilePath(civicsQuestionBank.name), atomically: true)
+        civicsData.writeToFile(dataFilePath("CivicsQuestionBank"), atomically: true)
         
         // Reading
         
@@ -59,12 +59,12 @@ class DataModel
     func loadQuestionBanks()
     {
         // Civics
-        let civicsPath = dataFilePath(civicsQuestionBank.name)
+        let civicsPath = dataFilePath("CivicsQuestionBank")
         if NSFileManager.defaultManager().fileExistsAtPath(civicsPath) {
             if let data = NSData(contentsOfFile: civicsPath)
             {
                 let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
-                civicsQuestionBank = unarchiver.decodeObjectForKey(civicsQuestionBank.name) as! CivicsQuestionBank
+                civicsQuestionBank = unarchiver.decodeObjectForKey("CivicsQuestionBank") as! CivicsQuestionBank
                 unarchiver.finishDecoding()
             }
         }

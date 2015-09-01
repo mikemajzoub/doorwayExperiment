@@ -10,14 +10,17 @@ import Foundation
 
 class CivicsQuestionBank: NSObject, NSCoding
 {
-    var name = "CivicsQuestionBank"
     var questions = [CivicsQuestion]()
     var activeBoundaryIndex: Int = 3 // as user masters more questions, introduce new ones
+    
+    override init()
+    {
+        super.init()
+    }
     
     // MARK: - Encode/Decode
     required init(coder aDecoder: NSCoder)
     {
-        name = aDecoder.decodeObjectForKey("Name") as! String
         questions = aDecoder.decodeObjectForKey("Questions") as! [CivicsQuestion]
         activeBoundaryIndex = aDecoder.decodeIntegerForKey("ActiveBoundaryIndex")
         
@@ -26,7 +29,6 @@ class CivicsQuestionBank: NSObject, NSCoding
     
     func encodeWithCoder(aCoder: NSCoder)
     {
-        aCoder.encodeObject(name, forKey: "Name")
         aCoder.encodeObject(questions, forKey: "Questions")
         aCoder.encodeInteger(activeBoundaryIndex, forKey: "ActiveBoundaryIndex")
     }

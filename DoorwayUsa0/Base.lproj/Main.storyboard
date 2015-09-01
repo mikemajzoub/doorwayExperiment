@@ -168,6 +168,10 @@
                                     <segue destination="Dr9-Ej-hnV" kind="show" identifier="ShowCivicsPractice" id="tcx-eD-OfE"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="avi-qj-XuG">
+                                <rect key="frame" x="45" y="408" width="100" height="100"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -190,6 +194,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="civicsRedCircle" destination="avi-qj-XuG" id="CEw-KC-T6E"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
@@ -198,7 +205,6 @@
         <!--Navigation Controller-->
         <scene sceneID="Ufu-Oc-Fgv">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gYK-5t-oec" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="U4U-Gm-k93" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0Ee-i2-F82">
@@ -210,6 +216,7 @@
                         <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="f7B-vm-ZKO"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gYK-5t-oec" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="441" y="387"/>
         </scene>

@@ -60,14 +60,14 @@ class HomeViewController: UIViewController
         slice1.strokeColor = UIColor.redColor().CGColor
         slice1.lineWidth = 10.0
         
-        let angle1 = -95.degreesToRadians
+        let angle1 = (-90 - 6).degreesToRadians
         let center1 = CGPointMake(civicsRedCircle.frame.width/2, civicsRedCircle.frame.width/2)
-        let radius1 = civicsRedCircle.bounds.width/2 - 5.0
+        let radius1 = civicsRedCircle.bounds.width/2 - 16.0
         let piePath1 = UIBezierPath()
         
         piePath1.moveToPoint(CGPointMake(center1.x + CGFloat(radius1) * CGFloat(cosf(angle1)), center1.y + CGFloat(radius1) * CGFloat(sinf(angle1))))
         
-        piePath1.addArcWithCenter(center1, radius: CGFloat(radius1), startAngle: CGFloat(angle1), endAngle: CGFloat(65.degreesToRadians), clockwise: false)
+        piePath1.addArcWithCenter(center1, radius: CGFloat(radius1), startAngle: CGFloat(angle1), endAngle: CGFloat((60 + 6).degreesToRadians), clockwise: false)
         
         slice1.path = piePath1.CGPath
         
@@ -82,7 +82,7 @@ class HomeViewController: UIViewController
         
         let angle = -90.degreesToRadians
         let center = CGPointMake(civicsRedCircle.frame.width/2, civicsRedCircle.frame.width/2)
-        let radius = civicsRedCircle.bounds.width/2 - 5.0
+        let radius = civicsRedCircle.bounds.width/2 - 16.0
         let piePath = UIBezierPath()
         
         piePath.moveToPoint(CGPointMake(center.x + CGFloat(radius) * CGFloat(cosf(angle)), center.y + CGFloat(radius) * CGFloat(sinf(angle))))

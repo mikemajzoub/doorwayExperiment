@@ -250,7 +250,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Civics Practice" id="fse-vm-p9T">
                         <barButtonItem key="backBarButtonItem" title="Practice" id="ozc-Rh-z6u"/>
-                        <barButtonItem key="rightBarButtonItem" title="All Questions" id="ify-tZ-BmQ"/>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gaI-Sa-PYW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -272,7 +271,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Reading Practice" id="GHP-w3-NaC">
                         <barButtonItem key="backBarButtonItem" title="Practice" id="1f6-rg-o1m"/>
-                        <barButtonItem key="rightBarButtonItem" title="All Questions" id="03U-4Z-AGA"/>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4ok-RN-Gcb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -294,7 +292,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Writing Practice" id="GWd-7E-NjY">
                         <barButtonItem key="backBarButtonItem" title="Practice" id="zem-9P-8zF"/>
-                        <barButtonItem key="rightBarButtonItem" title="All Questions" id="t6x-zE-DU8"/>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZIa-X2-GuS" userLabel="First Responder" sceneMemberID="firstResponder"/>

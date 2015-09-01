@@ -14,15 +14,6 @@ class CivicsQuestionBank: NSObject, NSCoding
     var questions = [CivicsQuestion]()
     var activeBoundaryIndex: Int = 3 // as user masters more questions, introduce new ones
     
-    // MARK: - Init
-    override init() // This MAY cause problems - see Checklists...............................
-    {
-        super.init()
-
-        loadQuestions()
-        printQuestions()
-    }
-    
     // MARK: - Encode/Decode
     required init(coder aDecoder: NSCoder)
     {

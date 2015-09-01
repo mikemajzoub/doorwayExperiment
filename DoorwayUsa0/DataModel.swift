@@ -10,11 +10,38 @@ import Foundation
 
 class DataModel
 {
-    var civicsQuestionBank = CivicsQuestionBank()
+    var civicsQuestionBank: CivicsQuestionBank!
     // var readingQuestionBank
     // var writingQuestionBank
     
-    // Save/Load Banks
+    // MARK: - Init
+    init()
+    {
+        loadQuestionBanks()
+        registerDefaults()
+        handleFirstTime()
+    }
+    
+    func registerDefaults()
+    {
+        let dictionary = [ "FirstTime": true ]
+        
+        NSUserDefaults.standardUserDefaults().registerDefaults(dictionary)
+    }
+    
+    func handleFirstTime()
+    {
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let firstTime = userDefaults.boolForKey("FirstTime")
+        if firstTime
+        {
+            civicsQuestionBank.loadQuestions()
+
+            userDefaults.setBool(false, forKey: "FirstTime")
+        }
+    }
+    
+    // MARK: - Save/Load Banks
     func saveQuestionBanks()
     {
         // Civics

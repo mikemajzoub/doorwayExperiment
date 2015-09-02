@@ -63,8 +63,8 @@ class HomeViewController: UIViewController
         slice1.lineWidth = 1.0
         
         let angle1 = (-90 - 6).degreesToRadians
-        let center1 = CGPointMake(civicsView.frame.width/2, civicsView.frame.width/2)
-        let radius1 = civicsView.bounds.width/2 - 16.0
+        let center1 = CGPointMake(civicsView.frame.width/4, civicsView.frame.width/4)
+        let radius1 = civicsView.bounds.width/4 - 0.0
         let piePath1 = UIBezierPath()
         
         piePath1.moveToPoint(CGPointMake(center1.x + CGFloat(radius1) * CGFloat(cosf(angle1)), center1.y + CGFloat(radius1) * CGFloat(sinf(angle1))))
@@ -83,8 +83,8 @@ class HomeViewController: UIViewController
         slice2.lineWidth = 1.0
         
         let angle = -90.degreesToRadians
-        let center = CGPointMake(civicsView.frame.width/2, civicsView.frame.width/2)
-        let radius = civicsView.bounds.width/2 - 16.0
+        let center = CGPointMake(civicsView.frame.width/4, civicsView.frame.width/4)
+        let radius = civicsView.bounds.width/4 - 0.0
         let piePath = UIBezierPath()
         
         piePath.moveToPoint(CGPointMake(center.x + CGFloat(radius) * CGFloat(cosf(angle)), center.y + CGFloat(radius) * CGFloat(sinf(angle))))

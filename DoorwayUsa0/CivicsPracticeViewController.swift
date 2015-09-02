@@ -36,9 +36,7 @@ class CivicsPracticeViewController: UIViewController, OpenEarsEngineDelegate
     
     override func viewWillDisappear(animated: Bool)
     {
-        openEarsEngine.stopListening()
-        openEarsEngine.delegate = nil
-        
+        openEarsEngine.stopEngine()
     }
     
     func beginPractice()

@@ -52,15 +52,22 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
         dicPath = lmGenerator.pathToSuccessfullyGeneratedDictionaryWithRequestedName(name)
     }
     
+    func stopEngine()
+    {
+        OEPocketsphinxController.sharedInstance().stopListening()
+        
+        // TODO: find correct way to interrupt flite while it is speaking. 
+        // Currently functional, but error thrown and this is sloppy.
+        // NOTE: No info in documentation, header files, or forums. Hacky fix? ...AVAudioPlayer?
+        
+        delegate = nil
+    }
+    
     
     // MARK: - Listening
     func startListening() {
         OEPocketsphinxController.sharedInstance().setActive(true, error: nil)
         OEPocketsphinxController.sharedInstance().startListeningWithLanguageModelAtPath(lmPath, dictionaryAtPath: dicPath, acousticModelAtPath: OEAcousticModel.pathToModel("AcousticModelEnglish"), languageModelIsJSGF: false)
-    }
-    
-    func stopListening() {
-        OEPocketsphinxController.sharedInstance().stopListening()
     }
     
     func loadWords()

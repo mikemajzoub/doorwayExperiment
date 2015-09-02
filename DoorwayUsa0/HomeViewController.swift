@@ -22,7 +22,7 @@ class HomeViewController: UIViewController
     {
         super.viewDidLoad()
         
-        // makeCivicsPieGraph()
+        makeCivicsPieGraph()
     }
     
     override func viewDidAppear(animated: Bool)

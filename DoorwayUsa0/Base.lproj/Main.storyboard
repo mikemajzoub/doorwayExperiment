@@ -210,6 +210,11 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="civicsView" destination="4hn-PS-ct2" id="Gfl-eU-JGz"/>
+                        <outlet property="readingView" destination="ynf-xM-XzZ" id="UbK-9z-y7L"/>
+                        <outlet property="writingView" destination="Xt8-nw-v4G" id="vXy-0N-YRT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>

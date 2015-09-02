@@ -121,17 +121,57 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4hn-PS-ct2">
-                                <rect key="frame" x="16" y="420" width="160" height="160"/>
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xt8-nw-v4G">
-                                <rect key="frame" x="424" y="420" width="160" height="160"/>
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ynf-xM-XzZ">
-                                <rect key="frame" x="220" y="420" width="160" height="160"/>
+                                <rect key="frame" x="16" y="428" width="152" height="152"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0SK-if-hhV">
+                                        <rect key="frame" x="26" y="26" width="100" height="100"/>
+                                        <state key="normal" image="liberty-blue">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="0SK-if-hhV" secondAttribute="trailing" constant="26" id="AeJ-FA-80G"/>
+                                    <constraint firstAttribute="bottom" secondItem="0SK-if-hhV" secondAttribute="bottom" constant="26" id="Bg1-2x-Q2R"/>
+                                    <constraint firstItem="0SK-if-hhV" firstAttribute="leading" secondItem="4hn-PS-ct2" secondAttribute="leading" constant="26" id="WeV-Qv-vff"/>
+                                    <constraint firstItem="0SK-if-hhV" firstAttribute="top" secondItem="4hn-PS-ct2" secondAttribute="top" constant="26" id="ium-Cx-4vU"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xt8-nw-v4G">
+                                <rect key="frame" x="432" y="428" width="152" height="152"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IlD-DE-Wls">
+                                        <rect key="frame" x="26" y="26" width="100" height="100"/>
+                                        <state key="normal" image="writing-blue">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="IlD-DE-Wls" firstAttribute="top" secondItem="Xt8-nw-v4G" secondAttribute="top" constant="26" id="6ee-gD-faF"/>
+                                    <constraint firstItem="IlD-DE-Wls" firstAttribute="leading" secondItem="Xt8-nw-v4G" secondAttribute="leading" constant="26" id="P3D-va-nFP"/>
+                                    <constraint firstAttribute="trailing" secondItem="IlD-DE-Wls" secondAttribute="trailing" constant="26" id="eDO-i8-iFY"/>
+                                    <constraint firstAttribute="bottom" secondItem="IlD-DE-Wls" secondAttribute="bottom" constant="26" id="wt9-Ux-9lV"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ynf-xM-XzZ">
+                                <rect key="frame" x="224" y="428" width="152" height="152"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1rT-L1-HZH">
+                                        <rect key="frame" x="26" y="26" width="100" height="100"/>
+                                        <state key="normal" image="reading-blue">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="1rT-L1-HZH" firstAttribute="top" secondItem="ynf-xM-XzZ" secondAttribute="top" constant="26" id="7lP-XZ-iEH"/>
+                                    <constraint firstItem="1rT-L1-HZH" firstAttribute="leading" secondItem="ynf-xM-XzZ" secondAttribute="leading" constant="26" id="X8j-WB-XcX"/>
+                                    <constraint firstAttribute="bottom" secondItem="1rT-L1-HZH" secondAttribute="bottom" constant="26" id="g8y-5K-TVp"/>
+                                    <constraint firstAttribute="trailing" secondItem="1rT-L1-HZH" secondAttribute="trailing" constant="26" id="ibv-kI-Vxy"/>
                                     <constraint firstAttribute="width" secondItem="ynf-xM-XzZ" secondAttribute="height" multiplier="1:1" id="iyb-rT-mDm"/>
                                     <constraint firstAttribute="width" priority="250" constant="160" id="k8a-1U-dgr"/>
                                 </constraints>
@@ -320,4 +360,9 @@
             <point key="canvasLocation" x="1829" y="387"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="liberty-blue" width="100" height="100"/>
+        <image name="reading-blue" width="100" height="100"/>
+        <image name="writing-blue" width="100" height="100"/>
+    </resources>
 </document>

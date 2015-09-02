@@ -21,50 +21,38 @@ class HomeViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(animated: Bool)
+    {
+        super.viewWillAppear(animated)
         
-        makeCivicsPieGraph()
     }
     
     override func viewDidAppear(animated: Bool)
     {
         super.viewDidAppear(animated)
+        
+        makeGraphForView(civicsView, andQuestionBank: nil)
+        makeGraphForView(readingView, andQuestionBank: nil)
+        makeGraphForView(writingView, andQuestionBank: nil)
     }
     
-    func makeCivicsPieGraph()
+    func makeGraphForView(aView: UIView!, andQuestionBank aQuestionBank: CivicsQuestionBank!)
     {
-   
-        
-        
-        
-        /*
-        let l1 = civicsRedCircle.layer
-        l1.borderColor = UIColor.greenColor().CGColor
-        l1.backgroundColor = UIColor.clearColor().CGColor
-        l1.borderWidth = 10.0
-        l1.cornerRadius = l1.frame.width/2
-        
-        let l2 = CALayer()
-        l2.frame = civicsRedCircle.bounds
-        l2.borderColor = UIColor.redColor().CGColor
-        l2.backgroundColor = UIColor.clearColor().CGColor
-        l2.borderWidth = 10.0
-        l2.cornerRadius = l2.frame.width/2
-        
-        l1.addSublayer(l2)
-        */
-        
         // cancel out gray for storyboard
-        civicsView.layer.backgroundColor = UIColor.clearColor().CGColor
+        // aView.layer.backgroundColor = UIColor.clearColor().CGColor
         
         // make red slice1
         let slice1 = CAShapeLayer()
         slice1.fillColor = UIColor.clearColor().CGColor
         slice1.strokeColor = UIColor.redColor().CGColor
-        slice1.lineWidth = 1.0
+        slice1.lineWidth = aView.bounds.width / 50
+        println("viewWidth: \(aView.bounds.width), strokeWidth: \(slice1.lineWidth)")
         
         let angle1 = (-90 - 6).degreesToRadians
-        let center1 = CGPointMake(civicsView.frame.width/4, civicsView.frame.width/4)
-        let radius1 = civicsView.bounds.width/4 - 0.0
+        let center1 = CGPointMake(aView.bounds.width/2, aView.bounds.width/2)
+        let radius1 = aView.bounds.width/2 - slice1.lineWidth
         let piePath1 = UIBezierPath()
         
         piePath1.moveToPoint(CGPointMake(center1.x + CGFloat(radius1) * CGFloat(cosf(angle1)), center1.y + CGFloat(radius1) * CGFloat(sinf(angle1))))
@@ -73,18 +61,18 @@ class HomeViewController: UIViewController
         
         slice1.path = piePath1.CGPath
         
-        civicsView.layer.addSublayer(slice1)
-
+        aView.layer.addSublayer(slice1)
+        
         
         // make green slice2
         let slice2 = CAShapeLayer()
         slice2.fillColor = UIColor.clearColor().CGColor
         slice2.strokeColor = UIColor.greenColor().CGColor
-        slice2.lineWidth = 1.0
+        slice2.lineWidth = aView.bounds.width / 50
         
         let angle = -90.degreesToRadians
-        let center = CGPointMake(civicsView.frame.width/4, civicsView.frame.width/4)
-        let radius = civicsView.bounds.width/4 - 0.0
+        let center = CGPointMake(aView.bounds.width/2, aView.bounds.width/2) // (aView.frame.width/4, aView.frame.width/4)
+        let radius = aView.bounds.width/2 - slice2.lineWidth
         let piePath = UIBezierPath()
         
         piePath.moveToPoint(CGPointMake(center.x + CGFloat(radius) * CGFloat(cosf(angle)), center.y + CGFloat(radius) * CGFloat(sinf(angle))))
@@ -93,14 +81,8 @@ class HomeViewController: UIViewController
         
         slice2.path = piePath.CGPath
         
-        civicsView.layer.addSublayer(slice2)
-        
-        
-        
-        
+        aView.layer.addSublayer(slice2)
     }
-    
-    
     
     // MARK: - Segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)

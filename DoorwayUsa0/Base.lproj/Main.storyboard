@@ -133,7 +133,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.80000001192092896" green="0.80000001192092896" blue="0.80000001192092896" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="0SK-if-hhV" secondAttribute="trailing" constant="26" id="AeJ-FA-80G"/>
                                     <constraint firstAttribute="bottom" secondItem="0SK-if-hhV" secondAttribute="bottom" constant="26" id="Bg1-2x-Q2R"/>
@@ -154,7 +154,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.80000001192092896" green="0.80000001192092896" blue="0.80000001192092896" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="IlD-DE-Wls" firstAttribute="top" secondItem="Xt8-nw-v4G" secondAttribute="top" constant="26" id="6ee-gD-faF"/>
                                     <constraint firstItem="IlD-DE-Wls" firstAttribute="leading" secondItem="Xt8-nw-v4G" secondAttribute="leading" constant="26" id="P3D-va-nFP"/>
@@ -175,7 +175,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.80000001192092896" green="0.80000001192092896" blue="0.80000001192092896" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="1rT-L1-HZH" firstAttribute="top" secondItem="ynf-xM-XzZ" secondAttribute="top" constant="26" id="7lP-XZ-iEH"/>
                                     <constraint firstItem="1rT-L1-HZH" firstAttribute="leading" secondItem="ynf-xM-XzZ" secondAttribute="leading" constant="26" id="X8j-WB-XcX"/>

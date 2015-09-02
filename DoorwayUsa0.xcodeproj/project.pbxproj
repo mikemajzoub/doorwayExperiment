@@ -12,6 +12,8 @@
 		2D53AC381B91FBDA00B3DFC7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D53AC371B91FBDA00B3DFC7 /* Images.xcassets */; };
 		2D53AC3B1B91FBDA00B3DFC7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D53AC391B91FBDA00B3DFC7 /* LaunchScreen.xib */; };
 		2D53AC471B91FBDA00B3DFC7 /* DoorwayUsa0Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D53AC461B91FBDA00B3DFC7 /* DoorwayUsa0Tests.swift */; };
+		2D8D882D1B96989F00E2EF57 /* beep-holdtone.aif in Resources */ = {isa = PBXBuildFile; fileRef = 2D8D882C1B96989F00E2EF57 /* beep-holdtone.aif */; };
+		2D8D882F1B9698A900E2EF57 /* beep-xylo.aif in Resources */ = {isa = PBXBuildFile; fileRef = 2D8D882E1B9698A900E2EF57 /* beep-xylo.aif */; };
 		2DB853CB1B93E70100377750 /* AcousticModelEnglish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2DB853C71B93E70100377750 /* AcousticModelEnglish.bundle */; };
 		2DB853CC1B93E70100377750 /* AcousticModelSpanish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2DB853C81B93E70100377750 /* AcousticModelSpanish.bundle */; };
 		2DB853CD1B93E70100377750 /* OpenEars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DB853C91B93E70100377750 /* OpenEars.framework */; };
@@ -46,6 +48,8 @@
 		2D53AC401B91FBDA00B3DFC7 /* DoorwayUsa0Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DoorwayUsa0Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D53AC451B91FBDA00B3DFC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D53AC461B91FBDA00B3DFC7 /* DoorwayUsa0Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorwayUsa0Tests.swift; sourceTree = "<group>"; };
+		2D8D882C1B96989F00E2EF57 /* beep-holdtone.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-holdtone.aif"; sourceTree = "<group>"; };
+		2D8D882E1B9698A900E2EF57 /* beep-xylo.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-xylo.aif"; sourceTree = "<group>"; };
 		2DB853C71B93E70100377750 /* AcousticModelEnglish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AcousticModelEnglish.bundle; sourceTree = "<group>"; };
 		2DB853C81B93E70100377750 /* AcousticModelSpanish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AcousticModelSpanish.bundle; sourceTree = "<group>"; };
 		2DB853C91B93E70100377750 /* OpenEars.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenEars.framework; sourceTree = "<group>"; };
@@ -118,6 +122,8 @@
 				2D53AC371B91FBDA00B3DFC7 /* Images.xcassets */,
 				2D53AC391B91FBDA00B3DFC7 /* LaunchScreen.xib */,
 				2DB853D31B93E98800377750 /* DoorwayUsa0-Bridging-Header.h */,
+				2D8D882C1B96989F00E2EF57 /* beep-holdtone.aif */,
+				2D8D882E1B9698A900E2EF57 /* beep-xylo.aif */,
 				2D53AC2E1B91FBDA00B3DFC7 /* Supporting Files */,
 			);
 			path = DoorwayUsa0;
@@ -240,7 +246,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D8D882F1B9698A900E2EF57 /* beep-xylo.aif in Resources */,
 				2D53AC361B91FBDA00B3DFC7 /* Main.storyboard in Resources */,
+				2D8D882D1B96989F00E2EF57 /* beep-holdtone.aif in Resources */,
 				2DB853CC1B93E70100377750 /* AcousticModelSpanish.bundle in Resources */,
 				2DB853CB1B93E70100377750 /* AcousticModelEnglish.bundle in Resources */,
 				2D53AC3B1B91FBDA00B3DFC7 /* LaunchScreen.xib in Resources */,

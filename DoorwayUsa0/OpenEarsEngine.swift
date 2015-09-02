@@ -24,12 +24,32 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
     var openEarsFliteController: OEFliteController!
     var slt: Slt!
     
+    var beginListeningSoundEffectPlayer: AVAudioPlayer!
+    var endListeningSoundEffectPlayer: AVAudioPlayer!
+    
     weak var delegate: OpenEarsEngineDelegate? // TODO: HOOK UP DELEGATE ON INIT OR SEGUE!!!
     
     // MARK: - Init
     override init()
     {
         super.init()
+        
+        // Sound Effects
+        if let beginSoundPath = NSBundle.mainBundle().pathForResource("beep-xylo", ofType: "aif")
+        {
+            if let beginSoundUrl = NSURL(fileURLWithPath: beginSoundPath)
+            {
+                beginListeningSoundEffectPlayer = AVAudioPlayer(contentsOfURL: beginSoundUrl, error: nil)
+            }
+        }
+        
+        if let endSoundPath = NSBundle.mainBundle().pathForResource("beep-holdtone", ofType: "aif")
+        {
+            if let endSoundUrl = NSURL(fileURLWithPath: endSoundPath)
+            {
+                endListeningSoundEffectPlayer = AVAudioPlayer(contentsOfURL: endSoundUrl, error: nil)
+            }
+        }
         
         // Speech
         self.openEarsFliteController = OEFliteController()
@@ -117,45 +137,61 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
         delegate?.heardWords(hypothesis, withRecognitionScore: recognitionScore)
     }
     
-    func pocketsphinxDidStartListening() {
+    func pocketsphinxDidStartListening()
+    {
         println("Pocketsphinx is now listening.")
     }
     
-    func pocketsphinxDidDetectSpeech() {
+    func pocketsphinxDidDetectSpeech()
+    {
         println("Pocketsphinx has detected speech.")
     }
     
-    func pocketsphinxDidDetectFinishedSpeech() {
+    func pocketsphinxDidDetectFinishedSpeech()
+    {
         println("Pocketsphinx has detected a period of silence, concluding an utterance.")
     }
     
-    func pocketsphinxDidStopListening() {
+    func pocketsphinxDidStopListening()
+    {
         println("Pocketsphinx has stopped listening.")
     }
     
-    func pocketsphinxDidSuspendRecognition() {
+    func pocketsphinxDidSuspendRecognition()
+    {
         println("Pocketsphinx has suspended recognition.")
+        
+        endListeningSoundEffectPlayer.play()
+        
         delegate?.computerPausedListening()
     }
     
-    func pocketsphinxDidResumeRecognition() {
+    func pocketsphinxDidResumeRecognition()
+    {
         println("Pocketsphinx has resumed recognition.")
+        
+        beginListeningSoundEffectPlayer.play()
+        
         delegate?.computerResumedListening()
     }
     
-    func pocketsphinxDidChangeLanguageModelToFile(newLanguageModelPathAsString: String, newDictionaryPathAsString: String) {
+    func pocketsphinxDidChangeLanguageModelToFile(newLanguageModelPathAsString: String, newDictionaryPathAsString: String)
+    {
         println("Pocketsphinx is now using the following language model: \(newLanguageModelPathAsString) and the following dictionary: \(newDictionaryPathAsString)")
     }
     
-    func pocketSphinxContinuousSetupDidFailWithReason(reasonForFailure: String) {
+    func pocketSphinxContinuousSetupDidFailWithReason(reasonForFailure: String)
+    {
         println("Listening setup wasn't successful and returned the failure reason: \(reasonForFailure)")
     }
     
-    func pocketSphinxContinuousTeardownDidFailWithReason(reasonForFailure: String) {
+    func pocketSphinxContinuousTeardownDidFailWithReason(reasonForFailure: String)
+    {
         println("Listening teardown wasn't successful and returned the failure reason: \(reasonForFailure)")
     }
     
-    func testRecognitionCompleted() {
+    func testRecognitionCompleted()
+    {
         println("A test file that was submitted for recognition is now complete.")
     }
     

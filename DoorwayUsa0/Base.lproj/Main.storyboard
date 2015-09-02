@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="U4U-Gm-k93">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Settings-->
@@ -136,10 +137,10 @@
                                     <segue destination="goN-Qf-EON" kind="show" identifier="ShowReadingPractice" id="noc-7f-Zd6"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="avi-qj-XuG">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="avi-qj-XuG">
                                 <rect key="frame" x="16" y="480" width="100" height="100"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zZs-40-kjn" userLabel="CivicsButton">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zZs-40-kjn" userLabel="CivicsButton">
                                         <rect key="frame" x="35" y="35" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="HTw-qF-37J"/>
@@ -163,6 +164,10 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="avi-qj-XuG" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="56r-ba-MXz"/>
+                            <constraint firstAttribute="bottom" secondItem="avi-qj-XuG" secondAttribute="bottom" constant="20" symbolic="YES" id="cFc-sy-CA3"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Doorway USA" id="Eja-ZR-jo6">
                         <barButtonItem key="backBarButtonItem" title="Back" id="yXi-tp-JA5"/>

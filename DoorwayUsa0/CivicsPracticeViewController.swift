@@ -29,7 +29,6 @@ class CivicsPracticeViewController: UIViewController, OpenEarsEngineDelegate
         super.viewDidAppear(animated)
         
         openEarsEngine.delegate = self
-        openEarsEngine.startListening()
         
         beginPractice()
     }
@@ -55,6 +54,8 @@ class CivicsPracticeViewController: UIViewController, OpenEarsEngineDelegate
             currentQuestion = question
             
             openEarsEngine.say(question.question)
+            
+            openEarsEngine.startListening()
         }
     }
     
@@ -62,6 +63,8 @@ class CivicsPracticeViewController: UIViewController, OpenEarsEngineDelegate
     func heardWords(words: String!, withRecognitionScore recognitionScore: String!)
     {
         println("OpenEarsEngineDelegate heard: \(words), with score: \(recognitionScore)")
+        
+        openEarsEngine.stopListening()
         
         if let heardWords = words
         {

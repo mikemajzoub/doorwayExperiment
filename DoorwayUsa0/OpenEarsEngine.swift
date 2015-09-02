@@ -27,7 +27,7 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
     var beginListeningSoundEffectPlayer: AVAudioPlayer!
     var endListeningSoundEffectPlayer: AVAudioPlayer!
     
-    weak var delegate: OpenEarsEngineDelegate? // TODO: HOOK UP DELEGATE ON INIT OR SEGUE!!!
+    weak var delegate: OpenEarsEngineDelegate?
     
     // MARK: - Init
     override init()
@@ -88,6 +88,11 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
     func startListening() {
         OEPocketsphinxController.sharedInstance().setActive(true, error: nil)
         OEPocketsphinxController.sharedInstance().startListeningWithLanguageModelAtPath(lmPath, dictionaryAtPath: dicPath, acousticModelAtPath: OEAcousticModel.pathToModel("AcousticModelEnglish"), languageModelIsJSGF: false)
+    }
+    
+    func stopListening()
+    {
+        OEPocketsphinxController.sharedInstance().stopListening()
     }
     
     func loadWords()
@@ -161,7 +166,7 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
     {
         println("Pocketsphinx has suspended recognition.")
         
-        endListeningSoundEffectPlayer.play()
+        // endListeningSoundEffectPlayer.play()
         
         delegate?.computerPausedListening()
     }

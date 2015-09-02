@@ -16,6 +16,7 @@ class CivicsQuestionBank: NSObject, NSCoding
     override init()
     {
         super.init()
+        
     }
     
     // MARK: - Encode/Decode
@@ -41,6 +42,8 @@ class CivicsQuestionBank: NSObject, NSCoding
         for index in 0..<activeBoundaryIndex
         {
             let q = questions[index]
+            
+            println("q total count: \(q.totalCount)")
             
             if !q.isMastered()
             {
@@ -145,7 +148,7 @@ class CivicsQuestionBank: NSObject, NSCoding
         question = CivicsQuestion(
             question: "How many ammendments does the Constitution have?",
             answersSpoken: ["TWENTY-SEVEN"],
-        answersKeywords: [ ["TWENTY", "SEVEN"] ])
+        answersKeywords: [ ["TWENTY-SEVEN"] ])
         questions.append(question)
     }
 }

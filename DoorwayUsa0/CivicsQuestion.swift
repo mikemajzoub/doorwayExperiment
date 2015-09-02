@@ -48,9 +48,9 @@ class CivicsQuestion: NSObject
         aCoder.encodeObject(answersSpoken, forKey: "AnswersSpoken")
         aCoder.encodeObject(answersKeywords, forKey: "AnswersKeywords")
         
-        aCoder.encodeObject(totalCount, forKey: "TotalCount")
-        aCoder.encodeObject(correctCount, forKey: "CorrectCount")
-        aCoder.encodeObject(weight, forKey: "Weight")
+        aCoder.encodeInteger(totalCount, forKey: "TotalCount")
+        aCoder.encodeInteger(correctCount, forKey: "CorrectCount")
+        aCoder.encodeInteger(weight, forKey: "Weight")
     }
     
     // MARK: - Logic

@@ -56,6 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func saveData()
     {
         dataModel.saveQuestionBanks()
+        println("data saved")
     }
 
 }

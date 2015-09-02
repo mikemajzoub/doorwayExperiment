@@ -21,20 +21,28 @@ class CivicsPracticeViewController: UIViewController, OpenEarsEngineDelegate
     {
         super.viewDidLoad()
         
-        openEarsEngine.delegate = self
+        
     }
     
     override func viewDidAppear(animated: Bool)
     {
         super.viewDidAppear(animated)
         
+        openEarsEngine.delegate = self
+        openEarsEngine.startListening()
+        
         beginPractice()
+    }
+    
+    override func viewWillDisappear(animated: Bool)
+    {
+        openEarsEngine.stopListening()
+        openEarsEngine.delegate = nil
+        
     }
     
     func beginPractice()
     {
-        openEarsEngine.startListening()
-        
         askQuestion()
     }
     

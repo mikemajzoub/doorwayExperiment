@@ -10,7 +10,7 @@ import Foundation
 
 class DataModel
 {
-    var civicsQuestionBank = CivicsQuestionBank()
+    var civicsQuestionBank: CivicsQuestionBank!
     // var readingQuestionBank
     // var writingQuestionBank
     
@@ -35,6 +35,7 @@ class DataModel
         let firstTime = userDefaults.boolForKey("FirstTime")
         if firstTime
         {
+            civicsQuestionBank = CivicsQuestionBank()
             civicsQuestionBank.initializeQuestions()
 
             userDefaults.setBool(false, forKey: "FirstTime")
@@ -79,6 +80,9 @@ class DataModel
     // MARK: - Helper
     func documentsDirectory() -> String {
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as! [String]
+        
+        println(paths[0])
+        
         return paths[0]
     }
     

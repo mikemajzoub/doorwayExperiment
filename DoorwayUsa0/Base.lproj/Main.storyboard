@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="U4U-Gm-k93">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Settings-->
@@ -119,12 +118,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="atq-WL-ng9">
-                                <rect key="frame" x="285" y="515" width="30" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="ewx-xy-FHH"/>
-                                    <constraint firstAttribute="height" constant="30" id="qJF-Ya-sAC"/>
-                                </constraints>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ko-Kd-3WP" userLabel="WriteButton">
+                                <rect key="frame" x="554" y="562" width="30" height="30"/>
+                                <state key="normal" title="Write" image="writing-blue">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="1Qg-uB-kjx" kind="show" identifier="ShowWritingPractice" id="3PC-C5-MT2"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="atq-WL-ng9" userLabel="ReadButton">
+                                <rect key="frame" x="516" y="562" width="30" height="30"/>
                                 <state key="normal" image="reading-blue">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -132,20 +136,10 @@
                                     <segue destination="goN-Qf-EON" kind="show" identifier="ShowReadingPractice" id="noc-7f-Zd6"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Yz-Jx-8pn">
-                                <rect key="frame" x="16" y="80" width="568" height="300"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="JG4-Z1-UM6"/>
-                                </constraints>
-                                <string key="text">The United States citizenship test has three parts, Civics, Reading, and Writing. Blah blah blah... Doorway USA is not officially affiliated with the US Government, etc. To see official website, clickh.icial website, click here. blah blah blah.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="avi-qj-XuG">
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="avi-qj-XuG">
                                 <rect key="frame" x="16" y="480" width="100" height="100"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zZs-40-kjn">
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zZs-40-kjn" userLabel="CivicsButton">
                                         <rect key="frame" x="35" y="35" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="HTw-qF-37J"/>
@@ -162,44 +156,13 @@
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="zZs-40-kjn" firstAttribute="leading" secondItem="avi-qj-XuG" secondAttribute="leading" constant="35" id="8Qf-b6-cmx"/>
-                                    <constraint firstAttribute="centerX" secondItem="zZs-40-kjn" secondAttribute="centerX" constant="10" id="ATe-Pg-U83"/>
                                     <constraint firstAttribute="centerY" secondItem="zZs-40-kjn" secondAttribute="centerY" id="O7Q-xr-kA4"/>
                                     <constraint firstItem="zZs-40-kjn" firstAttribute="top" secondItem="avi-qj-XuG" secondAttribute="top" constant="35" id="ftE-Iu-KQr"/>
                                     <constraint firstAttribute="centerX" secondItem="zZs-40-kjn" secondAttribute="centerX" id="o4D-fY-ppz"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="ATe-Pg-U83"/>
-                                    </mask>
-                                </variation>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ko-Kd-3WP">
-                                <rect key="frame" x="507" y="515" width="30" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="lfu-gK-t8M"/>
-                                    <constraint firstAttribute="width" constant="30" id="zmE-lz-TP6"/>
-                                </constraints>
-                                <state key="normal" title="Write" image="writing-blue">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="1Qg-uB-kjx" kind="show" identifier="ShowWritingPractice" id="3PC-C5-MT2"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="4Yz-Jx-8pn" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="5Eh-1n-ES8"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="avi-qj-XuG" secondAttribute="bottom" constant="20" id="A04-2R-7Qx"/>
-                            <constraint firstItem="6ko-Kd-3WP" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" constant="-47" id="JlL-Cn-eKC"/>
-                            <constraint firstAttribute="centerX" secondItem="atq-WL-ng9" secondAttribute="centerX" id="LDC-nC-rIP"/>
-                            <constraint firstItem="4Yz-Jx-8pn" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" constant="80" id="Muq-rv-8Jf"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="atq-WL-ng9" secondAttribute="bottom" constant="55" id="ZTi-3k-wQ3"/>
-                            <constraint firstItem="avi-qj-XuG" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="eBd-Th-Ncn"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="6ko-Kd-3WP" secondAttribute="bottom" constant="55" id="pvM-rw-cVa"/>
-                            <constraint firstItem="4Yz-Jx-8pn" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="qqR-Ua-PMP"/>
-                            <constraint firstItem="avi-qj-XuG" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="snc-hK-iKl"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Doorway USA" id="Eja-ZR-jo6">
                         <barButtonItem key="backBarButtonItem" title="Back" id="yXi-tp-JA5"/>

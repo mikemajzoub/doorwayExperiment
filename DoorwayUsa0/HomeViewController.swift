@@ -20,6 +20,11 @@ class HomeViewController: UIViewController
     // MARK: - View Controller
     override func viewDidLoad()
     {
+        // cancel out gray for storyboard
+        civicsView.layer.backgroundColor = UIColor.clearColor().CGColor
+        readingView.layer.backgroundColor = UIColor.clearColor().CGColor
+        writingView.layer.backgroundColor = UIColor.clearColor().CGColor
+        
         super.viewDidLoad()
     }
     
@@ -40,19 +45,20 @@ class HomeViewController: UIViewController
     
     func makeGraphForView(aView: UIView!, andQuestionBank aQuestionBank: CivicsQuestionBank!)
     {
-        // cancel out gray for storyboard
-        // aView.layer.backgroundColor = UIColor.clearColor().CGColor
+        
         
         println("aQuestionBank: \(aQuestionBank)")
         
-        // make red slice1
-        let incorrectSlice = makePiePieceForView(aView, forAccuracy: 0.01, andIsCorrect: false)
-        // let incorrectSlice = makePiePieceForView(aView, forAccuracy: aQuestionBank.percentMastered(), andIsCorrect: false)
-        aView.layer.addSublayer(incorrectSlice)
+        // make incorrect piece
+        let incorrectPiece = makePiePieceForView(aView, forAccuracy: aQuestionBank.percentMastered(), andIsCorrect: false)
+        aView.layer.addSublayer(incorrectPiece)
         
-        let correctSlice = makePiePieceForView(aView, forAccuracy: 0.01, andIsCorrect: true)
-        // let correctSlice = makePiePieceForView(aView, forAccuracy: aQuestionBank.percentMastered(), andIsCorrect: true)
-        aView.layer.addSublayer(correctSlice)
+        // make correct piece
+        let correctPiece = makePiePieceForView(aView, forAccuracy: aQuestionBank.percentMastered(), andIsCorrect: true)
+        aView.layer.addSublayer(correctPiece)
+        
+        // animate pie graph entrance to UI
+        
     }
     
     func makePiePieceForView(view: UIView, forAccuracy accuracy: Float, andIsCorrect isCorrect: Bool) -> CAShapeLayer
@@ -65,11 +71,11 @@ class HomeViewController: UIViewController
         let center = CGPointMake(view.bounds.width/2, view.bounds.width/2)
         let radius = view.bounds.width/2 - piePiece.lineWidth/2.0
         
-        let visualGap = isCorrect ? 2 : -2
+        let visualGap = 0 // isCorrect ? 2 : -2
         let startingAngle = (-(90 + visualGap)).degreesToRadians
         let startingPoint = CGPointMake(center.x + CGFloat(radius) * CGFloat(cosf(startingAngle)), center.y + CGFloat(radius) * CGFloat(sinf(startingAngle)))
         
-        let radiansToShow = ((360.0 * (isCorrect ? accuracy : 1.0 - accuracy))  - 4.0).degreesToRadians
+        let radiansToShow = ((360.0 * (isCorrect ? accuracy : 1.0 - accuracy))).degreesToRadians
         let endingAngle = isCorrect ? startingAngle - radiansToShow : startingAngle + radiansToShow
         let endingPoint = CGPointMake(center.x + CGFloat(radius) * CGFloat(cosf(endingAngle)), center.y + CGFloat(radius) * CGFloat(sinf(endingAngle)))
         

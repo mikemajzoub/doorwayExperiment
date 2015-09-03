@@ -18,12 +18,15 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
 {
     var lmPath: String!
     var dicPath: String!
+    
+    // The set of words and phrases that app listens for
     var words: Array<String>!
     
     var openEarsEventsObserver: OEEventsObserver!
     var openEarsFliteController: OEFliteController!
     var slt: Slt!
     
+    // Play tones for user to know when microphone is active/inactive
     var beginListeningSoundEffectPlayer: AVAudioPlayer!
     var endListeningSoundEffectPlayer: AVAudioPlayer!
     
@@ -34,7 +37,7 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
     {
         super.init()
         
-        // Sound Effects
+        // Set up microphone sound effects.
         if let beginSoundPath = NSBundle.mainBundle().pathForResource("beep-xylo", ofType: "aif")
         {
             if let beginSoundUrl = NSURL(fileURLWithPath: beginSoundPath)
@@ -51,17 +54,19 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
             }
         }
         
-        // Speech
+        // Set up speech.
         self.openEarsFliteController = OEFliteController()
         self.slt = Slt()
         
-        // Listening
+        // Set up listening.
         self.openEarsEventsObserver = OEEventsObserver()
         self.openEarsEventsObserver.delegate = self
         
+        // Make Language Model
         // TODO: learn about this language model, how to switch vocabularies btwn civics/read/write
         // Listening Language Model
-        loadWords()
+        // TODO: ALSO - you should be loading these words from DataModel.questionbank...wordstolistento
+        loadLanguageToListenFor()
         
         var lmGenerator: OELanguageModelGenerator = OELanguageModelGenerator()
         
@@ -95,7 +100,7 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
         OEPocketsphinxController.sharedInstance().stopListening()
     }
     
-    func loadWords()
+    func loadLanaguageToListenFor()
     {
         words =
             [

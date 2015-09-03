@@ -75,7 +75,7 @@ class HomeViewController: UIViewController
         var piePiece = CAShapeLayer()
         piePiece.fillColor = UIColor.clearColor().CGColor
         piePiece.strokeColor = isCorrect ? UIColor.greenColor().CGColor : UIColor.redColor().CGColor
-        piePiece.lineWidth = view.bounds.width / 50
+        piePiece.lineWidth = view.bounds.width / 20
         
         // Get properties of circle.
         let center = CGPointMake(view.bounds.width/2, view.bounds.width/2)

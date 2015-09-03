@@ -72,7 +72,7 @@ class CivicsPracticeViewController: UIViewController, OpenEarsEngineDelegate
             
             if answerIsCorrectForWords(heardWords)
             {
-                currentQuestion.correctlyAnswered()
+                currentQuestion.answeredCorrectly()
                 
                 let answerToSpeak = answerToSpeakForWords(heardWords)
                 
@@ -80,7 +80,7 @@ class CivicsPracticeViewController: UIViewController, OpenEarsEngineDelegate
             }
             else
             {
-                currentQuestion.incorrectlyAnswered()
+                currentQuestion.answeredIncorrectly()
                 
                 response = "Incorrect. "
                 

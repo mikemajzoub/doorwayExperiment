@@ -10,12 +10,23 @@ import Foundation
 
 class CivicsQuestion: NSObject
 {
+    // Question to be spoken by openEars.
     let question: String
+    
+    // Answers to be spoken by openEars.
     let answersSpoken: [String]
+    
+    // Required subset of words that must be said in order for answer to be marked correct.
     let answersKeywords: [ [String] ]
     
+    // Number of times question was practiced.
     var totalCount: Int = 0
+    
+    // Number of times question answered correctly.
     var correctCount: Int = 0
+    
+    // Decrease weight if answered correctly, increase if answered correctly.
+    // This will determine probability of question being selected in future.
     var weight: Int = 256
     
     // MARK: - Init
@@ -54,16 +65,15 @@ class CivicsQuestion: NSObject
     }
     
     // MARK: - Logic
-    func correctlyAnswered()
+    func answeredCorrectly()
     {
         totalCount++
         correctCount++
         
         weight /= 2
-        
     }
     
-    func incorrectlyAnswered()
+    func answeredIncorrectly()
     {
         totalCount++
         

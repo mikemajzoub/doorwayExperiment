@@ -10,8 +10,15 @@ import Foundation
 
 class CivicsQuestionBank: NSObject, NSCoding
 {
+    // This contains every civics question.
     var questions = [CivicsQuestion]()
-    var activeBoundaryIndex: Int = 3 // as user masters more questions, introduce new ones
+    
+    // The activeBoundaryIndex is what keeps the user from being overwhelmed with too
+    // many new questions at once. It starts by only quizzing user on X questions,
+    // and once the user has mastered these, it will quiz user on X + Y questions.
+    // It will continue this pattern of increasing the questions can be randomly
+    // selected until the entire question bank is revealed to the user.
+    var activeBoundaryIndex: Int = 3
     
     override init()
     {
@@ -35,7 +42,13 @@ class CivicsQuestionBank: NSObject, NSCoding
     }
     
     // MARK: - Logic
-    func update()
+    
+    // The refreshActiveBoundaryIndex() will check each of the actively quizzed 
+    // questions to see if the user has mastered each of them. If she has, it
+    // will increase the activeBoundaryIndex by X so that the next time a
+    // question is randomly selected, there will be new possible questions that
+    // can be selected.
+    func refreshActiveBoundaryIndex()
     {
         var allMastered = true
         
@@ -64,6 +77,10 @@ class CivicsQuestionBank: NSObject, NSCoding
         }
     }
     
+    // Randomly selects the next question for the user to answer from the 
+    // available questions (determined by the activeBoundaryIndex). Note
+    // that questions with large weights have a higher probability of being
+    // selected.
     func nextQuestion() -> CivicsQuestion?
     {
         var totalWeight = 0
@@ -74,11 +91,8 @@ class CivicsQuestionBank: NSObject, NSCoding
             totalWeight += q.weight
         }
         
-        
         let random = Int(arc4random_uniform(UInt32(totalWeight)))
         
-        
-        // get question
         var currentWeightSum = 0
         var questionToReturn: CivicsQuestion?
         
@@ -122,6 +136,8 @@ class CivicsQuestionBank: NSObject, NSCoding
         
         return percentMastered
     }
+    
+    // MARK: - Questions
     
     // If app is running for first time, initialize questions here.
     func initializeQuestions()

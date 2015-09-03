@@ -33,9 +33,9 @@ class HomeViewController: UIViewController
     {
         super.viewDidAppear(animated)
         
-        makeGraphForView(civicsView, andQuestionBank: nil)
-        makeGraphForView(readingView, andQuestionBank: nil)
-        makeGraphForView(writingView, andQuestionBank: nil)
+        makeGraphForView(civicsView, andQuestionBank: dataModel.civicsQuestionBank)
+        makeGraphForView(readingView, andQuestionBank: dataModel.civicsQuestionBank)
+        makeGraphForView(writingView, andQuestionBank: dataModel.civicsQuestionBank)
     }
     
     func makeGraphForView(aView: UIView!, andQuestionBank aQuestionBank: CivicsQuestionBank!)
@@ -43,45 +43,45 @@ class HomeViewController: UIViewController
         // cancel out gray for storyboard
         // aView.layer.backgroundColor = UIColor.clearColor().CGColor
         
+        println("aQuestionBank: \(aQuestionBank)")
+        
         // make red slice1
-        let slice1 = CAShapeLayer()
-        slice1.fillColor = UIColor.clearColor().CGColor
-        slice1.strokeColor = UIColor.redColor().CGColor
-        slice1.lineWidth = aView.bounds.width / 50
-        println("viewWidth: \(aView.bounds.width), strokeWidth: \(slice1.lineWidth)")
+        let incorrectSlice = makePiePieceForView(aView, forAccuracy: 0.01, andIsCorrect: false)
+        // let incorrectSlice = makePiePieceForView(aView, forAccuracy: aQuestionBank.percentMastered(), andIsCorrect: false)
+        aView.layer.addSublayer(incorrectSlice)
         
-        let angle1 = (-90 - 6).degreesToRadians
-        let center1 = CGPointMake(aView.bounds.width/2, aView.bounds.width/2)
-        let radius1 = aView.bounds.width/2 - slice1.lineWidth
-        let piePath1 = UIBezierPath()
+        let correctSlice = makePiePieceForView(aView, forAccuracy: 0.01, andIsCorrect: true)
+        // let correctSlice = makePiePieceForView(aView, forAccuracy: aQuestionBank.percentMastered(), andIsCorrect: true)
+        aView.layer.addSublayer(correctSlice)
+    }
+    
+    func makePiePieceForView(view: UIView, forAccuracy accuracy: Float, andIsCorrect isCorrect: Bool) -> CAShapeLayer
+    {
+        var piePiece = CAShapeLayer()
+        piePiece.fillColor = UIColor.clearColor().CGColor
+        piePiece.strokeColor = isCorrect ? UIColor.greenColor().CGColor : UIColor.redColor().CGColor
+        piePiece.lineWidth = view.bounds.width / 50
         
-        piePath1.moveToPoint(CGPointMake(center1.x + CGFloat(radius1) * CGFloat(cosf(angle1)), center1.y + CGFloat(radius1) * CGFloat(sinf(angle1))))
+        let center = CGPointMake(view.bounds.width/2, view.bounds.width/2)
+        let radius = view.bounds.width/2 - piePiece.lineWidth/2.0
         
-        piePath1.addArcWithCenter(center1, radius: CGFloat(radius1), startAngle: CGFloat(angle1), endAngle: CGFloat((60 + 6).degreesToRadians), clockwise: false)
+        let visualGap = isCorrect ? 2 : -2
+        let startingAngle = (-(90 + visualGap)).degreesToRadians
+        let startingPoint = CGPointMake(center.x + CGFloat(radius) * CGFloat(cosf(startingAngle)), center.y + CGFloat(radius) * CGFloat(sinf(startingAngle)))
         
-        slice1.path = piePath1.CGPath
+        let radiansToShow = ((360.0 * (isCorrect ? accuracy : 1.0 - accuracy))  - 4.0).degreesToRadians
+        let endingAngle = isCorrect ? startingAngle - radiansToShow : startingAngle + radiansToShow
+        let endingPoint = CGPointMake(center.x + CGFloat(radius) * CGFloat(cosf(endingAngle)), center.y + CGFloat(radius) * CGFloat(sinf(endingAngle)))
         
-        aView.layer.addSublayer(slice1)
-        
-        
-        // make green slice2
-        let slice2 = CAShapeLayer()
-        slice2.fillColor = UIColor.clearColor().CGColor
-        slice2.strokeColor = UIColor.greenColor().CGColor
-        slice2.lineWidth = aView.bounds.width / 50
-        
-        let angle = -90.degreesToRadians
-        let center = CGPointMake(aView.bounds.width/2, aView.bounds.width/2) // (aView.frame.width/4, aView.frame.width/4)
-        let radius = aView.bounds.width/2 - slice2.lineWidth
         let piePath = UIBezierPath()
+        piePath.moveToPoint(startingPoint)
         
-        piePath.moveToPoint(CGPointMake(center.x + CGFloat(radius) * CGFloat(cosf(angle)), center.y + CGFloat(radius) * CGFloat(sinf(angle))))
+        let isClockwise = !isCorrect
+        piePath.addArcWithCenter(center, radius: CGFloat(radius), startAngle: CGFloat(startingAngle), endAngle: CGFloat(endingAngle), clockwise: isClockwise)
         
-        piePath.addArcWithCenter(center, radius: CGFloat(radius), startAngle: CGFloat(angle), endAngle: CGFloat(60.degreesToRadians), clockwise: true)
+        piePiece.path = piePath.CGPath
         
-        slice2.path = piePath.CGPath
-        
-        aView.layer.addSublayer(slice2)
+        return piePiece
     }
     
     // MARK: - Segue
@@ -104,6 +104,12 @@ class HomeViewController: UIViewController
         }
     }
 
+}
+
+extension Float {
+    var degreesToRadians : Float {
+        return Float(self) * Float(M_PI) / 180.0
+    }
 }
 
 extension Int {

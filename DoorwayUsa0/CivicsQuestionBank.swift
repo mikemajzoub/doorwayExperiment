@@ -104,6 +104,25 @@ class CivicsQuestionBank: NSObject, NSCoding
         }
     }
     
+    func percentMastered() -> Float
+    {
+        let allQuestions = questions.count
+        var correctQuestions = 0
+        
+        for q in questions
+        {
+            if q.isMastered()
+            {
+                correctQuestions++
+            }
+        }
+        
+        let percentMastered = Float(correctQuestions) / Float(allQuestions)
+        println("percent mastered: \(percentMastered)")
+        
+        return percentMastered
+    }
+    
     // If app is running for first time, initialize questions here.
     func initializeQuestions()
     {

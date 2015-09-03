@@ -45,7 +45,7 @@ class CivicsPracticeViewController: UIViewController, OpenEarsEngineDelegate
     
     func askQuestion()
     {
-        dataModel.civicsQuestionBank.update()
+        dataModel.civicsQuestionBank.refreshActiveBoundaryIndex()
         
         if let question = dataModel.civicsQuestionBank.nextQuestion()
         {

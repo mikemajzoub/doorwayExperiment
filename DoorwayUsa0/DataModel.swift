@@ -77,7 +77,7 @@ class DataModel
     
     
     
-    // MARK: - Helper
+    // MARK: - Directories & Paths
     func documentsDirectory() -> String {
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as! [String]
         

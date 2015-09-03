@@ -15,13 +15,18 @@ class CivicsPracticeViewController: UIViewController, OpenEarsEngineDelegate
     
     var currentQuestion: CivicsQuestion!
     
+    // Whenever computer finishes speaking, it checks to see if the question
+    // cycle is finishing. If the cycle is marked as finishing, it means that
+    // it is time to choose a new question for the user. 
+    //
+    // If the cycle is NOT marked as finishing, it means that the computer just 
+    // finished speaking a new question, and should not select another question 
+    // yet.
     var questionCycleIsFinishing = true
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
-        
     }
     
     override func viewDidAppear(animated: Bool)
@@ -43,6 +48,7 @@ class CivicsPracticeViewController: UIViewController, OpenEarsEngineDelegate
         askQuestion()
     }
     
+    // Grab next question, speak it, and begin listening for user's answer
     func askQuestion()
     {
         dataModel.civicsQuestionBank.refreshActiveBoundaryIndex()
@@ -59,7 +65,9 @@ class CivicsPracticeViewController: UIViewController, OpenEarsEngineDelegate
         }
     }
     
-    // OpenEarsEngineDelegate
+    // MARK: - OpenEarsEngineDelegate
+    
+    // App has heard a completed answer. Will analyze accuracy and inform user of result.
     func heardWords(words: String!, withRecognitionScore recognitionScore: String!)
     {
         println("OpenEarsEngineDelegate heard: \(words), with score: \(recognitionScore)")

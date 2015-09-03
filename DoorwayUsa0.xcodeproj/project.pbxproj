@@ -112,8 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				2D53AC301B91FBDA00B3DFC7 /* AppDelegate.swift */,
-				2DE14EDE1B92046200C27CB7 /* HomeViewController.swift */,
-				2DE14EE01B92047000C27CB7 /* CivicsPracticeViewController.swift */,
+				2DD64D4C1B9880DC0023BF7C /* ViewControllers */,
 				2DD64D491B987D4B0023BF7C /* Model */,
 				2DD64D4B1B987D930023BF7C /* Speak, Listen, See */,
 				2D53AC341B91FBDA00B3DFC7 /* Main.storyboard */,
@@ -187,6 +186,15 @@
 				2DB853D71B93EFA300377750 /* OpenEarsEngine.swift */,
 			);
 			name = "Speak, Listen, See";
+			sourceTree = "<group>";
+		};
+		2DD64D4C1B9880DC0023BF7C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				2DE14EDE1B92046200C27CB7 /* HomeViewController.swift */,
+				2DE14EE01B92047000C27CB7 /* CivicsPracticeViewController.swift */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

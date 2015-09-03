@@ -65,7 +65,6 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
         // Make Language Model
         // TODO: learn about this language model, how to switch vocabularies btwn civics/read/write
         // Listening Language Model
-        // TODO: ALSO - you should be loading these words from DataModel.questionbank...wordstolistento
         loadLanguageToListenFor()
         
         var lmGenerator: OELanguageModelGenerator = OELanguageModelGenerator()
@@ -100,8 +99,10 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
         OEPocketsphinxController.sharedInstance().stopListening()
     }
     
-    func loadLanaguageToListenFor()
+    func loadLanguageToListenFor()
     {
+        // TODO: You should be grabbing this directly from data model's questions!
+        
         words =
             [
                 // 1. What is the supreme law of the land?

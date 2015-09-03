@@ -22,6 +22,24 @@ class DataModel
         handleFirstTime()
     }
     
+    func loadQuestionBanks()
+    {
+        // Civics
+        let civicsPath = dataFilePath("CivicsQuestionBank")
+        if NSFileManager.defaultManager().fileExistsAtPath(civicsPath) {
+            if let data = NSData(contentsOfFile: civicsPath)
+            {
+                let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
+                civicsQuestionBank = unarchiver.decodeObjectForKey("CivicsQuestionBank") as! CivicsQuestionBank
+                unarchiver.finishDecoding()
+            }
+        }
+        
+        // Reading
+        
+        // Writing
+    }
+    
     func registerDefaults()
     {
         let dictionary = [ "FirstTime": true ]
@@ -29,6 +47,8 @@ class DataModel
         NSUserDefaults.standardUserDefaults().registerDefaults(dictionary)
     }
     
+    // If app is launching for first time, must initialize question banks.
+    // After first time, question banks will be loaded from disk.
     func handleFirstTime()
     {
         let userDefaults = NSUserDefaults.standardUserDefaults()
@@ -56,26 +76,6 @@ class DataModel
         
         // Writing
     }
-    
-    func loadQuestionBanks()
-    {
-        // Civics
-        let civicsPath = dataFilePath("CivicsQuestionBank")
-        if NSFileManager.defaultManager().fileExistsAtPath(civicsPath) {
-            if let data = NSData(contentsOfFile: civicsPath)
-            {
-                let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
-                civicsQuestionBank = unarchiver.decodeObjectForKey("CivicsQuestionBank") as! CivicsQuestionBank
-                unarchiver.finishDecoding()
-            }
-        }
-        
-        // Reading
-        
-        // Writing
-    }
-    
-    
     
     // MARK: - Directories & Paths
     func documentsDirectory() -> String {

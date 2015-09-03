@@ -41,6 +41,20 @@ class HomeViewController: UIViewController
         makeGraphForView(civicsView, andQuestionBank: dataModel.civicsQuestionBank)
         makeGraphForView(readingView, andQuestionBank: dataModel.civicsQuestionBank)
         makeGraphForView(writingView, andQuestionBank: dataModel.civicsQuestionBank)
+        
+        // animate graph
+        animate()
+    }
+    
+    func animate()
+    {
+        let transition = CATransition()
+        transition.type = kCATransitionFade
+        transition.duration = 2
+        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        
+        // This makes the animation go.
+        view.layer.addAnimation(transition, forKey: nil)
     }
     
     func makeGraphForView(aView: UIView!, andQuestionBank aQuestionBank: CivicsQuestionBank!)
@@ -71,8 +85,7 @@ class HomeViewController: UIViewController
         let center = CGPointMake(view.bounds.width/2, view.bounds.width/2)
         let radius = view.bounds.width/2 - piePiece.lineWidth/2.0
         
-        let visualGap = 0 // isCorrect ? 2 : -2
-        let startingAngle = (-(90 + visualGap)).degreesToRadians
+        let startingAngle = (-90).degreesToRadians
         let startingPoint = CGPointMake(center.x + CGFloat(radius) * CGFloat(cosf(startingAngle)), center.y + CGFloat(radius) * CGFloat(sinf(startingAngle)))
         
         let radiansToShow = ((360.0 * (isCorrect ? accuracy : 1.0 - accuracy))).degreesToRadians

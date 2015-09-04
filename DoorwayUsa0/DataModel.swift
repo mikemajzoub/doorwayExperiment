@@ -96,7 +96,6 @@ class DataModel
     
     func generateReadingLanguage() -> [String]
     {
-        // TODO:
         return readingQuestionBank.generateLanguage()
     }
     

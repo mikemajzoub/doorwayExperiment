@@ -10,6 +10,11 @@ import Foundation
 
 class CivicsQuestion: NSObject
 {
+    let kQuestion = "QuestionName"
+    let kAnswersSpoken = "AnswersSpokenName"
+    let kAnswersKeywords = "AnswersKeywordsName"
+    let kWeight = "WeightName"
+    
     // Question to be spoken by openEars.
     let question: String
     
@@ -35,11 +40,11 @@ class CivicsQuestion: NSObject
     
     required init(coder aDecoder: NSCoder)
     {
-        question = aDecoder.decodeObjectForKey("Question") as! String
-        answersSpoken = aDecoder.decodeObjectForKey("AnswersSpoken") as! [String]
-        answersKeywords = aDecoder.decodeObjectForKey("AnswersKeywords") as! [ [String] ]
+        question = aDecoder.decodeObjectForKey(kQuestion) as! String
+        answersSpoken = aDecoder.decodeObjectForKey(kAnswersSpoken) as! [String]
+        answersKeywords = aDecoder.decodeObjectForKey(kAnswersKeywords) as! [ [String] ]
         
-        weight = aDecoder.decodeIntegerForKey("Weight")
+        weight = aDecoder.decodeIntegerForKey(kWeight)
         
         super.init()
     }
@@ -47,11 +52,11 @@ class CivicsQuestion: NSObject
     // MARK: - Save
     func encodeWithCoder(aCoder: NSCoder)
     {
-        aCoder.encodeObject(question, forKey: "Question")
-        aCoder.encodeObject(answersSpoken, forKey: "AnswersSpoken")
-        aCoder.encodeObject(answersKeywords, forKey: "AnswersKeywords")
+        aCoder.encodeObject(question, forKey: kQuestion)
+        aCoder.encodeObject(answersSpoken, forKey: kAnswersSpoken)
+        aCoder.encodeObject(answersKeywords, forKey: kAnswersKeywords)
         
-        aCoder.encodeInteger(weight, forKey: "Weight")
+        aCoder.encodeInteger(weight, forKey: kWeight)
     }
     
     // MARK: - Logic

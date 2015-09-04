@@ -10,6 +10,9 @@ import Foundation
 
 class ReadingWord: NSObject
 {
+    let kText = "TextName"
+    let kWeight = "WeightName"
+    
     var text = ""
     
     // Weight influences probability of word being quizzed in future
@@ -25,8 +28,8 @@ class ReadingWord: NSObject
     
     required init(coder aDecoder: NSCoder)
     {
-        text = aDecoder.decodeObjectForKey("Text") as! String
-        weight = aDecoder.decodeIntegerForKey("Weight")
+        text = aDecoder.decodeObjectForKey(kText) as! String
+        weight = aDecoder.decodeIntegerForKey(kWeight)
         
         super.init()
     }
@@ -34,8 +37,8 @@ class ReadingWord: NSObject
     // MARK: - Save
     func encodeWithCoder(aCoder: NSCoder)
     {
-        aCoder.encodeObject(text, forKey: "Text")
-        aCoder.encodeObject(weight, forKey: "Weight")
+        aCoder.encodeObject(text, forKey: kText)
+        aCoder.encodeObject(weight, forKey: kWeight)
     }
     
     // MARK: - Logic

@@ -10,6 +10,9 @@ import Foundation
 
 class CivicsQuestionBank: NSObject, NSCoding
 {
+    let kQuestions = "QuestionsName"
+    let kActiveBoundaryIndex = "ActiveBoundaryIndexName"
+    
     // This contains every civics question.
     var questions = [CivicsQuestion]()
     
@@ -29,8 +32,8 @@ class CivicsQuestionBank: NSObject, NSCoding
     
     required init(coder aDecoder: NSCoder)
     {
-        questions = aDecoder.decodeObjectForKey("Questions") as! [CivicsQuestion]
-        activeBoundaryIndex = aDecoder.decodeIntegerForKey("ActiveBoundaryIndex")
+        questions = aDecoder.decodeObjectForKey(kQuestions) as! [CivicsQuestion]
+        activeBoundaryIndex = aDecoder.decodeIntegerForKey(kActiveBoundaryIndex)
         
         super.init()
     }
@@ -38,8 +41,8 @@ class CivicsQuestionBank: NSObject, NSCoding
     // MARK: - Save
     func encodeWithCoder(aCoder: NSCoder)
     {
-        aCoder.encodeObject(questions, forKey: "Questions")
-        aCoder.encodeInteger(activeBoundaryIndex, forKey: "ActiveBoundaryIndex")
+        aCoder.encodeObject(questions, forKey: kQuestions)
+        aCoder.encodeInteger(activeBoundaryIndex, forKey: kActiveBoundaryIndex)
     }
     
     // MARK: - Logic

@@ -10,6 +10,11 @@ import Foundation
 
 class DataModel
 {
+    let kCivicsQuestionBank = "CivicsQuestionBankName"
+    let kReadingQuestionBank = "ReadingQuestionBankName"
+    let kWritingQuestionBank = "WritingQuestionBankName"
+    let kFirstTime = "FirstTimeName"
+    
     var civicsQuestionBank: CivicsQuestionBank!
     var readingQuestionBank: ReadingQuestionBank!
     // var writingQuestionBank
@@ -25,23 +30,23 @@ class DataModel
     func loadQuestionBanks()
     {
         // Civics
-        let civicsPath = dataFilePath("CivicsQuestionBank")
+        let civicsPath = dataFilePath(kCivicsQuestionBank)
         if NSFileManager.defaultManager().fileExistsAtPath(civicsPath) {
             if let data = NSData(contentsOfFile: civicsPath)
             {
                 let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
-                civicsQuestionBank = unarchiver.decodeObjectForKey("CivicsQuestionBank") as! CivicsQuestionBank
+                civicsQuestionBank = unarchiver.decodeObjectForKey(kCivicsQuestionBank) as! CivicsQuestionBank
                 unarchiver.finishDecoding()
             }
         }
         
         // Reading
-        let readingPath = dataFilePath("ReadingQuestionBank")
+        let readingPath = dataFilePath(kReadingQuestionBank)
         if NSFileManager.defaultManager().fileExistsAtPath(readingPath) {
             if let data = NSData(contentsOfFile: readingPath)
             {
                 let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
-                readingQuestionBank = unarchiver.decodeObjectForKey("ReadingQuestionBank") as! ReadingQuestionBank
+                readingQuestionBank = unarchiver.decodeObjectForKey(kReadingQuestionBank) as! ReadingQuestionBank
                 unarchiver.finishDecoding()
             }
         }
@@ -52,7 +57,7 @@ class DataModel
     
     func registerDefaults()
     {
-        let dictionary = [ "FirstTime": true ]
+        let dictionary = [ kFirstTime: true ]
         
         NSUserDefaults.standardUserDefaults().registerDefaults(dictionary)
     }
@@ -62,7 +67,7 @@ class DataModel
     func handleFirstTime()
     {
         let userDefaults = NSUserDefaults.standardUserDefaults()
-        let firstTime = userDefaults.boolForKey("FirstTime")
+        let firstTime = userDefaults.boolForKey(kFirstTime)
         if firstTime
         {
             civicsQuestionBank = CivicsQuestionBank()
@@ -72,7 +77,7 @@ class DataModel
             readingQuestionBank.initializeSentences()
             readingQuestionBank.initializeWords()
 
-            userDefaults.setBool(false, forKey: "FirstTime")
+            userDefaults.setBool(false, forKey: kFirstTime)
         }
     }
     
@@ -105,16 +110,16 @@ class DataModel
         // Civics
         let civicsData = NSMutableData()
         let civicsArchiver = NSKeyedArchiver(forWritingWithMutableData: civicsData)
-        civicsArchiver.encodeObject(civicsQuestionBank, forKey: "CivicsQuestionBank")
+        civicsArchiver.encodeObject(civicsQuestionBank, forKey: kCivicsQuestionBank)
         civicsArchiver.finishEncoding()
-        civicsData.writeToFile(dataFilePath("CivicsQuestionBank"), atomically: true)
+        civicsData.writeToFile(dataFilePath(kCivicsQuestionBank), atomically: true)
         
         // Reading
         let readingData = NSMutableData()
         let readingArchiver = NSKeyedArchiver(forWritingWithMutableData: readingData)
-        readingArchiver.encodeObject(readingQuestionBank, forKey: "ReadingQuestionBank")
+        readingArchiver.encodeObject(readingQuestionBank, forKey: kReadingQuestionBank)
         readingArchiver.finishEncoding()
-        readingData.writeToFile(dataFilePath("ReadingQuestionBank"), atomically: true)
+        readingData.writeToFile(dataFilePath(kReadingQuestionBank), atomically: true)
         
         // Writing
     }

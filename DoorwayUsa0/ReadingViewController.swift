@@ -77,6 +77,7 @@ class ReadingViewController: UIViewController, OpenEarsEngineDelegate
         {
             dataModel.readingQuestionBank.updateWordsForSpokenResponse(heardWords, forSentencePrompt: currentQuestion)
             
+            // TODO: Reading needs to be a bit more forgiving. Perhaps break into 2 sets, and allow response to have 2 incorrect words?, etc.
             var response = (heardWords == currentQuestion) ? "Correct. " : "Incorrect. The correct answer is. "
             response += currentQuestion
             openEarsEngine.say(response)

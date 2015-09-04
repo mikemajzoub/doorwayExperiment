@@ -14,10 +14,18 @@ class ReadingQuestionBank: NSObject, NSCoding
     let kSentences = "SentencesName"
     let kActiveBoundaryIndex = "ActiveBoundaryIndexName"
     
+    // This holds the vocab list the student must master
     var words = [ReadingWord]()
     
+    // This holds sentences made up of the vocab list. The student practices
+    // with these sentences, instead of just reading random words.
     var sentences = [String]()
     
+    // The activeBoundaryIndex is what keeps the user from being overwhelmed with too
+    // many new sentences at once. It starts by only quizzing user on X sentences,
+    // and once the user has mastered these, it will quiz user on X + Y sentences.
+    // It will continue this pattern of increasing the sentences can be randomly
+    // selected until the entire sentence bank is revealed to the user.
     var activeBoundaryIndex = 3
     
     // MARK: - Init

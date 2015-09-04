@@ -17,7 +17,7 @@ class DataModel
     
     var civicsQuestionBank: CivicsQuestionBank!
     var readingQuestionBank: ReadingQuestionBank!
-    // var writingQuestionBank
+    // var writingQuestionBank: WritingQuestionBank!
     
     // MARK: - Init
     init()

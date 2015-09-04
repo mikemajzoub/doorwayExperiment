@@ -118,6 +118,7 @@ class CivicsViewController: UIViewController, OpenEarsEngineDelegate
         }
     }
     
+    // TODO: refactor this into civics question bank...
     func answerIsCorrectForWords(heardWords: String) -> Bool
     {
         let heardWordsSet = Set(heardWords.componentsSeparatedByString(" "))

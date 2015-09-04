@@ -53,16 +53,7 @@ class ReadingQuestionBank: NSObject, NSCoding
             
             for wordString in sentenceWords
             {
-                var readingWord = ReadingWord(text: "")
-                for w in words
-                {
-                    if w.text == wordString
-                    {
-                        readingWord = w
-                        break
-                    }
-                }
-                
+                var readingWord = readingWordForText(wordString)
                 if !readingWord.isMastered()
                 {
                     allMastered = false
@@ -91,6 +82,21 @@ class ReadingQuestionBank: NSObject, NSCoding
                 activeBoundaryIndex = sentences.count
             }
         }
+    }
+    
+    func readingWordForText(text: String) -> ReadingWord
+    {
+        var readingWord = ReadingWord(text: "")
+        for w in words
+        {
+            if w.text == text
+            {
+                readingWord = w
+                break
+            }
+        }
+        
+        return readingWord
     }
     
     func nextQuestion() -> String
@@ -153,6 +159,26 @@ class ReadingQuestionBank: NSObject, NSCoding
         }
         
         return language
+    }
+    
+    func updateWordsForSpokenResponse(response: String, forSentencePrompt prompt: String)
+    {
+        let responseSet = Set(response.componentsSeparatedByString(" "))
+        let promptSet = Set(response.componentsSeparatedByString(" "))
+        
+        for word in responseSet
+        {
+            var readingWord = readingWordForText(word)
+            
+            if promptSet.contains(readingWord.text)
+            {
+                readingWord.answeredCorrectly()
+            }
+            else
+            {
+                readingWord.answeredIncorrectly()
+            }
+        }
     }
     
     // MARK: - Initialize Data

@@ -158,11 +158,14 @@ class ReadingQuestionBank: NSObject, NSCoding
     // MARK: - Initialize Data
     func initializeSentences()
     {
-        sentences.append("")
-        sentences.append("")
-        sentences.append("")
-        sentences.append("")
-        sentences.append("")
+        sentences.append("ABRAHAM LINCOLN GEORGE WASHINGTON AMERICAN FLAG BILL OF RIGHTS")
+        sentences.append("CAPITAL CITIZEN CITY CONGRESS COUNTRY FATHER OF OUR COUNTRY")
+        sentences.append("GOVERNMENT PRESIDENT RIGHT SENATORS STATE STATES WHITE HOUSE")
+        sentences.append("AMERICA UNITED STATES U.S. PRESIDENTS' DAY MEMORIAL DAY")
+        sentences.append("FLAG DAY INDEPENDENCE DAY LABOR DAY COLUMBUS DAY THANKSGIVING")
+        sentences.append("HOW WHAT WHEN WHERE WHO WHY CAN COME DO DOES ELECTS HAVE HAS IS ARE")
+        sentences.append("WAS BE LIVES LIVED MEET NAME PAY VOTE WANT A FOR HERE IN OF ON THE TO")
+        sentences.append("WE COLORS DOLLAR BILL FIRST LARGEST MANY MOST NORTH ONE PEOPLE SECOND SOUTH")
     }
     
     func initializeWords()

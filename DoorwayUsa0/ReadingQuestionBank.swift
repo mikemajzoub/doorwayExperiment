@@ -160,9 +160,12 @@ class ReadingQuestionBank: NSObject, NSCoding
     {
         var language = [String]()
         
-        for word in words
+        // Make language model with sentences instead of just the vocab list
+        // stored in 'words' array, because this will increase probability of
+        // recognizing a correct answer
+        for sentence in sentences
         {
-            language.append(word.text)
+            language.append(sentence)
         }
         
         return language
@@ -195,16 +198,10 @@ class ReadingQuestionBank: NSObject, NSCoding
     // There is nothing special about these sentences, aside from them being made up entirely of words from the vocab list.
     func initializeSentences()
     {
-        sentences.append("BILL OF RIGHTS")
-        sentences.append("ABRAHAM LINCOLN")
-        sentences.append("ABRAHAM LINCOLN GEORGE WASHINGTON AMERICAN FLAG BILL OF RIGHTS")
-        sentences.append("CAPITAL CITIZEN CITY CONGRESS COUNTRY FATHER OF OUR COUNTRY")
-        sentences.append("GOVERNMENT PRESIDENT RIGHT SENATORS STATE STATES WHITE HOUSE")
-        sentences.append("AMERICA UNITED STATES U.S. PRESIDENTS' DAY MEMORIAL DAY")
-        sentences.append("FLAG DAY INDEPENDENCE DAY LABOR DAY COLUMBUS DAY THANKSGIVING")
-        sentences.append("HOW WHAT WHEN WHERE WHO WHY CAN COME DO DOES ELECTS HAVE HAS IS ARE")
-        sentences.append("WAS BE LIVES LIVED MEET NAME PAY VOTE WANT A FOR HERE IN OF ON THE TO")
-        sentences.append("WE COLORS DOLLAR BILL FIRST LARGEST MANY MOST NORTH ONE PEOPLE SECOND SOUTH")
+        sentences.append("ABRAHAM LINCOLN LIVED IN THE WHITE HOUSE")
+        sentences.append("GEORGE WASHINGTON WAS THE FATHER OF OUR COUNTRY")
+        sentences.append("MEMORIAL DAY IS A DAY")
+        sentences.append("THE U.S. HAS A GOVERNMENT")
     }
     
     // This is the vocab list that the student must master

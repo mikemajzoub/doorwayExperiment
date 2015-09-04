@@ -54,7 +54,7 @@ class HomeViewController: UIViewController
     {
         let transition = CATransition()
         transition.type = kCATransitionFade
-        transition.duration = 2
+        transition.duration = 1
         transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
         
         view.layer.addAnimation(transition, forKey: nil)

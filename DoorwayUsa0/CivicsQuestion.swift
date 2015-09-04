@@ -21,7 +21,7 @@ class CivicsQuestion: NSObject
     
     // Decrease weight if answered correctly, increase if answered correctly.
     // This will determine probability of question being selected in future.
-    var weight: Int = 256
+    var weight: Int = ORIGINAL_WEIGHT
     
     // MARK: - Init
     init(question: String, answersSpoken: [String], answersKeywords: [ [String] ])
@@ -67,6 +67,6 @@ class CivicsQuestion: NSObject
     
     func isMastered() -> Bool
     {
-        return weight <= 64
+        return weight <= ORIGINAL_WEIGHT / 4 // TODO: use exponental notation
     }
 }

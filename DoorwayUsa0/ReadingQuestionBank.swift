@@ -184,6 +184,8 @@ class ReadingQuestionBank: NSObject, NSCoding
     // MARK: - Initialize Data
     func initializeSentences()
     {
+        sentences.append("BILL OF RIGHTS")
+        sentences.append("ABRAHAM LINCOLN")
         sentences.append("ABRAHAM LINCOLN GEORGE WASHINGTON AMERICAN FLAG BILL OF RIGHTS")
         sentences.append("CAPITAL CITIZEN CITY CONGRESS COUNTRY FATHER OF OUR COUNTRY")
         sentences.append("GOVERNMENT PRESIDENT RIGHT SENATORS STATE STATES WHITE HOUSE")

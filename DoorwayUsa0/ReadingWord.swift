@@ -11,7 +11,7 @@ import Foundation
 class ReadingWord: NSObject
 {
     var text = ""
-    var weight = 256
+    var weight: Int = ORIGINAL_WEIGHT
     
     // MARK: - Init
     init(text: String)
@@ -49,6 +49,6 @@ class ReadingWord: NSObject
     
     func isMastered() -> Bool
     {
-        return weight <= 64 // TODO: get rid of this hardcoding.
+        return weight <= (ORIGINAL_WEIGHT / 4) // TODO: use exponental syntax
     }
 }

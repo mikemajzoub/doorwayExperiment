@@ -16,3 +16,5 @@ enum LearningMode
 }
 
 var currentLearningMode: LearningMode?
+
+let ORIGINAL_WEIGHT = 256

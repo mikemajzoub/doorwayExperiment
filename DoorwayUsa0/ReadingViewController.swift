@@ -51,12 +51,14 @@ class ReadingViewController: UIViewController, OpenEarsEngineDelegate
             
             textToRead.text = question
             
+            openEarsEngine.say("Please read the question aloud.")
+            
             openEarsEngine.startListening()
         }
     }
-    
+
     // MARK: - OpenEarsEngineDelegate
-    
+
     // App has heard a completed answer. Will analyze accuracy and inform user of result.
     func heardWords(words: String!, withRecognitionScore recognitionScore: String!)
     {

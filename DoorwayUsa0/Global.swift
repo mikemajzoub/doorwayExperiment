@@ -8,6 +8,8 @@
 
 
 // TODO: I don't like this at all. Refactor once you how to do this elegantly in Swift.
+
+// Learning Mode
 enum LearningMode
 {
     case Civics
@@ -17,4 +19,5 @@ enum LearningMode
 
 var currentLearningMode: LearningMode?
 
+// Weigh questions and words to determine probability of being quizzed in future.
 let ORIGINAL_WEIGHT = 256

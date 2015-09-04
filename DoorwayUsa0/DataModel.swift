@@ -62,6 +62,29 @@ class DataModel
         }
     }
     
+    // MARK: - Generate Language
+    func getLanguageForLearningMode(mode: LearningMode) -> [String]
+    {
+        if mode == .Civics
+        {
+            return generateCivicsLanguage()
+        }
+        else // Else, mode == .Reading
+        {
+            return generateReadingLanguage()
+        }
+    }
+    
+    func generateCivicsLanguage() -> [String]
+    {
+        
+    }
+    
+    func generateReadingLanguage() -> [String]
+    {
+        
+    }
+    
     // MARK: - Save/Load Banks
     func saveQuestionBanks()
     {

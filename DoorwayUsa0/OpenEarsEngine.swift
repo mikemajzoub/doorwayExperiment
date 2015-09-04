@@ -65,21 +65,24 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
         self.openEarsEventsObserver.delegate = self
     }
     
-    func makeLanguageModelsForCivicsLanguage(civicsLanguage: [String], andReadingLanguage readingLanguage: [String])
+    func makeLanguageModelsForCivicsLanguageForMode(mode: LearningMode, withLanguage language: [String])
     {
         var languageModelGenerator = OELanguageModelGenerator()
         
-        // Make civics language model and dictionary, saving paths to instance variables
-        var civicsName = "CivicsLanguageModel"
-        languageModelGenerator.generateLanguageModelFromArray(civicsLanguage, withFilesNamed: civicsName, forAcousticModelAtPath: OEAcousticModel.pathToModel("AcousticModelEnglish"))
-        languageModelPathCivics = languageModelGenerator.pathToSuccessfullyGeneratedLanguageModelWithRequestedName(civicsName)
-        dictionaryPathCivics = languageModelGenerator.pathToSuccessfullyGeneratedDictionaryWithRequestedName(civicsName)
+        var name = (mode == .Civics) ? "CivicsLanguageModel" : "ReadingLangaugeModel"
+        languageModelGenerator.generateLanguageModelFromArray(language, withFilesNamed: name, forAcousticModelAtPath: OEAcousticModel.pathToModel("AcousticModelEnglish"))
         
-        // Make reading language model and dictionary, saving paths to instance variables
-        var readingName = "ReadingLanguageModel"
-        languageModelGenerator.generateLanguageModelFromArray(readingLanguage, withFilesNamed: readingName, forAcousticModelAtPath: OEAcousticModel.pathToModel("AcousticModelEnglish"))
-        languageModelPathReading = languageModelGenerator.pathToSuccessfullyGeneratedLanguageModelWithRequestedName(readingName)
-        dictionaryPathReading = languageModelGenerator.pathToSuccessfullyGeneratedDictionaryWithRequestedName(readingName)
+        // Hook up generated paths
+        if mode == .Civics
+        {
+            languageModelPathCivics = languageModelGenerator.pathToSuccessfullyGeneratedLanguageModelWithRequestedName(name)
+            dictionaryPathCivics = languageModelGenerator.pathToSuccessfullyGeneratedDictionaryWithRequestedName(name)
+        }
+        else // For this case, mode == .Reading
+        {
+            languageModelPathReading = languageModelGenerator.pathToSuccessfullyGeneratedLanguageModelWithRequestedName(name)
+            dictionaryPathReading = languageModelGenerator.pathToSuccessfullyGeneratedDictionaryWithRequestedName(name)
+        }
     }
     
     func stopEngine()
@@ -104,15 +107,10 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
             languageModelPath = languageModelPathCivics
             dictionaryPath = dictionaryPathCivics
         }
-        else if currentLearningMode == .Reading
+        else // In this case, currentLearningMode == .Reading
         {
             languageModelPath = languageModelPathReading
             dictionaryPath = dictionaryPathReading
-        }
-        else
-        {
-            languageModelPath = "Error with listening mode."
-            dictionaryPath = "Error with listening mode."
         }
         
         OEPocketsphinxController.sharedInstance().setActive(true, error: nil)

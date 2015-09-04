@@ -39,6 +39,9 @@ class HomeViewController: UIViewController
     {
         super.viewDidAppear(animated)
         
+        // Not learning anything right now, so no learning mode.
+        currentLearningMode = nil
+        
         makeGraphForView(civicsView, andQuestionBank: dataModel.civicsQuestionBank)
         makeGraphForView(readingView, andQuestionBank: dataModel.civicsQuestionBank)
         makeGraphForView(writingView, andQuestionBank: dataModel.civicsQuestionBank)
@@ -106,6 +109,8 @@ class HomeViewController: UIViewController
     {
         if segue.identifier == "ShowCivics"
         {
+            currentLearningMode = .Civics
+            
             let navigationController = segue.destinationViewController as! UINavigationController
             let controller = navigationController.topViewController as! CivicsPracticeViewController
             controller.dataModel = dataModel // TODO: as design firms up, only pass question bank, keeping VC as dumb as possible
@@ -113,10 +118,14 @@ class HomeViewController: UIViewController
         }
         else if segue.identifier == "ShowReading"
         {
+            currentLearningMode = .Reading
+            
             // TODO:
         }
         else if segue.identifier == "ShowWriting"
         {
+            currentLearningMode = .Writing
+            
             // TODO:
         }
     }

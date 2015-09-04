@@ -26,6 +26,7 @@
 		2DB853DE1B9485D300377750 /* CivicsQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB853DD1B9485D300377750 /* CivicsQuestion.swift */; };
 		2DE14EDF1B92046200C27CB7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE14EDE1B92046200C27CB7 /* HomeViewController.swift */; };
 		2DE14EE11B92047000C27CB7 /* CivicsPracticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE14EE01B92047000C27CB7 /* CivicsPracticeViewController.swift */; };
+		2DE47EE91B9934580029BE0F /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE47EE81B9934580029BE0F /* Global.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		2DB853DD1B9485D300377750 /* CivicsQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CivicsQuestion.swift; sourceTree = "<group>"; };
 		2DE14EDE1B92046200C27CB7 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		2DE14EE01B92047000C27CB7 /* CivicsPracticeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CivicsPracticeViewController.swift; sourceTree = "<group>"; };
+		2DE47EE81B9934580029BE0F /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				2D53AC301B91FBDA00B3DFC7 /* AppDelegate.swift */,
+				2DE47EE81B9934580029BE0F /* Global.swift */,
 				2DD64D4C1B9880DC0023BF7C /* ViewControllers */,
 				2DD64D491B987D4B0023BF7C /* Model */,
 				2DD64D4B1B987D930023BF7C /* Speak, Listen, See */,
@@ -302,6 +305,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DE47EE91B9934580029BE0F /* Global.swift in Sources */,
 				2DB853DA1B9485BF00377750 /* DataModel.swift in Sources */,
 				2DB853DE1B9485D300377750 /* CivicsQuestion.swift in Sources */,
 				2D53AC311B91FBDA00B3DFC7 /* AppDelegate.swift in Sources */,

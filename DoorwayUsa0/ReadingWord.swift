@@ -38,7 +38,7 @@ class ReadingWord: NSObject
     func encodeWithCoder(aCoder: NSCoder)
     {
         aCoder.encodeObject(text, forKey: kText)
-        aCoder.encodeObject(weight, forKey: kWeight)
+        aCoder.encodeInteger(weight, forKey: kWeight)
     }
     
     // MARK: - Logic

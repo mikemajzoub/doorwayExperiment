@@ -14,7 +14,6 @@
 		2D53AC471B91FBDA00B3DFC7 /* DoorwayUsa0Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D53AC461B91FBDA00B3DFC7 /* DoorwayUsa0Tests.swift */; };
 		2D8D882D1B96989F00E2EF57 /* beep-holdtone.aif in Resources */ = {isa = PBXBuildFile; fileRef = 2D8D882C1B96989F00E2EF57 /* beep-holdtone.aif */; };
 		2D8D882F1B9698A900E2EF57 /* beep-xylo.aif in Resources */ = {isa = PBXBuildFile; fileRef = 2D8D882E1B9698A900E2EF57 /* beep-xylo.aif */; };
-		2DB68F451B9A63CE00BD32A0 /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB68F441B9A63CE00BD32A0 /* ApiKeys.swift */; };
 		2DB853CB1B93E70100377750 /* AcousticModelEnglish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2DB853C71B93E70100377750 /* AcousticModelEnglish.bundle */; };
 		2DB853CC1B93E70100377750 /* AcousticModelSpanish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2DB853C81B93E70100377750 /* AcousticModelSpanish.bundle */; };
 		2DB853CD1B93E70100377750 /* OpenEars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DB853C91B93E70100377750 /* OpenEars.framework */; };
@@ -55,7 +54,6 @@
 		2D53AC461B91FBDA00B3DFC7 /* DoorwayUsa0Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorwayUsa0Tests.swift; sourceTree = "<group>"; };
 		2D8D882C1B96989F00E2EF57 /* beep-holdtone.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-holdtone.aif"; sourceTree = "<group>"; };
 		2D8D882E1B9698A900E2EF57 /* beep-xylo.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-xylo.aif"; sourceTree = "<group>"; };
-		2DB68F441B9A63CE00BD32A0 /* ApiKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
 		2DB853C71B93E70100377750 /* AcousticModelEnglish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AcousticModelEnglish.bundle; sourceTree = "<group>"; };
 		2DB853C81B93E70100377750 /* AcousticModelSpanish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AcousticModelSpanish.bundle; sourceTree = "<group>"; };
 		2DB853C91B93E70100377750 /* OpenEars.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenEars.framework; sourceTree = "<group>"; };
@@ -130,7 +128,6 @@
 				2DD64D4A1B987D6F0023BF7C /* Assets */,
 				2DB853D31B93E98800377750 /* DoorwayUsa0-Bridging-Header.h */,
 				2D53AC2E1B91FBDA00B3DFC7 /* Supporting Files */,
-				2DB68F441B9A63CE00BD32A0 /* ApiKeys.swift */,
 			);
 			path = DoorwayUsa0;
 			sourceTree = "<group>";
@@ -319,7 +316,6 @@
 			files = (
 				2DE47EED1B99CADC0029BE0F /* ReadingQuestionBank.swift in Sources */,
 				2DE47EE91B9934580029BE0F /* Global.swift in Sources */,
-				2DB68F451B9A63CE00BD32A0 /* ApiKeys.swift in Sources */,
 				2DB853DA1B9485BF00377750 /* DataModel.swift in Sources */,
 				2DB853DE1B9485D300377750 /* CivicsQuestion.swift in Sources */,
 				2D53AC311B91FBDA00B3DFC7 /* AppDelegate.swift in Sources */,

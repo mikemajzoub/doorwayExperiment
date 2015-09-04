@@ -8,8 +8,47 @@
 
 import Foundation
 
-class ReadingWord
+class ReadingWord: NSObject
 {
     var text = ""
     var weight = 256
+    
+    // MARK: - Init
+    init(text: String)
+    {
+        self.text = text
+        
+        super.init()
+    }
+    
+    required init(coder aDecoder: NSCoder)
+    {
+        text = aDecoder.decodeObjectForKey("Text") as! String
+        weight = aDecoder.decodeIntegerForKey("Weight")
+        
+        super.init()
+    }
+    
+    // MARK: - Save
+    func encodeWithCoder(aCoder: NSCoder)
+    {
+        aCoder.encodeObject(text, forKey: "Text")
+        aCoder.encodeObject(weight, forKey: "Weight")
+    }
+    
+    // MARK: - Logic
+    func answeredCorrectly()
+    {
+        weight /= 2
+    }
+    
+    func answeredIncorrectly()
+    {
+        weight *= 2
+    }
+    
+    func isMastered() -> Bool
+    {
+        return weight <= 64 // TODO: get rid of this hardcoding.
+    }
 }

@@ -39,7 +39,6 @@ class CivicsQuestion: NSObject
         super.init()
     }
     
-    // MARK: - Encode/Decode
     required init(coder aDecoder: NSCoder)
     {
         question = aDecoder.decodeObjectForKey("Question") as! String
@@ -53,6 +52,7 @@ class CivicsQuestion: NSObject
         super.init()
     }
     
+    // MARK: - Save
     func encodeWithCoder(aCoder: NSCoder)
     {
         aCoder.encodeObject(question, forKey: "Question")

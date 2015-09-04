@@ -243,4 +243,9 @@ class ReadingQuestionBank: NSObject, NSCoding
         words.append(ReadingWord(text: "SOUTH"))
     }
     
+    // MARK: - Debugging
+    func printSentenceWordCounts()
+    {
+        // TODO:
+    }
 }

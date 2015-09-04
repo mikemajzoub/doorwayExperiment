@@ -11,7 +11,7 @@ import Foundation
 class DataModel
 {
     var civicsQuestionBank: CivicsQuestionBank!
-    // var readingQuestionBank
+    var readingQuestionBank: ReadingQuestionBank!
     // var writingQuestionBank
     
     // MARK: - Init
@@ -36,6 +36,16 @@ class DataModel
         }
         
         // Reading
+        let readingPath = dataFilePath("ReadingQuestionBank")
+        if NSFileManager.defaultManager().fileExistsAtPath(readingPath) {
+            if let data = NSData(contentsOfFile: readingPath)
+            {
+                let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
+                readingQuestionBank = unarchiver.decodeObjectForKey("ReadingQuestionBank") as! ReadingQuestionBank
+                unarchiver.finishDecoding()
+            }
+        }
+        
         
         // Writing
     }
@@ -57,6 +67,10 @@ class DataModel
         {
             civicsQuestionBank = CivicsQuestionBank()
             civicsQuestionBank.initializeQuestions()
+            
+            readingQuestionBank = ReadingQuestionBank()
+            readingQuestionBank.initializeSentences()
+            readingQuestionBank.initializeWords()
 
             userDefaults.setBool(false, forKey: "FirstTime")
         }
@@ -83,7 +97,7 @@ class DataModel
     func generateReadingLanguage() -> [String]
     {
         // TODO:
-        return [""]
+        return readingQuestionBank.generateLanguage()
     }
     
     // MARK: - Save/Load Banks
@@ -97,6 +111,11 @@ class DataModel
         civicsData.writeToFile(dataFilePath("CivicsQuestionBank"), atomically: true)
         
         // Reading
+        let readingData = NSMutableData()
+        let readingArchiver = NSKeyedArchiver(forWritingWithMutableData: readingData)
+        readingArchiver.encodeObject(readingQuestionBank, forKey: "ReadingQuestionBank")
+        readingArchiver.finishEncoding()
+        readingData.writeToFile(dataFilePath("ReadingQuestionBank"), atomically: true)
         
         // Writing
     }

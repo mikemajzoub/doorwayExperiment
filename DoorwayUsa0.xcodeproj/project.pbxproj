@@ -25,8 +25,9 @@
 		2DB853DC1B9485CA00377750 /* CivicsQuestionBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB853DB1B9485CA00377750 /* CivicsQuestionBank.swift */; };
 		2DB853DE1B9485D300377750 /* CivicsQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB853DD1B9485D300377750 /* CivicsQuestion.swift */; };
 		2DE14EDF1B92046200C27CB7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE14EDE1B92046200C27CB7 /* HomeViewController.swift */; };
-		2DE14EE11B92047000C27CB7 /* CivicsPracticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE14EE01B92047000C27CB7 /* CivicsPracticeViewController.swift */; };
+		2DE14EE11B92047000C27CB7 /* CivicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE14EE01B92047000C27CB7 /* CivicsViewController.swift */; };
 		2DE47EE91B9934580029BE0F /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE47EE81B9934580029BE0F /* Global.swift */; };
+		2DE47EEB1B99CA3B0029BE0F /* ReadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE47EEA1B99CA3B0029BE0F /* ReadingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,8 +64,9 @@
 		2DB853DB1B9485CA00377750 /* CivicsQuestionBank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CivicsQuestionBank.swift; sourceTree = "<group>"; };
 		2DB853DD1B9485D300377750 /* CivicsQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CivicsQuestion.swift; sourceTree = "<group>"; };
 		2DE14EDE1B92046200C27CB7 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		2DE14EE01B92047000C27CB7 /* CivicsPracticeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CivicsPracticeViewController.swift; sourceTree = "<group>"; };
+		2DE14EE01B92047000C27CB7 /* CivicsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CivicsViewController.swift; sourceTree = "<group>"; };
 		2DE47EE81B9934580029BE0F /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		2DE47EEA1B99CA3B0029BE0F /* ReadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,7 +197,8 @@
 			isa = PBXGroup;
 			children = (
 				2DE14EDE1B92046200C27CB7 /* HomeViewController.swift */,
-				2DE14EE01B92047000C27CB7 /* CivicsPracticeViewController.swift */,
+				2DE14EE01B92047000C27CB7 /* CivicsViewController.swift */,
+				2DE47EEA1B99CA3B0029BE0F /* ReadingViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -310,9 +313,10 @@
 				2DB853DE1B9485D300377750 /* CivicsQuestion.swift in Sources */,
 				2D53AC311B91FBDA00B3DFC7 /* AppDelegate.swift in Sources */,
 				2DB853DC1B9485CA00377750 /* CivicsQuestionBank.swift in Sources */,
+				2DE47EEB1B99CA3B0029BE0F /* ReadingViewController.swift in Sources */,
 				2DE14EDF1B92046200C27CB7 /* HomeViewController.swift in Sources */,
 				2DB853D81B93EFA300377750 /* OpenEarsEngine.swift in Sources */,
-				2DE14EE11B92047000C27CB7 /* CivicsPracticeViewController.swift in Sources */,
+				2DE14EE11B92047000C27CB7 /* CivicsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

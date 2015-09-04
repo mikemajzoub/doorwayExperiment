@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CivicsPracticeViewController: UIViewController, OpenEarsEngineDelegate
+class CivicsViewController: UIViewController, OpenEarsEngineDelegate
 {
     var dataModel: DataModel!
     var openEarsEngine: OpenEarsEngine!

@@ -267,7 +267,7 @@
         <!--Civics Practice-->
         <scene sceneID="EaO-Qc-nEp">
             <objects>
-                <viewController title="Civics Practice" id="Akl-DO-gaB" customClass="CivicsPracticeViewController" customModule="DoorwayUsa0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Civics Practice" id="Akl-DO-gaB" customClass="CivicsViewController" customModule="DoorwayUsa0" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pOS-3c-efW"/>
                         <viewControllerLayoutGuide type="bottom" id="spe-Oo-d8E"/>

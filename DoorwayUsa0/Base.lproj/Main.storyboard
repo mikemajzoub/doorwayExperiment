@@ -288,7 +288,7 @@
         <!--Reading Practice-->
         <scene sceneID="lHB-XD-IBw">
             <objects>
-                <viewController title="Reading Practice" id="Ta4-bg-Nq4" sceneMemberID="viewController">
+                <viewController title="Reading Practice" id="Ta4-bg-Nq4" customClass="CivicsViewController" customModule="DoorwayUsa0" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="c7q-6I-lnq"/>
                         <viewControllerLayoutGuide type="bottom" id="6mc-Cl-Y5y"/>

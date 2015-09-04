@@ -28,6 +28,8 @@
 		2DE14EE11B92047000C27CB7 /* CivicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE14EE01B92047000C27CB7 /* CivicsViewController.swift */; };
 		2DE47EE91B9934580029BE0F /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE47EE81B9934580029BE0F /* Global.swift */; };
 		2DE47EEB1B99CA3B0029BE0F /* ReadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE47EEA1B99CA3B0029BE0F /* ReadingViewController.swift */; };
+		2DE47EED1B99CADC0029BE0F /* ReadingQuestionBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE47EEC1B99CADC0029BE0F /* ReadingQuestionBank.swift */; };
+		2DE47EEF1B99CB040029BE0F /* ReadingWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE47EEE1B99CB040029BE0F /* ReadingWord.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,8 @@
 		2DE14EE01B92047000C27CB7 /* CivicsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CivicsViewController.swift; sourceTree = "<group>"; };
 		2DE47EE81B9934580029BE0F /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		2DE47EEA1B99CA3B0029BE0F /* ReadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadingViewController.swift; sourceTree = "<group>"; };
+		2DE47EEC1B99CADC0029BE0F /* ReadingQuestionBank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadingQuestionBank.swift; sourceTree = "<group>"; };
+		2DE47EEE1B99CB040029BE0F /* ReadingWord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadingWord.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +174,8 @@
 				2DB853D91B9485BF00377750 /* DataModel.swift */,
 				2DB853DB1B9485CA00377750 /* CivicsQuestionBank.swift */,
 				2DB853DD1B9485D300377750 /* CivicsQuestion.swift */,
+				2DE47EEC1B99CADC0029BE0F /* ReadingQuestionBank.swift */,
+				2DE47EEE1B99CB040029BE0F /* ReadingWord.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -308,6 +314,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DE47EED1B99CADC0029BE0F /* ReadingQuestionBank.swift in Sources */,
 				2DE47EE91B9934580029BE0F /* Global.swift in Sources */,
 				2DB853DA1B9485BF00377750 /* DataModel.swift in Sources */,
 				2DB853DE1B9485D300377750 /* CivicsQuestion.swift in Sources */,
@@ -315,6 +322,7 @@
 				2DB853DC1B9485CA00377750 /* CivicsQuestionBank.swift in Sources */,
 				2DE47EEB1B99CA3B0029BE0F /* ReadingViewController.swift in Sources */,
 				2DE14EDF1B92046200C27CB7 /* HomeViewController.swift in Sources */,
+				2DE47EEF1B99CB040029BE0F /* ReadingWord.swift in Sources */,
 				2DB853D81B93EFA300377750 /* OpenEarsEngine.swift in Sources */,
 				2DE14EE11B92047000C27CB7 /* CivicsViewController.swift in Sources */,
 			);

@@ -56,9 +56,7 @@ class CivicsQuestionBank: NSObject, NSCoding
         for index in 0..<activeBoundaryIndex
         {
             let q = questions[index]
-            
-            println("q total count: \(q.totalCount)")
-            
+                        
             if !q.isMastered()
             {
                 allMastered = false

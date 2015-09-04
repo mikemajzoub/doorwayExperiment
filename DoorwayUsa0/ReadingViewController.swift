@@ -19,6 +19,13 @@ class ReadingViewController: UIViewController, OpenEarsEngineDelegate
     
     @IBOutlet weak var textToRead: UITextView!
     
+    override func viewWillAppear(animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        
+        textToRead.text = "" // clear out lorem ipsum.
+    }
+    
     override func viewDidAppear(animated: Bool)
     {
         super.viewDidAppear(animated)
@@ -51,7 +58,7 @@ class ReadingViewController: UIViewController, OpenEarsEngineDelegate
             
             textToRead.text = question
             
-            openEarsEngine.say("Please read the question aloud.")
+            openEarsEngine.say("Please reed this sentence aloud.") // 'reed' is NOT a typo. OE pronounces 'read' like 'red'
             
             openEarsEngine.startListening()
         }

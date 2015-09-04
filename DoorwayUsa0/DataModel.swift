@@ -75,7 +75,7 @@ class DataModel
             
             readingQuestionBank = ReadingQuestionBank()
             readingQuestionBank.initializeSentences()
-            readingQuestionBank.initializeWords()
+            readingQuestionBank.initializeVocabularyList()
 
             userDefaults.setBool(false, forKey: kFirstTime)
         }

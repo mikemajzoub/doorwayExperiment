@@ -10,5 +10,7 @@ import UIKit
 
 class ReadingViewController: UIViewController
 {
+    @IBOutlet weak var textToRead: UITextView!
+    
     
 }

@@ -288,7 +288,7 @@
         <!--Reading Practice-->
         <scene sceneID="lHB-XD-IBw">
             <objects>
-                <viewController title="Reading Practice" id="Ta4-bg-Nq4" customClass="CivicsViewController" customModule="DoorwayUsa0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Reading Practice" id="Ta4-bg-Nq4" customClass="ReadingViewController" customModule="DoorwayUsa0" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="c7q-6I-lnq"/>
                         <viewControllerLayoutGuide type="bottom" id="6mc-Cl-Y5y"/>
@@ -296,11 +296,23 @@
                     <view key="view" contentMode="scaleToFill" id="5o8-t0-5iO">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dDF-vz-0vR">
+                                <rect key="frame" x="16" y="72" width="568" height="503"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Reading" id="GHP-w3-NaC">
                         <barButtonItem key="backBarButtonItem" title="Practice" id="1f6-rg-o1m"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="textToRead" destination="dDF-vz-0vR" id="knI-dz-hLo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4ok-RN-Gcb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

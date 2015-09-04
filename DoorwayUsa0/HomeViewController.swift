@@ -42,9 +42,9 @@ class HomeViewController: UIViewController
         // Not learning anything right now, so no learning mode.
         currentLearningMode = nil
         
-        makeGraphForView(civicsView, andQuestionBank: dataModel.civicsQuestionBank)
-        makeGraphForView(readingView, andQuestionBank: dataModel.civicsQuestionBank)
-        makeGraphForView(writingView, andQuestionBank: dataModel.civicsQuestionBank)
+        makeGraphForView(civicsView, andMode: .Civics)
+        makeGraphForView(readingView, andMode: .Reading)
+        makeGraphForView(writingView, andMode: .Writing)
         
         // animate graph
         animate()
@@ -61,14 +61,28 @@ class HomeViewController: UIViewController
     }
     
     // Creates the circular pie graph that surrounds each button (civics, reading, writing)
-    func makeGraphForView(aView: UIView!, andQuestionBank aQuestionBank: CivicsQuestionBank!)
+    func makeGraphForView(aView: UIView!, andMode mode: LearningMode)
     {
+        let accuracy: Float
+        if mode == .Civics
+        {
+            accuracy = dataModel.civicsQuestionBank.percentMastered()
+        }
+        else if mode == .Reading
+        {
+            accuracy = dataModel.readingQuestionBank.percentMastered()
+        }
+        else // mode == .Writing
+        {
+            accuracy = 0.5
+        }
+        
         // make incorrect piece
-        let incorrectPiece = makePiePieceForView(aView, forAccuracy: aQuestionBank.percentMastered(), andIsCorrect: false)
+        let incorrectPiece = makePiePieceForView(aView, forAccuracy: accuracy, andIsCorrect: false)
         aView.layer.addSublayer(incorrectPiece)
         
         // make correct piece
-        let correctPiece = makePiePieceForView(aView, forAccuracy: aQuestionBank.percentMastered(), andIsCorrect: true)
+        let correctPiece = makePiePieceForView(aView, forAccuracy: accuracy, andIsCorrect: true)
         aView.layer.addSublayer(correctPiece)
     }
     

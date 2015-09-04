@@ -77,12 +77,13 @@ class DataModel
     
     func generateCivicsLanguage() -> [String]
     {
-        
+        return civicsQuestionBank.generateLanguage()
     }
     
     func generateReadingLanguage() -> [String]
     {
-        
+        // TODO:
+        return [""]
     }
     
     // MARK: - Save/Load Banks

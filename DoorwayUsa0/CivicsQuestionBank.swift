@@ -137,6 +137,18 @@ class CivicsQuestionBank: NSObject, NSCoding
         return percentMastered
     }
     
+    func generateLanguage() -> [String]
+    {
+        var language = [String]()
+        
+        for q in questions
+        {
+            language += q.answersSpoken
+        }
+        
+        return language
+    }
+    
     // MARK: - Questions
     
     // If app is running for first time, initialize questions here.

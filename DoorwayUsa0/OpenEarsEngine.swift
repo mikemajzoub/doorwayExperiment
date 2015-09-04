@@ -65,7 +65,7 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
         self.openEarsEventsObserver.delegate = self
     }
     
-    func makeLanguageModelsForCivicsLanguageForMode(mode: LearningMode, withLanguage language: [String])
+    func makeLanguageModelLanguageForMode(mode: LearningMode, withLanguage language: [String])
     {
         var languageModelGenerator = OELanguageModelGenerator()
         

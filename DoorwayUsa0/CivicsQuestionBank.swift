@@ -18,15 +18,15 @@ class CivicsQuestionBank: NSObject, NSCoding
     // and once the user has mastered these, it will quiz user on X + Y questions.
     // It will continue this pattern of increasing the questions can be randomly
     // selected until the entire question bank is revealed to the user.
-    var activeBoundaryIndex: Int = 3
+    var activeBoundaryIndex = 3
     
+    // MARK: - Init
     override init()
     {
         super.init()
         
     }
     
-    // MARK: - Encode/Decode
     required init(coder aDecoder: NSCoder)
     {
         questions = aDecoder.decodeObjectForKey("Questions") as! [CivicsQuestion]
@@ -35,6 +35,7 @@ class CivicsQuestionBank: NSObject, NSCoding
         super.init()
     }
     
+    // MARK: - Save
     func encodeWithCoder(aCoder: NSCoder)
     {
         aCoder.encodeObject(questions, forKey: "Questions")

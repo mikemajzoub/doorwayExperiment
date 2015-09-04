@@ -11,6 +11,8 @@ import Foundation
 class ReadingWord: NSObject
 {
     var text = ""
+    
+    // Weight influences probability of word being quizzed in future
     var weight: Int = ORIGINAL_WEIGHT
     
     // MARK: - Init
@@ -49,6 +51,6 @@ class ReadingWord: NSObject
     
     func isMastered() -> Bool
     {
-        return weight <= (ORIGINAL_WEIGHT / 4) // TODO: use exponental syntax
+        return weight <= ((ORIGINAL_WEIGHT / 2) / 2) // TODO: use swift's exponental syntax
     }
 }

@@ -10,6 +10,10 @@ import Foundation
 
 class ReadingQuestionBank: NSObject, NSCoding
 {
+    let kWords = "WordsName"
+    let kSentences = "SentencesName"
+    let kActiveBoundaryIndex = "ActiveBoundaryIndexName"
+    
     var words = [ReadingWord]()
     
     var sentences = [String]()
@@ -24,9 +28,9 @@ class ReadingQuestionBank: NSObject, NSCoding
     
     required init(coder aDecoder: NSCoder)
     {
-        words = aDecoder.decodeObjectForKey("Words") as! [ReadingWord]
-        sentences = aDecoder.decodeObjectForKey("Sentences") as! [String]
-        activeBoundaryIndex = aDecoder.decodeIntegerForKey("ActiveBoundaryIndex")
+        words = aDecoder.decodeObjectForKey(kWords) as! [ReadingWord]
+        sentences = aDecoder.decodeObjectForKey(kSentences) as! [String]
+        activeBoundaryIndex = aDecoder.decodeIntegerForKey(kActiveBoundaryIndex)
         
         super.init()
     }
@@ -34,20 +38,20 @@ class ReadingQuestionBank: NSObject, NSCoding
     // MARK: - Save
     func encodeWithCoder(aCoder: NSCoder)
     {
-        aCoder.encodeObject(words, forKey: "Words")
-        aCoder.encodeObject(sentences, forKey: "Sentences")
-        aCoder.encodeInteger(activeBoundaryIndex, forKey: "ActiveBoundaryIndex")
+        aCoder.encodeObject(words, forKey: kWords)
+        aCoder.encodeObject(sentences, forKey: kSentences)
+        aCoder.encodeInteger(activeBoundaryIndex, forKey: kActiveBoundaryIndex)
     }
     
     // MARK: - Logic
+    
+    // If currently quizzed words are mastered, expand to new words via new sentences.
     func refreshActiveBoundaryIndex()
     {
         var allMastered = true
         
         for index in 0..<activeBoundaryIndex
         {
-            var allMastered = true
-            
             let sentence = sentences[index]
             let sentenceWords = Set(sentence.componentsSeparatedByString(" "))
             
@@ -60,16 +64,6 @@ class ReadingQuestionBank: NSObject, NSCoding
                     
                     break
                 }
-            }
-            
-            if allMastered
-            {
-                activeBoundaryIndex += 3
-            }
-            
-            if activeBoundaryIndex > sentences.count
-            {
-                activeBoundaryIndex = sentences.count
             }
         }
         
@@ -84,9 +78,11 @@ class ReadingQuestionBank: NSObject, NSCoding
         }
     }
     
+    // Given a word string, return the ReadingWord object with that word string
     func readingWordForText(text: String) -> ReadingWord
     {
         var readingWord = ReadingWord(text: "")
+        
         for w in words
         {
             if w.text == text
@@ -99,6 +95,7 @@ class ReadingQuestionBank: NSObject, NSCoding
         return readingWord
     }
     
+    // Of sentences currently being quizzed, return one with greatest weight.
     func nextQuestion() -> String
     {
         var maxSentence = ""
@@ -133,22 +130,24 @@ class ReadingQuestionBank: NSObject, NSCoding
         return maxSentence
     }
     
+    // Iterate over vocab list, returning fraction of mastered/total words
     func percentMastered() -> Float
     {
         let total = words.count
         
-        var totalCorrect = 0
+        var totalMastered = 0
         for word in words
         {
             if word.isMastered()
             {
-                totalCorrect++
+                totalMastered++
             }
         }
         
-        return Float(totalCorrect) / Float(total)
+        return Float(totalMastered) / Float(total)
     }
     
+    // Return vocab list as array
     func generateLanguage() -> [String]
     {
         var language = [String]()
@@ -161,8 +160,10 @@ class ReadingQuestionBank: NSObject, NSCoding
         return language
     }
     
+    // Mark spoken words as correct/incorrect, updating their weights accordingly
     func updateWordsForSpokenResponse(response: String, forSentencePrompt prompt: String)
     {
+        // TODO: this really should be a dictionary to handle multiple cases of same word, removing word after it's used
         let responseSet = Set(response.componentsSeparatedByString(" "))
         let promptSet = Set(response.componentsSeparatedByString(" "))
         
@@ -182,6 +183,8 @@ class ReadingQuestionBank: NSObject, NSCoding
     }
     
     // MARK: - Initialize Data
+    
+    // There is nothing special about these sentences, aside from them being made up entirely of words from the vocab list.
     func initializeSentences()
     {
         sentences.append("BILL OF RIGHTS")
@@ -196,6 +199,7 @@ class ReadingQuestionBank: NSObject, NSCoding
         sentences.append("WE COLORS DOLLAR BILL FIRST LARGEST MANY MOST NORTH ONE PEOPLE SECOND SOUTH")
     }
     
+    // This is the vocab list that the student must master
     func initializeWords()
     {
         words.append(ReadingWord(text: "ABRAHAM LINCOLN"))

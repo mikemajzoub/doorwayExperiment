@@ -67,6 +67,6 @@ class CivicsQuestion: NSObject
     
     func isMastered() -> Bool
     {
-        return weight <= ORIGINAL_WEIGHT / 4 // TODO: use exponental notation
+        return weight <= ((ORIGINAL_WEIGHT / 2) / 2) // TODO: use swift exponental notation
     }
 }

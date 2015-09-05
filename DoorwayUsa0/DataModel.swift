@@ -17,7 +17,7 @@ class DataModel
     
     var civicsQuestionBank: CivicsQuestionBank!
     var readingQuestionBank: ReadingQuestionBank!
-    // var writingQuestionBank: WritingQuestionBank!
+    var writingQuestionBank: WritingQuestionBank!
     
     // MARK: - Init
     init()
@@ -53,6 +53,15 @@ class DataModel
         
         
         // Writing
+        let writingPath = dataFilePath(kWritingQuestionBank)
+        if NSFileManager.defaultManager().fileExistsAtPath(writingPath) {
+            if let data = NSData(contentsOfFile: writingPath)
+            {
+                let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
+                writingQuestionBank = unarchiver.decodeObjectForKey(kWritingQuestionBank) as! WritingQuestionBank
+                unarchiver.finishDecoding()
+            }
+        }
     }
     
     func registerDefaults()
@@ -76,6 +85,10 @@ class DataModel
             readingQuestionBank = ReadingQuestionBank()
             readingQuestionBank.initializeSentences()
             readingQuestionBank.initializeVocabularyList()
+            
+            writingQuestionBank = WritingQuestionBank()
+            writingQuestionBank.initializeSentences()
+            writingQuestionBank.initializeVocabularyList()
 
             userDefaults.setBool(false, forKey: kFirstTime)
         }
@@ -122,6 +135,11 @@ class DataModel
         readingData.writeToFile(dataFilePath(kReadingQuestionBank), atomically: true)
         
         // Writing
+        let writingData = NSMutableData()
+        let writingArchiver = NSKeyedArchiver(forWritingWithMutableData: writingData)
+        writingArchiver.encodeObject(writingQuestionBank, forKey: kWritingQuestionBank)
+        writingArchiver.finishEncoding()
+        writingData.writeToFile(dataFilePath(kWritingQuestionBank), atomically: true)
     }
     
     // MARK: - Directories & Paths

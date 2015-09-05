@@ -16,6 +16,7 @@
 		2D8D882F1B9698A900E2EF57 /* beep-xylo.aif in Resources */ = {isa = PBXBuildFile; fileRef = 2D8D882E1B9698A900E2EF57 /* beep-xylo.aif */; };
 		2DB68F471B9A65B600BD32A0 /* AbbyyKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB68F461B9A65B600BD32A0 /* AbbyyKeys.swift */; };
 		2DB68F491B9A821100BD32A0 /* WritingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB68F481B9A821100BD32A0 /* WritingViewController.swift */; };
+		2DB68F4B1B9A87C900BD32A0 /* WritingQuestionBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB68F4A1B9A87C900BD32A0 /* WritingQuestionBank.swift */; };
 		2DB853CB1B93E70100377750 /* AcousticModelEnglish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2DB853C71B93E70100377750 /* AcousticModelEnglish.bundle */; };
 		2DB853CC1B93E70100377750 /* AcousticModelSpanish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2DB853C81B93E70100377750 /* AcousticModelSpanish.bundle */; };
 		2DB853CD1B93E70100377750 /* OpenEars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DB853C91B93E70100377750 /* OpenEars.framework */; };
@@ -58,6 +59,7 @@
 		2D8D882E1B9698A900E2EF57 /* beep-xylo.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = "beep-xylo.aif"; sourceTree = "<group>"; };
 		2DB68F461B9A65B600BD32A0 /* AbbyyKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbbyyKeys.swift; sourceTree = "<group>"; };
 		2DB68F481B9A821100BD32A0 /* WritingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WritingViewController.swift; sourceTree = "<group>"; };
+		2DB68F4A1B9A87C900BD32A0 /* WritingQuestionBank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WritingQuestionBank.swift; sourceTree = "<group>"; };
 		2DB853C71B93E70100377750 /* AcousticModelEnglish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AcousticModelEnglish.bundle; sourceTree = "<group>"; };
 		2DB853C81B93E70100377750 /* AcousticModelSpanish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AcousticModelSpanish.bundle; sourceTree = "<group>"; };
 		2DB853C91B93E70100377750 /* OpenEars.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenEars.framework; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				2DB853DB1B9485CA00377750 /* CivicsQuestionBank.swift */,
 				2DB853DD1B9485D300377750 /* CivicsQuestion.swift */,
 				2DE47EEC1B99CADC0029BE0F /* ReadingQuestionBank.swift */,
+				2DB68F4A1B9A87C900BD32A0 /* WritingQuestionBank.swift */,
 				2DE47EEE1B99CB040029BE0F /* VocabularyTerm.swift */,
 			);
 			name = Model;
@@ -326,6 +329,7 @@
 				2DB853DA1B9485BF00377750 /* DataModel.swift in Sources */,
 				2DB853DE1B9485D300377750 /* CivicsQuestion.swift in Sources */,
 				2D53AC311B91FBDA00B3DFC7 /* AppDelegate.swift in Sources */,
+				2DB68F4B1B9A87C900BD32A0 /* WritingQuestionBank.swift in Sources */,
 				2DB853DC1B9485CA00377750 /* CivicsQuestionBank.swift in Sources */,
 				2DE47EEB1B99CA3B0029BE0F /* ReadingViewController.swift in Sources */,
 				2DE14EDF1B92046200C27CB7 /* HomeViewController.swift in Sources */,

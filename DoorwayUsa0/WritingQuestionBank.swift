@@ -1,5 +1,5 @@
 //
-//  WritingViewController.swift
+//  WritingQuestionBank.swift
 //  DoorwayUsa0
 //
 //  Created by Michael Majzoub on 9/4/15.
@@ -7,8 +7,3 @@
 //
 
 import Foundation
-
-class WritingViewController: UIViewController
-{
-    
-}

@@ -15,7 +15,7 @@ class ReadingQuestionBank: NSObject, NSCoding
     let kActiveBoundaryIndex = "ActiveBoundaryIndexName"
     
     // This holds the vocab list the student must master
-    var vocabularyList = [ReadingWord]()
+    var vocabularyList = [ReadingVocabulary]()
     
     // This holds sentences made up of the vocab list. The student practices
     // with these sentences, instead of just reading random words.
@@ -36,7 +36,7 @@ class ReadingQuestionBank: NSObject, NSCoding
     
     required init(coder aDecoder: NSCoder)
     {
-        vocabularyList = aDecoder.decodeObjectForKey(kVocabularyList) as! [ReadingWord]
+        vocabularyList = aDecoder.decodeObjectForKey(kVocabularyList) as! [ReadingVocabulary]
         sentences = aDecoder.decodeObjectForKey(kSentences) as! [String]
         activeBoundaryIndex = aDecoder.decodeIntegerForKey(kActiveBoundaryIndex)
         
@@ -63,10 +63,10 @@ class ReadingQuestionBank: NSObject, NSCoding
             let sentence = sentences[index]
             let sentenceWords = Set(sentence.componentsSeparatedByString(" "))
             
-            for wordString in sentenceWords
+            for vocabularyString in sentenceWords
             {
-                var readingWord = readingWordForText(wordString)
-                if !readingWord.isMastered()
+                var readingVocabulary = readingVocabularyForText(vocabularyString)
+                if !readingVocabulary.isMastered()
                 {
                     allMastered = false
                     
@@ -86,21 +86,21 @@ class ReadingQuestionBank: NSObject, NSCoding
         }
     }
     
-    // Given a word string, return the ReadingWord object with that word string
-    func readingWordForText(text: String) -> ReadingWord
+    // Given a word string, return the ReadingVocabulary object with that word string
+    func readingVocabularyForText(text: String) -> ReadingVocabulary
     {
-        var readingWord = ReadingWord(text: "")
+        var readingVocabulary = ReadingVocabulary(text: "")
         
         for vocabulary in vocabularyList
         {
             if vocabulary.text == text
             {
-                readingWord = vocabulary
+                readingVocabulary = vocabulary
                 break
             }
         }
         
-        return readingWord
+        return readingVocabulary
     }
     
     // Of sentences currently being quizzed, return one with greatest weight.
@@ -180,15 +180,15 @@ class ReadingQuestionBank: NSObject, NSCoding
         
         for word in responseSet
         {
-            var readingWord = readingWordForText(word)
+            var readingVocabulary = readingVocabularyForText(word)
             
-            if promptSet.contains(readingWord.text)
+            if promptSet.contains(readingVocabulary.text)
             {
-                readingWord.answeredCorrectly()
+                readingVocabulary.answeredCorrectly()
             }
             else
             {
-                readingWord.answeredIncorrectly()
+                readingVocabulary.answeredIncorrectly()
             }
         }
     }
@@ -207,77 +207,77 @@ class ReadingQuestionBank: NSObject, NSCoding
     // This is the vocab list that the student must master
     func initializeVocabularyList()
     {
-        vocabularyList.append(ReadingWord(text: "ABRAHAM LINCOLN"))
-        vocabularyList.append(ReadingWord(text: "GEORGE WASHINGTON"))
-        vocabularyList.append(ReadingWord(text: "AMERICAN FLAG"))
-        vocabularyList.append(ReadingWord(text: "BILL OF RIGHTS"))
-        vocabularyList.append(ReadingWord(text: "CAPITAL"))
-        vocabularyList.append(ReadingWord(text: "CITIZEN"))
-        vocabularyList.append(ReadingWord(text: "CITY"))
-        vocabularyList.append(ReadingWord(text: "CONGRESS"))
-        vocabularyList.append(ReadingWord(text: "COUNTRY"))
-        vocabularyList.append(ReadingWord(text: "FATHER OF OUR COUNTRY"))
-        vocabularyList.append(ReadingWord(text: "GOVERNMENT"))
-        vocabularyList.append(ReadingWord(text: "PRESIDENT"))
-        vocabularyList.append(ReadingWord(text: "RIGHT"))
-        vocabularyList.append(ReadingWord(text: "SENATORS"))
-        vocabularyList.append(ReadingWord(text: "STATE"))
-        vocabularyList.append(ReadingWord(text: "STATES"))
-        vocabularyList.append(ReadingWord(text: "WHITE HOUSE"))
-        vocabularyList.append(ReadingWord(text: "AMERICA"))
-        vocabularyList.append(ReadingWord(text: "UNITED STATES"))
-        vocabularyList.append(ReadingWord(text: "U.S.")) // TODO: test this. OE might give you trouble.
-        vocabularyList.append(ReadingWord(text: "PRESIDENTS' DAY"))
-        vocabularyList.append(ReadingWord(text: "MEMORIAL DAY"))
-        vocabularyList.append(ReadingWord(text: "FLAG DAY"))
-        vocabularyList.append(ReadingWord(text: "INDEPENDENCE DAY"))
-        vocabularyList.append(ReadingWord(text: "LABOR DAY"))
-        vocabularyList.append(ReadingWord(text: "COLUMBUS DAY"))
-        vocabularyList.append(ReadingWord(text: "THANKSGIVING"))
-        vocabularyList.append(ReadingWord(text: "HOW"))
-        vocabularyList.append(ReadingWord(text: "WHAT"))
-        vocabularyList.append(ReadingWord(text: "WHEN"))
-        vocabularyList.append(ReadingWord(text: "WHERE"))
-        vocabularyList.append(ReadingWord(text: "WHO"))
-        vocabularyList.append(ReadingWord(text: "WHY"))
-        vocabularyList.append(ReadingWord(text: "CAN"))
-        vocabularyList.append(ReadingWord(text: "COME"))
-        vocabularyList.append(ReadingWord(text: "DO"))
-        vocabularyList.append(ReadingWord(text: "DOES"))
-        vocabularyList.append(ReadingWord(text: "ELECTS"))
-        vocabularyList.append(ReadingWord(text: "HAVE"))
-        vocabularyList.append(ReadingWord(text: "HAS"))
-        vocabularyList.append(ReadingWord(text: "IS"))
-        vocabularyList.append(ReadingWord(text: "ARE"))
-        vocabularyList.append(ReadingWord(text: "WAS"))
-        vocabularyList.append(ReadingWord(text: "BE"))
-        vocabularyList.append(ReadingWord(text: "LIVES"))
-        vocabularyList.append(ReadingWord(text: "LIVED"))
-        vocabularyList.append(ReadingWord(text: "MEET"))
-        vocabularyList.append(ReadingWord(text: "NAME"))
-        vocabularyList.append(ReadingWord(text: "PAY"))
-        vocabularyList.append(ReadingWord(text: "VOTE"))
-        vocabularyList.append(ReadingWord(text: "WANT"))
-        vocabularyList.append(ReadingWord(text: "A"))
-        vocabularyList.append(ReadingWord(text: "FOR"))
-        vocabularyList.append(ReadingWord(text: "HERE"))
-        vocabularyList.append(ReadingWord(text: "IN"))
-        vocabularyList.append(ReadingWord(text: "OF"))
-        vocabularyList.append(ReadingWord(text: "ON"))
-        vocabularyList.append(ReadingWord(text: "THE"))
-        vocabularyList.append(ReadingWord(text: "TO"))
-        vocabularyList.append(ReadingWord(text: "WE"))
-        vocabularyList.append(ReadingWord(text: "COLORS"))
-        vocabularyList.append(ReadingWord(text: "DOLLAR BILL"))
-        vocabularyList.append(ReadingWord(text: "FIRST"))
-        vocabularyList.append(ReadingWord(text: "LARGEST"))
-        vocabularyList.append(ReadingWord(text: "MANY"))
-        vocabularyList.append(ReadingWord(text: "MOST"))
-        vocabularyList.append(ReadingWord(text: "NORTH"))
-        vocabularyList.append(ReadingWord(text: "ONE"))
-        vocabularyList.append(ReadingWord(text: "PEOPLE"))
-        vocabularyList.append(ReadingWord(text: "SECOND"))
-        vocabularyList.append(ReadingWord(text: "SOUTH"))
+        vocabularyList.append(ReadingVocabulary(text: "ABRAHAM LINCOLN"))
+        vocabularyList.append(ReadingVocabulary(text: "GEORGE WASHINGTON"))
+        vocabularyList.append(ReadingVocabulary(text: "AMERICAN FLAG"))
+        vocabularyList.append(ReadingVocabulary(text: "BILL OF RIGHTS"))
+        vocabularyList.append(ReadingVocabulary(text: "CAPITAL"))
+        vocabularyList.append(ReadingVocabulary(text: "CITIZEN"))
+        vocabularyList.append(ReadingVocabulary(text: "CITY"))
+        vocabularyList.append(ReadingVocabulary(text: "CONGRESS"))
+        vocabularyList.append(ReadingVocabulary(text: "COUNTRY"))
+        vocabularyList.append(ReadingVocabulary(text: "FATHER OF OUR COUNTRY"))
+        vocabularyList.append(ReadingVocabulary(text: "GOVERNMENT"))
+        vocabularyList.append(ReadingVocabulary(text: "PRESIDENT"))
+        vocabularyList.append(ReadingVocabulary(text: "RIGHT"))
+        vocabularyList.append(ReadingVocabulary(text: "SENATORS"))
+        vocabularyList.append(ReadingVocabulary(text: "STATE"))
+        vocabularyList.append(ReadingVocabulary(text: "STATES"))
+        vocabularyList.append(ReadingVocabulary(text: "WHITE HOUSE"))
+        vocabularyList.append(ReadingVocabulary(text: "AMERICA"))
+        vocabularyList.append(ReadingVocabulary(text: "UNITED STATES"))
+        vocabularyList.append(ReadingVocabulary(text: "U.S.")) // TODO: test this. OE might give you trouble.
+        vocabularyList.append(ReadingVocabulary(text: "PRESIDENTS' DAY"))
+        vocabularyList.append(ReadingVocabulary(text: "MEMORIAL DAY"))
+        vocabularyList.append(ReadingVocabulary(text: "FLAG DAY"))
+        vocabularyList.append(ReadingVocabulary(text: "INDEPENDENCE DAY"))
+        vocabularyList.append(ReadingVocabulary(text: "LABOR DAY"))
+        vocabularyList.append(ReadingVocabulary(text: "COLUMBUS DAY"))
+        vocabularyList.append(ReadingVocabulary(text: "THANKSGIVING"))
+        vocabularyList.append(ReadingVocabulary(text: "HOW"))
+        vocabularyList.append(ReadingVocabulary(text: "WHAT"))
+        vocabularyList.append(ReadingVocabulary(text: "WHEN"))
+        vocabularyList.append(ReadingVocabulary(text: "WHERE"))
+        vocabularyList.append(ReadingVocabulary(text: "WHO"))
+        vocabularyList.append(ReadingVocabulary(text: "WHY"))
+        vocabularyList.append(ReadingVocabulary(text: "CAN"))
+        vocabularyList.append(ReadingVocabulary(text: "COME"))
+        vocabularyList.append(ReadingVocabulary(text: "DO"))
+        vocabularyList.append(ReadingVocabulary(text: "DOES"))
+        vocabularyList.append(ReadingVocabulary(text: "ELECTS"))
+        vocabularyList.append(ReadingVocabulary(text: "HAVE"))
+        vocabularyList.append(ReadingVocabulary(text: "HAS"))
+        vocabularyList.append(ReadingVocabulary(text: "IS"))
+        vocabularyList.append(ReadingVocabulary(text: "ARE"))
+        vocabularyList.append(ReadingVocabulary(text: "WAS"))
+        vocabularyList.append(ReadingVocabulary(text: "BE"))
+        vocabularyList.append(ReadingVocabulary(text: "LIVES"))
+        vocabularyList.append(ReadingVocabulary(text: "LIVED"))
+        vocabularyList.append(ReadingVocabulary(text: "MEET"))
+        vocabularyList.append(ReadingVocabulary(text: "NAME"))
+        vocabularyList.append(ReadingVocabulary(text: "PAY"))
+        vocabularyList.append(ReadingVocabulary(text: "VOTE"))
+        vocabularyList.append(ReadingVocabulary(text: "WANT"))
+        vocabularyList.append(ReadingVocabulary(text: "A"))
+        vocabularyList.append(ReadingVocabulary(text: "FOR"))
+        vocabularyList.append(ReadingVocabulary(text: "HERE"))
+        vocabularyList.append(ReadingVocabulary(text: "IN"))
+        vocabularyList.append(ReadingVocabulary(text: "OF"))
+        vocabularyList.append(ReadingVocabulary(text: "ON"))
+        vocabularyList.append(ReadingVocabulary(text: "THE"))
+        vocabularyList.append(ReadingVocabulary(text: "TO"))
+        vocabularyList.append(ReadingVocabulary(text: "WE"))
+        vocabularyList.append(ReadingVocabulary(text: "COLORS"))
+        vocabularyList.append(ReadingVocabulary(text: "DOLLAR BILL"))
+        vocabularyList.append(ReadingVocabulary(text: "FIRST"))
+        vocabularyList.append(ReadingVocabulary(text: "LARGEST"))
+        vocabularyList.append(ReadingVocabulary(text: "MANY"))
+        vocabularyList.append(ReadingVocabulary(text: "MOST"))
+        vocabularyList.append(ReadingVocabulary(text: "NORTH"))
+        vocabularyList.append(ReadingVocabulary(text: "ONE"))
+        vocabularyList.append(ReadingVocabulary(text: "PEOPLE"))
+        vocabularyList.append(ReadingVocabulary(text: "SECOND"))
+        vocabularyList.append(ReadingVocabulary(text: "SOUTH"))
     }
     
     // MARK: - Debugging

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ReadingVocabulary: NSObject
+class VocabularyTerm: NSObject
 {
     let kText = "TextName"
     let kWeight = "WeightName"

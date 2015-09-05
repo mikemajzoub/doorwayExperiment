@@ -61,17 +61,19 @@ class ReadingQuestionBank: NSObject, NSCoding
         for index in 0..<activeBoundaryIndex
         {
             let sentence = sentences[index]
-            let sentenceWords = Set(sentence.componentsSeparatedByString(" "))
-            
-            for vocabularyString in sentenceWords
+
+            for vocabularyTerm in vocabularyList
             {
-                var vocabularyTerm = vocabularyTermForText(vocabularyString)
-                if !vocabularyTerm.isMastered()
+                if sentence.rangeOfString(vocabularyTerm.text) != nil
                 {
-                    allMastered = false
-                    
-                    break
+                    if !vocabularyTerm.isMastered()
+                    {
+                        allMastered = false
+                        break // TODO: investigate how far this breaks me
+                    }
+                    println("will this print? 1")
                 }
+                println("will this print? 2")
             }
         }
         

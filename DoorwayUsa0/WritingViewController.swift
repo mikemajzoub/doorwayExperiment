@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 mikemajzoub. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-class WritingViewController: UIViewController, OpenEarsEngineDelegate
+class WritingViewController: UIViewController, OpenEarsEngineDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
     var dataModel: DataModel!
     var openEarsEngine: OpenEarsEngine!
@@ -29,7 +29,7 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate
         
         openEarsEngine.delegate = self
         
-        beginPractice()
+        /////////////////////////////////////////////////////// beginPractice()
     }
     
     override func viewWillDisappear(animated: Bool)
@@ -59,6 +59,25 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate
             openEarsEngine.say(sayThis)
             
         }
+    }
+    
+    // MARK: - TakePicture
+    @IBAction func takePicture()
+    {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .Camera
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        presentViewController(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject])
+        {
+            dismissViewControllerAnimated(true, completion: nil) }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController)
+    {
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     // MARK: - ABBYYDelegate

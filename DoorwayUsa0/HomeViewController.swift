@@ -74,7 +74,7 @@ class HomeViewController: UIViewController
         }
         else // mode == .Writing
         {
-            accuracy = 0.5
+            accuracy = dataModel.writingQuestionBank.percentMastered()
         }
         
         // make incorrect piece
@@ -143,10 +143,12 @@ class HomeViewController: UIViewController
         {
             currentLearningMode = .Writing
             
-            // TODO:
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let controller = navigationController.topViewController as! WritingViewController
+            controller.dataModel = dataModel // TODO: as design firms up, only pass question bank, keeping VC as dumb as possible
+            controller.openEarsEngine = openEarsEngine
         }
     }
-
 }
 
 extension Float {

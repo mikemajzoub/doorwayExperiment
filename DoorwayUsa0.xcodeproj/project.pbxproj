@@ -27,6 +27,9 @@
 		2DB853DA1B9485BF00377750 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB853D91B9485BF00377750 /* DataModel.swift */; };
 		2DB853DC1B9485CA00377750 /* CivicsQuestionBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB853DB1B9485CA00377750 /* CivicsQuestionBank.swift */; };
 		2DB853DE1B9485D300377750 /* CivicsQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB853DD1B9485D300377750 /* CivicsQuestion.swift */; };
+		2DC3660C1B9B258F00C6CF5B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DC3660B1B9B258F00C6CF5B /* UIKit.framework */; };
+		2DC3660E1B9B25A000C6CF5B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DC3660D1B9B25A000C6CF5B /* Foundation.framework */; };
+		2DC366101B9B25A900C6CF5B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DC3660F1B9B25A900C6CF5B /* CoreGraphics.framework */; };
 		2DE14EDF1B92046200C27CB7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE14EDE1B92046200C27CB7 /* HomeViewController.swift */; };
 		2DE14EE11B92047000C27CB7 /* CivicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE14EE01B92047000C27CB7 /* CivicsViewController.swift */; };
 		2DE47EE91B9934580029BE0F /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE47EE81B9934580029BE0F /* Global.swift */; };
@@ -71,6 +74,9 @@
 		2DB853D91B9485BF00377750 /* DataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		2DB853DB1B9485CA00377750 /* CivicsQuestionBank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CivicsQuestionBank.swift; sourceTree = "<group>"; };
 		2DB853DD1B9485D300377750 /* CivicsQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CivicsQuestion.swift; sourceTree = "<group>"; };
+		2DC3660B1B9B258F00C6CF5B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		2DC3660D1B9B25A000C6CF5B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		2DC3660F1B9B25A900C6CF5B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		2DE14EDE1B92046200C27CB7 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		2DE14EE01B92047000C27CB7 /* CivicsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CivicsViewController.swift; sourceTree = "<group>"; };
 		2DE47EE81B9934580029BE0F /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
@@ -84,6 +90,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DC366101B9B25A900C6CF5B /* CoreGraphics.framework in Frameworks */,
+				2DC3660E1B9B25A000C6CF5B /* Foundation.framework in Frameworks */,
+				2DC3660C1B9B258F00C6CF5B /* UIKit.framework in Frameworks */,
 				2DB853D21B93E7CC00377750 /* AVFoundation.framework in Frameworks */,
 				2DB853D01B93E7C700377750 /* AudioToolbox.framework in Frameworks */,
 				2DB853CE1B93E70100377750 /* Slt.framework in Frameworks */,
@@ -104,10 +113,8 @@
 		2D53AC221B91FBDA00B3DFC7 = {
 			isa = PBXGroup;
 			children = (
-				2DB853D11B93E7CC00377750 /* AVFoundation.framework */,
-				2DB853CF1B93E7C700377750 /* AudioToolbox.framework */,
-				2DB853C61B93E70100377750 /* Framework */,
 				2D53AC2D1B91FBDA00B3DFC7 /* DoorwayUsa0 */,
+				2DC366111B9B25D300C6CF5B /* Frameworks */,
 				2D53AC431B91FBDA00B3DFC7 /* DoorwayUsa0Tests */,
 				2D53AC2C1B91FBDA00B3DFC7 /* Products */,
 			);
@@ -174,7 +181,7 @@
 			name = QuestionBanks;
 			sourceTree = "<group>";
 		};
-		2DB853C61B93E70100377750 /* Framework */ = {
+		2DB853C61B93E70100377750 /* OE Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				2DB853C71B93E70100377750 /* AcousticModelEnglish.bundle */,
@@ -182,7 +189,21 @@
 				2DB853C91B93E70100377750 /* OpenEars.framework */,
 				2DB853CA1B93E70100377750 /* Slt.framework */,
 			);
+			name = "OE Frameworks";
 			path = Framework;
+			sourceTree = "<group>";
+		};
+		2DC366111B9B25D300C6CF5B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2DB853C61B93E70100377750 /* OE Frameworks */,
+				2DC3660F1B9B25A900C6CF5B /* CoreGraphics.framework */,
+				2DC3660D1B9B25A000C6CF5B /* Foundation.framework */,
+				2DC3660B1B9B258F00C6CF5B /* UIKit.framework */,
+				2DB853D11B93E7CC00377750 /* AVFoundation.framework */,
+				2DB853CF1B93E7C700377750 /* AudioToolbox.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		2DD64D491B987D4B0023BF7C /* Model */ = {

@@ -8,7 +8,85 @@
 
 import Foundation
 
-class WritingViewController: UIViewController
+class WritingViewController: UIViewController, OpenEarsEngineDelegate
 {
+    var dataModel: DataModel!
+    var openEarsEngine: OpenEarsEngine!
     
+    var currentQuestion: String!
+    
+    var questionCycleIsFinishing = true
+    
+    override func viewWillAppear(animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        
+    }
+    
+    override func viewDidAppear(animated: Bool)
+    {
+        super.viewDidAppear(animated)
+        
+        openEarsEngine.delegate = self
+        
+        beginPractice()
+    }
+    
+    override func viewWillDisappear(animated: Bool)
+    {
+        openEarsEngine.stopEngine()
+    }
+    
+    func beginPractice()
+    {
+        askQuestion()
+    }
+    
+    // Grab next question, speak it, and begin listening for user's answer
+    func askQuestion()
+    {
+        questionCycleIsFinishing = false
+        
+        dataModel.writingQuestionBank.refreshActiveBoundaryIndex()
+        
+        if let question = dataModel.readingQuestionBank?.nextQuestion()
+        {
+            
+            currentQuestion = question
+            
+            var sayThis = "Please write the following sentence on a sheet of paper, and then take a picture of it." + question
+            
+            openEarsEngine.say(sayThis)
+            
+        }
+    }
+    
+    // MARK: - ABBYYDelegate
+    
+    // TODO:
+    
+    // MARK: - OpenEarsEngineDelegate
+    
+    func computerFinishedSpeaking()
+    {
+        if questionCycleIsFinishing
+        {
+            askQuestion()
+        }
+    }
+    
+    func computerPausedListening()
+    {
+        
+    }
+    
+    func computerResumedListening()
+    {
+        
+    }
+    
+    func heardWords(words: String!, withRecognitionScore recognitionScore: String!)
+    {
+        // NOT RELEVANT FOR WRITING
+    }
 }

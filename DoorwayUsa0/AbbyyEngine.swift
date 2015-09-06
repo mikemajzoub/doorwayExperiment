@@ -15,6 +15,17 @@ class AbbyyEngine: NSObject
 {
     weak var delegate: AbbyyEngineDelegate?
     
+    var applicationId: String!
+    var applicationPassword: String!
+    
+    override init()
+    {
+        super.init()
+        
+        applicationId = ABBYY_APPLICATION_ID
+        applicationPassword = ABBYY_APPLICATION_PASSWORD
+    }
+    
     func processImage(takenPicture: UIImage?)
     {
         if let image = takenPicture

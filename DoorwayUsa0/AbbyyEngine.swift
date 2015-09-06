@@ -13,11 +13,17 @@ protocol AbbyyEngineDelegate: class
     
 }
 
-class AbbyyEngine: NSObject
+class AbbyyEngine: NSObject, NSXMLParserDelegate
 {
     let kInstallationId = "InstallationId"
     let kActivationUrlMinusDeviceId = "http://cloud.ocrsdk.com/activateNewInstallation?deviceId="
-    let kHttpHeaderField = "Authorization"
+    
+    let kHttpHeaderFieldAuthorization = "Authorization"
+    
+    let kProcessImageUrlMinusParameters = "http://cloud.ocrsdk.com/processImage?"
+    let kProcessImageParameters = "language=English&exportFormat=txt"
+    
+    let kHttpMethodPost = "POST"
     
     weak var delegate: AbbyyEngineDelegate?
     
@@ -34,6 +40,7 @@ class AbbyyEngine: NSObject
         applicationPassword = ABBYY_APPLICATION_PASSWORD
         
         setUpInstallationId()
+        
         let installationId = NSUserDefaults.standardUserDefaults().stringForKey(kInstallationId)
         fullId = "\(applicationId)\(installationId)"
     }
@@ -43,9 +50,7 @@ class AbbyyEngine: NSObject
         if NSUserDefaults.standardUserDefaults().stringForKey(kInstallationId) == nil
         {
             let deviceId = UIDevice.currentDevice().identifierForVendor.UUIDString
-            
             let installationId = activateNewInstallationForDeviceId(deviceId)
-            
             NSUserDefaults.standardUserDefaults().setValue(installationId, forKey: kInstallationId)
         }
     }
@@ -53,23 +58,21 @@ class AbbyyEngine: NSObject
     func activateNewInstallationForDeviceId(deviceId: String) -> String
     {
         
-        let installationId: String
+        var installationId: String = "TODO!!!!!!!!!!!!!!"
         
         // set up request
         let activationUrl = NSURL(string: kActivationUrlMinusDeviceId + deviceId)
         let request = NSMutableURLRequest(URL: activationUrl!)
-        let authentication = "Basic \(applicationId):\(applicationPassword)"
-        request.setValue(authentication, forKey: kHttpHeaderField)
+        request.setValue(authenticationString(), forKey: kHttpHeaderFieldAuthorization)
         
-        var error: NSError
-        
-        // TODO:
-        let responseData = NSURLConnection.sendSynchronousRequest(request, returningResponse: 0, error: &error)
+        var returningResponse: AutoreleasingUnsafeMutablePointer<NSURLResponse?> = nil
+        var error: NSErrorPointer = nil
+        let responseData = NSURLConnection.sendSynchronousRequest(request, returningResponse: returningResponse, error: error)
         
         // TODO:
         if error == nil
         {
-            parser = NSXMLParser(data: responseData)
+            let parser = NSXMLParser(data: responseData!)
             parser.delegate = self
             
             // In sample code, I don't see where parser is setting installation id. look into this.
@@ -77,7 +80,7 @@ class AbbyyEngine: NSObject
         }
         else
         {
-            alert = UIAlertView(title: "Error", message: error.localizedDescription, delegate: nil, cancelButtonTitle: "OK", otherButtonTitles: nil, nil)
+            let alert = UIAlertView(title: "Error", message: ":(", delegate: nil, cancelButtonTitle: "OK")
             alert.show()
         }
         
@@ -95,7 +98,35 @@ class AbbyyEngine: NSObject
     
     func sendPhoto(photoToSend: UIImage)
     {
+        let processingUrl = NSURL(string: (kProcessImageUrlMinusParameters + kProcessImageParameters))
+        let processingRequest = NSMutableURLRequest(URL: processingUrl!)
+        processingRequest.HTTPMethod = kHttpMethodPost
+        processingRequest.setValue("application/octet-stream", forHTTPHeaderField: "Content-Type")
+        processingRequest.HTTPBody = UIImageJPEGRepresentation(photoToSend as UIImage!, 0.5)
+        processingRequest.setValue(authenticationString() as String, forHTTPHeaderField: kHttpHeaderFieldAuthorization)
         
+        var session = NSURLSession.sharedSession()
+        
+        var dataTask = session.dataTaskWithRequest(processingRequest, completionHandler: { data, response, error -> Void in
+            // TODO:
+        })
+
+        
+        
+        
+        
+        
+        
+    }
+    
+    func authenticationString() -> NSString
+    {
+        let authentication = "\(applicationId):\(applicationPassword)"
+        let authenticationData: NSData = authentication.dataUsingEncoding(NSUTF8StringEncoding)!
+        let base64Authentication = authenticationData.base64EncodedStringWithOptions(nil)
+        let fullAuthenticationString = "Basic \(base64Authentication)"
+        
+        return fullAuthenticationString
     }
     
     func receiveResponse()

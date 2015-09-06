@@ -31,6 +31,10 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate
     var applicationPassword: String!
     var fullId: String!
     
+    // XML Parser
+    var isReadingAuthToken = false
+    var installationId: String!
+    
     // MARK: - Init
     override init()
     {
@@ -50,16 +54,13 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate
         if NSUserDefaults.standardUserDefaults().stringForKey(kInstallationId) == nil
         {
             let deviceId = UIDevice.currentDevice().identifierForVendor.UUIDString
-            let installationId = activateNewInstallationForDeviceId(deviceId)
+            activateNewInstallationForDeviceId(deviceId)
             NSUserDefaults.standardUserDefaults().setValue(installationId, forKey: kInstallationId)
         }
     }
     
-    func activateNewInstallationForDeviceId(deviceId: String) -> String
+    func activateNewInstallationForDeviceId(deviceId: String)
     {
-        
-        var installationId: String = "TODO!!!!!!!!!!!!!!"
-        
         // set up request
         let activationUrl = NSURL(string: kActivationUrlMinusDeviceId + deviceId)
         let request = NSMutableURLRequest(URL: activationUrl!)
@@ -75,16 +76,32 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate
             let parser = NSXMLParser(data: responseData!)
             parser.delegate = self
             
-            // In sample code, I don't see where parser is setting installation id. look into this.
-            installationId = "TODO:"
+            parser.parse() // see delegate methods for setting installation id
         }
         else
         {
             let alert = UIAlertView(title: "Error", message: ":(", delegate: nil, cancelButtonTitle: "OK")
             alert.show()
         }
+    }
+    
+    // MARK: - NSXMLParserDelegate
+    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject])
+    {
+        isReadingAuthToken = false
         
-        return installationId
+        if elementName == "authToken"
+        {
+            isReadingAuthToken = true
+        }
+    }
+    
+    func parser(parser: NSXMLParser, foundCharacters string: String?)
+    {
+        if isReadingAuthToken
+        {
+            installationId = string
+        }
     }
     
     // MARK: - Logic
@@ -110,13 +127,6 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate
         var dataTask = session.dataTaskWithRequest(processingRequest, completionHandler: { data, response, error -> Void in
             // TODO:
         })
-
-        
-        
-        
-        
-        
-        
     }
     
     func authenticationString() -> NSString
@@ -127,11 +137,6 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate
         let fullAuthenticationString = "Basic \(base64Authentication)"
         
         return fullAuthenticationString
-    }
-    
-    func receiveResponse()
-    {
-        
     }
     
     func stopEngine()

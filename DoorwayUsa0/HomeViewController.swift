@@ -12,6 +12,7 @@ class HomeViewController: UIViewController
 {
     var dataModel: DataModel!
     var openEarsEngine: OpenEarsEngine!
+    var abbyyEngine: AbbyyEngine!
     
     @IBOutlet weak var civicsView: UIView!
     @IBOutlet weak var readingView: UIView!
@@ -147,6 +148,7 @@ class HomeViewController: UIViewController
             let controller = navigationController.topViewController as! WritingViewController
             controller.dataModel = dataModel // TODO: as design firms up, only pass question bank, keeping VC as dumb as possible
             controller.openEarsEngine = openEarsEngine
+            controller.abbyyEngine = abbyyEngine
         }
     }
 }

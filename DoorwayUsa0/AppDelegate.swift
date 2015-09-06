@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     let dataModel = DataModel()
     let openEarsEngine = OpenEarsEngine()
+    let abbyyEngine = AbbyyEngine()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
     {
@@ -32,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let controller = navigationController.viewControllers[0] as! HomeViewController
         controller.dataModel = dataModel
         controller.openEarsEngine = openEarsEngine
+        controller.abbyyEngine = abbyyEngine
         
         return true
     }

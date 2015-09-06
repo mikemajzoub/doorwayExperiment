@@ -8,17 +8,30 @@
 
 import UIKit
 
-class WritingViewController: UIViewController, OpenEarsEngineDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
+class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngineDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
     var dataModel: DataModel!
     var openEarsEngine: OpenEarsEngine!
+    var abbyyEngine: AbbyyEngine!
+    
+    var takenPicture: UIImage?
     
     var currentQuestion: String!
     
     var questionCycleIsFinishing = true
     
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    
+    override func viewDidLoad()
+    {
+        
+    }
+    
     override func viewWillAppear(animated: Bool)
     {
+        openEarsEngine.delegate = self
+        abbyyEngine.delegate = self
+        
         super.viewWillAppear(animated)
         
     }
@@ -27,7 +40,7 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, UIImagePi
     {
         super.viewDidAppear(animated)
         
-        openEarsEngine.delegate = self
+        
         
         /////////////////////////////////////////////////////// beginPractice()
     }
@@ -35,6 +48,7 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, UIImagePi
     override func viewWillDisappear(animated: Bool)
     {
         openEarsEngine.stopEngine()
+        abbyyEngine.stopEngine()
     }
     
     func beginPractice()
@@ -72,8 +86,14 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, UIImagePi
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject])
-        {
-            dismissViewControllerAnimated(true, completion: nil) }
+    {
+        dismissViewControllerAnimated(true, completion: nil)
+        
+        spinner.startAnimating()
+        
+        var takenPicture = info[UIImagePickerControllerOriginalImage] as! UIImage?
+        abbyyEngine.processImage(takenPicture)
+    }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController)
     {

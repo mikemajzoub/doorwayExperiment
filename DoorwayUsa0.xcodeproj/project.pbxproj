@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D3BD5201B9C86960054A145 /* AbbyyEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3BD51F1B9C86960054A145 /* AbbyyEngine.swift */; };
 		2D53AC311B91FBDA00B3DFC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D53AC301B91FBDA00B3DFC7 /* AppDelegate.swift */; };
 		2D53AC361B91FBDA00B3DFC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D53AC341B91FBDA00B3DFC7 /* Main.storyboard */; };
 		2D53AC381B91FBDA00B3DFC7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D53AC371B91FBDA00B3DFC7 /* Images.xcassets */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D3BD51F1B9C86960054A145 /* AbbyyEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbbyyEngine.swift; sourceTree = "<group>"; };
 		2D53AC2B1B91FBDA00B3DFC7 /* DoorwayUsa0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoorwayUsa0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D53AC2F1B91FBDA00B3DFC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D53AC301B91FBDA00B3DFC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				2DB853D71B93EFA300377750 /* OpenEarsEngine.swift */,
+				2D3BD51F1B9C86960054A145 /* AbbyyEngine.swift */,
 			);
 			name = "Speak, Listen, See";
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 				2DB853DC1B9485CA00377750 /* CivicsQuestionBank.swift in Sources */,
 				2DE47EEB1B99CA3B0029BE0F /* ReadingViewController.swift in Sources */,
 				2DE14EDF1B92046200C27CB7 /* HomeViewController.swift in Sources */,
+				2D3BD5201B9C86960054A145 /* AbbyyEngine.swift in Sources */,
 				2DE47EEF1B99CB040029BE0F /* VocabularyTerm.swift in Sources */,
 				2DB853D81B93EFA300377750 /* OpenEarsEngine.swift in Sources */,
 				2DE14EE11B92047000C27CB7 /* CivicsViewController.swift in Sources */,

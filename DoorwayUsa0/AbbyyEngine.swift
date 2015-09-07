@@ -10,7 +10,7 @@ import Foundation
 
 protocol AbbyyEngineDelegate: class
 {
-    
+    func retrievedText(textFromPicture: String)
 }
 
 class AbbyyEngine: NSObject, NSXMLParserDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate
@@ -23,11 +23,14 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate, NSURLConnectionDelegate, NSURL
         case Downloading
     }
     
-    let kActivationUrlMinusDeviceId = "http://cloud.ocrsdk.com/activateNewInstallation?deviceId="
     let kHttpHeaderFieldAuthorization = "Authorization"
-    let kProcessImageUrlMinusParameters = "http://cloud.ocrsdk.com/processImage?"
-    let kProcessImageParameters = "language=English&exportFormat=txt"
     let kHttpMethodPost = "POST"
+    /// let kProcessImageUrlMinusParameters = "http://cloud.ocrsdk.com/processImage?"
+    /// let kProcessImageParameters = "language=English&exportFormat=txt"
+    let kProcessTextFieldUrlMinusParameters = "http://cloud.ocrsdk.com/processTextField?"
+    let kProcessTextFieldParameters = "letterSet=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz.,'&regExp=(HELLO),(GEORGE)&textType=handprinted&oneTextLine=true&writingStyle=american"
+    
+    
     
     // Delegate
     weak var delegate: AbbyyEngineDelegate?
@@ -72,7 +75,7 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate, NSURLConnectionDelegate, NSURL
     {
         connectionState = .Uploading
         
-        let url = NSURL(string: (kProcessImageUrlMinusParameters + kProcessImageParameters))
+        let url = NSURL(string: (kProcessTextFieldUrlMinusParameters + kProcessTextFieldParameters))
         let request = NSMutableURLRequest(URL: url!)
         request.HTTPMethod = kHttpMethodPost
         request.setValue("application/octet-stream", forHTTPHeaderField: "Content-Type")
@@ -126,7 +129,9 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate, NSURLConnectionDelegate, NSURL
     {
         connectionState = .NoActivity
         
-        let result = NSString(data:receivedData, encoding:NSUTF8StringEncoding)
+        let result = NSString(data:receivedData, encoding:NSUTF8StringEncoding) as! String
+        
+        delegate?.retrievedText(result)
     }
     
     func authenticationString() -> String
@@ -147,6 +152,9 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate, NSURLConnectionDelegate, NSURL
     // MARK: - NSXMLParserDelegate
     func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject])
     {
+        println("elementName:\(elementName)")
+        println("dict:\(attributeDict)")
+        
         if elementName == "task"
         {
             xmlId = attributeDict["id"] as! String

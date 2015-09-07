@@ -105,7 +105,17 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
     
     // MARK: - ABBYYDelegate
     
-    // TODO:
+    func retrievedText(textFromPicture: String)
+    {
+        // TODO: split string into words, see if answer is subest of textFromPicture, allow for margin of error
+        
+        
+        println(textFromPicture)
+        
+        spinner.stopAnimating()
+        
+        
+    }
     
     // MARK: - OpenEarsEngineDelegate
     

@@ -98,6 +98,8 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate, NSURLConnectionDelegate, NSURL
         parser.delegate = self
         parser.parse()
         
+        println("\ndone parsing within uploadingFinished\n")
+        
         let url = NSURL(string: ("http://cloud.ocrsdk.com/getTaskStatus?taskId=" + xmlId))
         let request = NSMutableURLRequest(URL:url!)
         request.setValue(authenticationString() as String, forHTTPHeaderField: kHttpHeaderFieldAuthorization)
@@ -109,19 +111,32 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate, NSURLConnectionDelegate, NSURL
     
     func processingFinished(error: NSError?)
     {
-        abbyyMode = .Downloading
-        
-        println("processing finished!")
+        println("\ntop of processingfinished\n")
         
         let parser = NSXMLParser(data: receivedData)
         parser.delegate = self
         parser.parse()
+
+        println("\nparsing processing finished!\n")
+        println("\n\nxmlId:\(xmlId), xmlStatus:\(xmlStatus), xmlUrl:\(xmlUrl)\n\n")
         
-        let request = NSURLRequest(URL: xmlUrl)
+        if xmlStatus == "Completed"
+        {
+            let request = NSURLRequest(URL: xmlUrl)
+            
+            abbyyMode = .Downloading
+            
+            let connection = NSURLConnection(request: request, delegate: self, startImmediately: true)
+            connection?.scheduleInRunLoop(NSRunLoop.mainRunLoop(), forMode: NSDefaultRunLoopMode)
+            connection?.start()
+        }
+        else
+        {
+            println("xmlStatus is not completed. instead, it is:\(xmlStatus) TRY AGAIN")
+            uploadingFinished(nil)
+        }
         
-        let connection = NSURLConnection(request: request, delegate: self, startImmediately: true)
-        connection?.scheduleInRunLoop(NSRunLoop.mainRunLoop(), forMode: NSDefaultRunLoopMode)
-        connection?.start()
+
     }
     
     func downloadingFinished(error: NSError?)
@@ -154,6 +169,8 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate, NSURLConnectionDelegate, NSURL
     // MARK: - NSXMLParserDelegate
     func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject])
     {
+        println("\nELEMENTNAME: \(elementName)\nDICTIONARY:\(attributeDict)")
+        
         if elementName == "task"
         {
             xmlId = attributeDict["id"] as! String
@@ -177,14 +194,34 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate, NSURLConnectionDelegate, NSURL
     func connection(connection: NSURLConnection, canAuthenticateAgainstProtectionSpace protectionSpace: NSURLProtectionSpace) -> Bool {
         println("11111")
         
-        // TODO:
-        return false
+        return true
     }
     
     func connection(connection: NSURLConnection, didReceiveAuthenticationChallenge challenge: NSURLAuthenticationChallenge) {
         println("22222")
         
-        // TODO:
+        if challenge.previousFailureCount == 0
+        {
+            println("first time challenging")
+            let credential = NSURLCredential(user: applicationId, password: applicationPassword, persistence: NSURLCredentialPersistence.ForSession)
+            challenge.sender.useCredential(credential, forAuthenticationChallenge: challenge)
+        }
+        else
+        {
+            println("been challenged before... cancel!")
+            challenge.sender.cancelAuthenticationChallenge(challenge)
+        }
+        
+//        /////
+//        if ([challenge previousFailureCount] == 0) {
+//            NSURLCredential* credential = [NSURLCredential credentialWithUser:self.applicationID
+//                password:self.password
+//                persistence:NSURLCredentialPersistenceForSession];
+//            
+//            [[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
+//        } else {
+//            [[challenge sender] cancelAuthenticationChallenge:challenge];
+//        }
     }
     
     func connection(connection: NSURLConnection, didFailWithError error: NSError) {
@@ -232,26 +269,4 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate, NSURLConnectionDelegate, NSURL
             downloadingFinished(nil)
         }
     }
-    
-    ///
-//    #pragma mark - NSURLConnectionDataDelegate implementation
-//    
-//    - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-//    {
-//    [_recievedData setLength:0];
-//    }
-//    
-//    - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-//    {
-//    [_recievedData appendData:data];
-//    }
-//    
-//    - (void)connectionDidFinishLoading:(NSURLConnection *)connection
-//    {
-//    [self finishWithError:nil];
-//    }
-//    
-    
-    
-
 }

@@ -40,70 +40,8 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate
     {
         super.init()
         
-        /*
         applicationId = ABBYY_APPLICATION_ID
         applicationPassword = ABBYY_APPLICATION_PASSWORD
-        
-        setUpInstallationId()
-        
-        let installationId = NSUserDefaults.standardUserDefaults().stringForKey(kInstallationId)
-        fullId = "\(applicationId)\(installationId)"
-*/
-    }
-    
-    func setUpInstallationId()
-    {
-        if NSUserDefaults.standardUserDefaults().stringForKey(kInstallationId) == nil
-        {
-            let deviceId = UIDevice.currentDevice().identifierForVendor.UUIDString
-            activateNewInstallationForDeviceId(deviceId)
-            NSUserDefaults.standardUserDefaults().setValue(installationId, forKey: kInstallationId)
-        }
-    }
-    
-    func activateNewInstallationForDeviceId(deviceId: String)
-    {
-        // set up request
-        let activationUrl = NSURL(string: kActivationUrlMinusDeviceId + deviceId)
-        let request = NSMutableURLRequest(URL: activationUrl!)
-        request.setValue(authenticationString(), forKey: kHttpHeaderFieldAuthorization)
-        
-        var returningResponse: AutoreleasingUnsafeMutablePointer<NSURLResponse?> = nil
-        var error: NSErrorPointer = nil
-        let responseData = NSURLConnection.sendSynchronousRequest(request, returningResponse: returningResponse, error: error)
-        
-        // TODO:
-        if error == nil
-        {
-            let parser = NSXMLParser(data: responseData!)
-            parser.delegate = self
-            
-            parser.parse() // see delegate methods for setting installation id
-        }
-        else
-        {
-            let alert = UIAlertView(title: "Error", message: ":(", delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
-        }
-    }
-    
-    // MARK: - NSXMLParserDelegate
-    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject])
-    {
-        isReadingAuthToken = false
-        
-        if elementName == "authToken"
-        {
-            isReadingAuthToken = true
-        }
-    }
-    
-    func parser(parser: NSXMLParser, foundCharacters string: String?)
-    {
-        if isReadingAuthToken
-        {
-            installationId = string
-        }
     }
     
     // MARK: - Logic
@@ -131,7 +69,7 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate
         })
     }
     
-    func authenticationString() -> NSString
+    func authenticationString() -> String
     {
         let authentication = "\(applicationId):\(applicationPassword)"
         let authenticationData: NSData = authentication.dataUsingEncoding(NSUTF8StringEncoding)!

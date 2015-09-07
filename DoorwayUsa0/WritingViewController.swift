@@ -40,7 +40,7 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
     {
         super.viewDidAppear(animated)
         
-        beginPractice()
+        //////////////////////////////////////// beginPractice()
     }
     
     override func viewWillDisappear(animated: Bool)

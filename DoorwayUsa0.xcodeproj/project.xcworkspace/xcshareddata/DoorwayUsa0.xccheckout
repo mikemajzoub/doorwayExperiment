@@ -10,6 +10,8 @@
 	<string>DoorwayUsa0</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>A44E06BB434C8B15602F04DB9FFB62E1A6FDBF78</key>
+		<string>https://github.com/abbyysdk/ocrsdk.com.git</string>
 		<key>AD62C0912CD8FCE39DAD438C4BD6DE6E76B7A21E</key>
 		<string>https://github.com/mikemajzoub/DoorwayUsa0.git</string>
 	</dict>
@@ -17,6 +19,8 @@
 	<string>DoorwayUsa0.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>A44E06BB434C8B15602F04DB9FFB62E1A6FDBF78</key>
+		<string>../../../ocrsdk.com</string>
 		<key>AD62C0912CD8FCE39DAD438C4BD6DE6E76B7A21E</key>
 		<string>../..</string>
 	</dict>
@@ -35,6 +39,14 @@
 			<string>AD62C0912CD8FCE39DAD438C4BD6DE6E76B7A21E</string>
 			<key>IDESourceControlWCCName</key>
 			<string>DoorwayUsa0</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>A44E06BB434C8B15602F04DB9FFB62E1A6FDBF78</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ocrsdk.com</string>
 		</dict>
 	</array>
 </dict>

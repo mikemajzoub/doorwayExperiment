@@ -32,8 +32,9 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate
     var fullId: String!
     
     // XML Parser
-    var isReadingAuthToken = false
-    var installationId: String!
+    var xmlId: String!
+    var xmlStatus: String!
+    var xmlUrl: NSURL!
     
     // MARK: - Init
     override init()
@@ -62,19 +63,22 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate
         processingRequest.HTTPBody = UIImageJPEGRepresentation(photoToSend as UIImage!, 0.5)
         processingRequest.setValue(authenticationString() as String, forHTTPHeaderField: kHttpHeaderFieldAuthorization)
         
-        var session = NSURLSession.sharedSession()
+        let session = NSURLSession.sharedSession()
         
-        var dataTask = session.dataTaskWithRequest(processingRequest, completionHandler: { data, response, error -> Void in
-            // TODO:
+        let dataTask = session.dataTaskWithRequest(processingRequest, completionHandler: { data, response, error -> Void in
+            let parser = NSXMLParser(data: data)
+            parser.parse()
         })
     }
     
     func authenticationString() -> String
     {
-        let authentication = "\(applicationId):\(applicationPassword)"
+        let authentication = NSString(format: "%@:%@", applicationId, applicationPassword)
         let authenticationData: NSData = authentication.dataUsingEncoding(NSUTF8StringEncoding)!
         let base64Authentication = authenticationData.base64EncodedStringWithOptions(nil)
         let fullAuthenticationString = "Basic \(base64Authentication)"
+        
+        println(fullAuthenticationString)
         
         return fullAuthenticationString
     }
@@ -82,5 +86,26 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate
     func stopEngine()
     {
         // TODO:
+    }
+    
+    // MARK: - NSXMLParserDelegate
+    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [NSObject : AnyObject])
+    {
+        if elementName == "task"
+        {
+            xmlId = attributeDict["id"] as! String
+            xmlStatus = attributeDict["status"] as! String
+            
+            if xmlStatus == "Completed"
+            {
+                let urlString = attributeDict["resultUrl"] as! String
+                xmlUrl = NSURL(string: urlString)
+
+            }
+            else if elementName == "error"
+            {
+                // TODO:
+            }
+        }
     }
 }

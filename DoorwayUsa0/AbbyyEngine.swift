@@ -40,6 +40,7 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate
     {
         super.init()
         
+        /*
         applicationId = ABBYY_APPLICATION_ID
         applicationPassword = ABBYY_APPLICATION_PASSWORD
         
@@ -47,6 +48,7 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate
         
         let installationId = NSUserDefaults.standardUserDefaults().stringForKey(kInstallationId)
         fullId = "\(applicationId)\(installationId)"
+*/
     }
     
     func setUpInstallationId()

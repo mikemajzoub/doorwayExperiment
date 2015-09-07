@@ -40,9 +40,7 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
     {
         super.viewDidAppear(animated)
         
-        
-        
-        /////////////////////////////////////////////////////// beginPractice()
+        beginPractice()
     }
     
     override func viewWillDisappear(animated: Bool)
@@ -63,16 +61,21 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
         
         dataModel.writingQuestionBank.refreshActiveBoundaryIndex()
         
-        if let question = dataModel.readingQuestionBank?.nextQuestion()
+        if let question = dataModel.writingQuestionBank?.nextQuestion()
         {
             
             currentQuestion = question
             
-            var sayThis = "Please write the following sentence on a sheet of paper, and then take a picture of it." + question
+            var sayThis = "Write the following sentence on a sheet of paper, and then take a picture of it. \(currentQuestion)"
             
             openEarsEngine.say(sayThis)
-            
         }
+    }
+    
+    // MARK: - Repeat sentence
+    @IBAction func repeatSentence()
+    {
+        openEarsEngine.say(currentQuestion)
     }
     
     // MARK: - TakePicture

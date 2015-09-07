@@ -15,6 +15,14 @@ protocol AbbyyEngineDelegate: class
 
 class AbbyyEngine: NSObject, NSXMLParserDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate
 {
+    enum AbbyyMode
+    {
+        case NoActivity
+        case Uploading
+        case Processing
+        case Downloading
+    }
+    
     let kInstallationId = "InstallationId"
     let kActivationUrlMinusDeviceId = "http://cloud.ocrsdk.com/activateNewInstallation?deviceId="
     
@@ -27,6 +35,7 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate, NSURLConnectionDelegate, NSURL
     
     weak var delegate: AbbyyEngineDelegate?
     
+    // Credentials
     var applicationId: String!
     var applicationPassword: String!
     var fullId: String!
@@ -36,10 +45,19 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate, NSURLConnectionDelegate, NSURL
     var xmlStatus: String!
     var xmlUrl: NSURL!
     
+    // NSURL
+    var receivedData = NSMutableData()
+    
+    // State
+    var abbyyMode: AbbyyMode?
+    
+    
     // MARK: - Init
     override init()
     {
         super.init()
+        
+        abbyyMode = .NoActivity
         
         applicationId = ABBYY_APPLICATION_ID
         applicationPassword = ABBYY_APPLICATION_PASSWORD
@@ -56,6 +74,8 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate, NSURLConnectionDelegate, NSURL
     
     func sendPhoto(photoToSend: UIImage)
     {
+        abbyyMode = .Uploading
+        
         let processingUrl = NSURL(string: (kProcessImageUrlMinusParameters + kProcessImageParameters))
         let processingRequest = NSMutableURLRequest(URL: processingUrl!)
         processingRequest.HTTPMethod = kHttpMethodPost
@@ -66,6 +86,52 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate, NSURLConnectionDelegate, NSURL
         let connection = NSURLConnection(request: processingRequest, delegate: self, startImmediately: true)
         connection?.scheduleInRunLoop(NSRunLoop.mainRunLoop(), forMode: NSDefaultRunLoopMode)
         connection?.start()
+    }
+    
+    func uploadingFinished(error: NSError?)
+    {
+        abbyyMode = .Processing
+        
+        println("upload finished!")
+
+        let parser = NSXMLParser(data: receivedData)
+        parser.delegate = self
+        parser.parse()
+        
+        let url = NSURL(string: ("http://cloud.ocrsdk.com/getTaskStatus?taskId=" + xmlId))
+        let request = NSMutableURLRequest(URL:url!)
+        request.setValue(authenticationString() as String, forHTTPHeaderField: kHttpHeaderFieldAuthorization)
+        
+        let connection = NSURLConnection(request: request, delegate: self, startImmediately: true)
+        connection?.scheduleInRunLoop(NSRunLoop.mainRunLoop(), forMode: NSDefaultRunLoopMode)
+        connection?.start()
+    }
+    
+    func processingFinished(error: NSError?)
+    {
+        abbyyMode = .Downloading
+        
+        println("processing finished!")
+        
+        let parser = NSXMLParser(data: receivedData)
+        parser.delegate = self
+        parser.parse()
+        
+        let request = NSURLRequest(URL: xmlUrl)
+        
+        let connection = NSURLConnection(request: request, delegate: self, startImmediately: true)
+        connection?.scheduleInRunLoop(NSRunLoop.mainRunLoop(), forMode: NSDefaultRunLoopMode)
+        connection?.start()
+    }
+    
+    func downloadingFinished(error: NSError?)
+    {
+        abbyyMode = .NoActivity
+        
+        println("downloading finished")
+        
+        let result = NSString(data:receivedData, encoding:NSUTF8StringEncoding)
+        println("the result of all of this is: \(result)")
     }
     
     func authenticationString() -> String
@@ -110,62 +176,61 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate, NSURLConnectionDelegate, NSURL
     
     func connection(connection: NSURLConnection, canAuthenticateAgainstProtectionSpace protectionSpace: NSURLProtectionSpace) -> Bool {
         println("11111")
+        
+        // TODO:
         return false
     }
     
     func connection(connection: NSURLConnection, didReceiveAuthenticationChallenge challenge: NSURLAuthenticationChallenge) {
         println("22222")
+        
+        // TODO:
     }
     
     func connection(connection: NSURLConnection, didFailWithError error: NSError) {
         println("3333")
+        
+        if abbyyMode == .Uploading
+        {
+            uploadingFinished(error)
+        }
+        else if abbyyMode == .Processing
+        {
+            processingFinished(error)
+        }
+        else if abbyyMode == .Downloading
+        {
+            downloadingFinished(error)
+        }
+        
     }
-    
-//    ///
-//    - (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace
-//    {
-//    if (self.authenticationDelegate != nil) {
-//    return [self.authenticationDelegate httpOperation:self canAuthenticateAgainstProtectionSpace:protectionSpace];
-//    }
-//    
-//    return NO;
-//    }
-//    
-//    - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
-//    {
-//    if (self.authenticationDelegate != nil) {
-//    [self.authenticationDelegate httpOperation:self didReceiveAuthenticationChallenge:challenge];
-//    } else {
-//    if ([challenge previousFailureCount] == 0) {
-//    [[challenge sender] continueWithoutCredentialForAuthenticationChallenge:challenge];
-//    } else {
-//    [[challenge sender] cancelAuthenticationChallenge:challenge];
-//    }
-//    }
-//    }
-//    
-//    - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-//    {
-//    [self finishWithError:error];
-//    }
-    
-    
-    
-    
-    
-    
     
     // MARK: - NSURLConnectionDataDelegate
     func connection(connection: NSURLConnection, didReceiveResponse response: NSURLResponse) {
-        println("4444")
+        // [_recievedData setLength:0];
+        receivedData.length = 0
     }
     
     func connection(connection: NSURLConnection, didReceiveData data: NSData) {
-        println("5555")
+        // [_recievedData appendData:data];
+        receivedData.appendData(data)
     }
     
     func connectionDidFinishLoading(connection: NSURLConnection) {
-        println("6666")
+        // [self finishWithError:nil];
+        
+        if abbyyMode == .Uploading
+        {
+            uploadingFinished(nil)
+        }
+        else if abbyyMode == .Processing
+        {
+            processingFinished(nil)
+        }
+        else if abbyyMode == .Downloading
+        {
+            downloadingFinished(nil)
+        }
     }
     
     ///

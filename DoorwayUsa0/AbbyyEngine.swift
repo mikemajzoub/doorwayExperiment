@@ -13,7 +13,7 @@ protocol AbbyyEngineDelegate: class
     
 }
 
-class AbbyyEngine: NSObject, NSXMLParserDelegate
+class AbbyyEngine: NSObject, NSXMLParserDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate
 {
     let kInstallationId = "InstallationId"
     let kActivationUrlMinusDeviceId = "http://cloud.ocrsdk.com/activateNewInstallation?deviceId="
@@ -63,12 +63,9 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate
         processingRequest.HTTPBody = UIImageJPEGRepresentation(photoToSend as UIImage!, 0.5)
         processingRequest.setValue(authenticationString() as String, forHTTPHeaderField: kHttpHeaderFieldAuthorization)
         
-        let session = NSURLSession.sharedSession()
-        
-        let dataTask = session.dataTaskWithRequest(processingRequest, completionHandler: { data, response, error -> Void in
-            let parser = NSXMLParser(data: data)
-            parser.parse()
-        })
+        let connection = NSURLConnection(request: processingRequest, delegate: self, startImmediately: true)
+        connection?.scheduleInRunLoop(NSRunLoop.mainRunLoop(), forMode: NSDefaultRunLoopMode)
+        connection?.start()
     }
     
     func authenticationString() -> String
@@ -108,4 +105,88 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate
             }
         }
     }
+    
+    // MARK: - NSURLConnectionDelegate
+    
+    func connection(connection: NSURLConnection, canAuthenticateAgainstProtectionSpace protectionSpace: NSURLProtectionSpace) -> Bool {
+        println("11111")
+        return false
+    }
+    
+    func connection(connection: NSURLConnection, didReceiveAuthenticationChallenge challenge: NSURLAuthenticationChallenge) {
+        println("22222")
+    }
+    
+    func connection(connection: NSURLConnection, didFailWithError error: NSError) {
+        println("3333")
+    }
+    
+//    ///
+//    - (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace
+//    {
+//    if (self.authenticationDelegate != nil) {
+//    return [self.authenticationDelegate httpOperation:self canAuthenticateAgainstProtectionSpace:protectionSpace];
+//    }
+//    
+//    return NO;
+//    }
+//    
+//    - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+//    {
+//    if (self.authenticationDelegate != nil) {
+//    [self.authenticationDelegate httpOperation:self didReceiveAuthenticationChallenge:challenge];
+//    } else {
+//    if ([challenge previousFailureCount] == 0) {
+//    [[challenge sender] continueWithoutCredentialForAuthenticationChallenge:challenge];
+//    } else {
+//    [[challenge sender] cancelAuthenticationChallenge:challenge];
+//    }
+//    }
+//    }
+//    
+//    - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+//    {
+//    [self finishWithError:error];
+//    }
+    
+    
+    
+    
+    
+    
+    
+    // MARK: - NSURLConnectionDataDelegate
+    func connection(connection: NSURLConnection, didReceiveResponse response: NSURLResponse) {
+        println("4444")
+    }
+    
+    func connection(connection: NSURLConnection, didReceiveData data: NSData) {
+        println("5555")
+    }
+    
+    func connectionDidFinishLoading(connection: NSURLConnection) {
+        println("6666")
+    }
+    
+    ///
+//    #pragma mark - NSURLConnectionDataDelegate implementation
+//    
+//    - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+//    {
+//    [_recievedData setLength:0];
+//    }
+//    
+//    - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+//    {
+//    [_recievedData appendData:data];
+//    }
+//    
+//    - (void)connectionDidFinishLoading:(NSURLConnection *)connection
+//    {
+//    [self finishWithError:nil];
+//    }
+//    
+    
+    
+
 }

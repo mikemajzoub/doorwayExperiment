@@ -71,11 +71,51 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
     // MARK: - TakePicture
     @IBAction func takePicture()
     {
+        let imagePicker = makeCameraViewController()
+        imagePicker.sourceType = .Camera
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true ////
+        presentViewController(imagePicker, animated: true, completion: nil)
+    }
+    
+    func makeCameraViewController() -> UIImagePickerController
+    {
+        // general camera settings
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = .Camera
         imagePicker.delegate = self
-        imagePicker.allowsEditing = false ////
-        presentViewController(imagePicker, animated: true, completion: nil)
+        imagePicker.allowsEditing = true
+        
+        let sightWidth = CGFloat(40) // DEPENDS ON PHONE?
+        let cameraTopBar = CGFloat(40) // DPEENDS ON PHONE!!! MUST FIX!!! (and diff for ipad!!!)
+        let cameraBottomBar = CGFloat(101) // DEPENDS ON PHONE!!!
+        
+        let overlayView = UIView(frame: CGRectMake(0, cameraTopBar, imagePicker.view.frame.size.width, imagePicker.view.frame.size.height - cameraBottomBar - cameraTopBar))
+        overlayView.backgroundColor = UIColor.clearColor()
+        
+        
+        let blinderWidth = (overlayView.frame.size.width / 2) - (sightWidth / 2)
+        let blinderHeight = overlayView.frame.size.height
+        
+        let overlayLeft = UIView(frame: CGRectMake(0, 0, blinderWidth, blinderHeight))
+        overlayLeft.backgroundColor = UIColor.blackColor()
+        overlayLeft.alpha = 0.8
+        overlayView.addSubview(overlayLeft)
+        
+        let overlayRight = UIView(frame: CGRectMake(blinderWidth + sightWidth, 0, blinderWidth, blinderHeight))
+        overlayRight.backgroundColor = UIColor.blackColor()
+        overlayRight.alpha = 0.8
+        overlayView.addSubview(overlayRight)
+        
+        // make shape
+        
+        
+        
+        
+        // attach custom view to controller
+        imagePicker.cameraOverlayView = overlayView
+        
+        return imagePicker
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject])

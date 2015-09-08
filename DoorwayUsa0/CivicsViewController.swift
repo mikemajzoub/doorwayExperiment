@@ -17,6 +17,8 @@ class CivicsViewController: UIViewController, OpenEarsEngineDelegate
     
     @IBOutlet weak var actionButton: UIButton!
     
+    @IBOutlet weak var replayAnswer: UIButton!
+    
     // Whenever computer finishes speaking, it checks to see if the question
     // cycle is finishing. If the cycle is marked as finishing, it means that
     // it is time to choose a new question for the user. 
@@ -24,7 +26,7 @@ class CivicsViewController: UIViewController, OpenEarsEngineDelegate
     // If the cycle is NOT marked as finishing, it means that the computer just 
     // finished speaking a new question, and should not select another question 
     // yet.
-    var questionCycleIsFinishing = true
+    var questionCycleIsFinishing = false
     
     override func viewDidLoad()
     {
@@ -39,6 +41,8 @@ class CivicsViewController: UIViewController, OpenEarsEngineDelegate
         
         actionButton.setTitle("Play Question", forState: .Normal)
         actionButton.enabled = true
+        
+        replayAnswer.hidden = true
     }
     
     override func viewDidAppear(animated: Bool)
@@ -50,6 +54,10 @@ class CivicsViewController: UIViewController, OpenEarsEngineDelegate
     override func viewWillDisappear(animated: Bool)
     {
         openEarsEngine.stopEngine()
+        actionButton.enabled = true
+        questionCycleIsFinishing = false
+        
+        replayAnswer.hidden = true
     }
     
     // Grab next question, speak it, and begin listening for user's answer
@@ -62,6 +70,8 @@ class CivicsViewController: UIViewController, OpenEarsEngineDelegate
             actionButton.setTitle("Listen...", forState: .Disabled)
             actionButton.enabled = false
             
+            replayAnswer.hidden = true
+            
             questionCycleIsFinishing = false
             
             currentQuestion = question
@@ -70,6 +80,38 @@ class CivicsViewController: UIViewController, OpenEarsEngineDelegate
             
             openEarsEngine.startListening()
         }
+    }
+    
+    @IBAction func sayAnswer()
+    {
+        replayAnswer.hidden = true
+        
+        questionCycleIsFinishing = true
+        
+        actionButton.enabled = false
+        
+        var response: String = ""
+        
+        if currentQuestion!.answersSpoken.count == 1
+        {
+            response += "The correct answer is \(currentQuestion!.answersSpoken[0])"
+        }
+        else
+        {
+            response += "There are multiple correct answers. You could say "
+            
+            for (index, answer) in enumerate(currentQuestion!.answersSpoken)
+            {
+                response += answer
+                
+                if index != currentQuestion!.answersSpoken.count - 1
+                {
+                    response += "... or you could say "
+                }
+            }
+        }
+        
+        openEarsEngine.say(response)
     }
     
     // MARK: - OpenEarsEngineDelegate
@@ -81,7 +123,7 @@ class CivicsViewController: UIViewController, OpenEarsEngineDelegate
         
         openEarsEngine.stopListening()
         
-        actionButton.setTitle("Speak Now...", forState: .Disabled)
+        actionButton.setTitle("Listen...", forState: .Disabled)
         
         if let heardWords = words
         {
@@ -169,6 +211,8 @@ class CivicsViewController: UIViewController, OpenEarsEngineDelegate
         if questionCycleIsFinishing
         {
             actionButton.enabled = true
+            
+            replayAnswer.hidden = false
         }
         else
         {

@@ -19,6 +19,7 @@ class ReadingViewController: UIViewController, OpenEarsEngineDelegate
     
     @IBOutlet weak var textToRead: UITextView!
     @IBOutlet weak var actionButton: UIButton!
+    @IBOutlet weak var replayAnswer: UIButton!
     
     override func viewWillAppear(animated: Bool)
     {
@@ -29,12 +30,16 @@ class ReadingViewController: UIViewController, OpenEarsEngineDelegate
         actionButton.setTitle("Play Question", forState: .Normal)
         actionButton.enabled = true
         
+        replayAnswer.hidden = true
+        
         textToRead.text = "" // clear out lorem ipsum.
     }
     
     override func viewWillDisappear(animated: Bool)
     {
         openEarsEngine.stopEngine()
+        
+        replayAnswer.hidden = true
     }
     
     // Grab next question, speak it, and begin listening for user's answer
@@ -44,6 +49,8 @@ class ReadingViewController: UIViewController, OpenEarsEngineDelegate
         
         if let question = dataModel.readingQuestionBank?.nextQuestion()
         {
+            replayAnswer.hidden = true
+            
             actionButton.enabled = false
             
             questionCycleIsFinishing = false
@@ -83,11 +90,20 @@ class ReadingViewController: UIViewController, OpenEarsEngineDelegate
         }
     }
     
+    @IBAction func repeatAnswer()
+    {
+        replayAnswer.hidden = true
+        actionButton.enabled = false
+        
+        openEarsEngine.say(currentQuestion)
+    }
+    
     func computerFinishedSpeaking()
     {
         if questionCycleIsFinishing
         {
             actionButton.enabled = true
+            replayAnswer.hidden = false
         }
         else
         {

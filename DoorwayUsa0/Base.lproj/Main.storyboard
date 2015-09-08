@@ -285,10 +285,21 @@
                                     <action selector="askQuestion" destination="Akl-DO-gaB" eventType="touchUpInside" id="Psn-1Q-H1g"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H7U-he-V80">
+                                <rect key="frame" x="249" y="512" width="103" height="30"/>
+                                <state key="normal" title="Replay Answer">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="sayAnswer" destination="Akl-DO-gaB" eventType="touchUpInside" id="SuU-Jm-T4F"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="8KY-69-77K" firstAttribute="top" secondItem="H7U-he-V80" secondAttribute="bottom" constant="8" id="EGz-1v-08h"/>
                             <constraint firstAttribute="centerX" secondItem="8KY-69-77K" secondAttribute="centerX" id="hCD-RP-FdF"/>
+                            <constraint firstAttribute="centerX" secondItem="H7U-he-V80" secondAttribute="centerX" id="pPq-Re-r4C"/>
                             <constraint firstItem="spe-Oo-d8E" firstAttribute="top" secondItem="8KY-69-77K" secondAttribute="bottom" constant="20" id="qEL-oU-YFu"/>
                         </constraints>
                     </view>
@@ -297,6 +308,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="actionButton" destination="8KY-69-77K" id="fXB-3D-qwe"/>
+                        <outlet property="replayAnswer" destination="H7U-he-V80" id="juh-vj-MVC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gaI-Sa-PYW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -331,14 +343,25 @@
                                     <action selector="askQuestion" destination="Ta4-bg-Nq4" eventType="touchUpInside" id="xxI-Js-iZE"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L9W-Cj-NvS">
+                                <rect key="frame" x="249" y="524" width="103" height="30"/>
+                                <state key="normal" title="Replay Answer">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="repeatAnswer" destination="Ta4-bg-Nq4" eventType="touchUpInside" id="hGA-b7-wt0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="L9W-Cj-NvS" secondAttribute="centerX" id="CUQ-yH-hqE"/>
                             <constraint firstItem="6mc-Cl-Y5y" firstAttribute="top" secondItem="um5-i4-wD2" secondAttribute="bottom" constant="8" id="Gmw-xi-Vae"/>
                             <constraint firstAttribute="centerX" secondItem="um5-i4-wD2" secondAttribute="centerX" id="MVZ-QB-CSa"/>
                             <constraint firstItem="um5-i4-wD2" firstAttribute="top" secondItem="dDF-vz-0vR" secondAttribute="bottom" constant="75" id="bTH-8o-qS1"/>
                             <constraint firstItem="dDF-vz-0vR" firstAttribute="top" secondItem="c7q-6I-lnq" secondAttribute="bottom" constant="8" id="cxv-ut-DkD"/>
                             <constraint firstItem="dDF-vz-0vR" firstAttribute="trailing" secondItem="5o8-t0-5iO" secondAttribute="trailingMargin" id="pnr-RC-da7"/>
+                            <constraint firstItem="um5-i4-wD2" firstAttribute="top" secondItem="L9W-Cj-NvS" secondAttribute="bottom" constant="8" id="rUR-C1-qOQ"/>
                             <constraint firstItem="dDF-vz-0vR" firstAttribute="leading" secondItem="5o8-t0-5iO" secondAttribute="leadingMargin" id="yvJ-eQ-6fj"/>
                         </constraints>
                     </view>
@@ -347,6 +370,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="actionButton" destination="um5-i4-wD2" id="IVr-L2-ev6"/>
+                        <outlet property="replayAnswer" destination="L9W-Cj-NvS" id="CX2-a7-4jE"/>
                         <outlet property="textToRead" destination="dDF-vz-0vR" id="knI-dz-hLo"/>
                     </connections>
                 </viewController>

@@ -74,7 +74,7 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = .Camera
         imagePicker.delegate = self
-        imagePicker.allowsEditing = true
+        imagePicker.allowsEditing = false ////
         presentViewController(imagePicker, animated: true, completion: nil)
     }
     

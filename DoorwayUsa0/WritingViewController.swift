@@ -85,34 +85,33 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
         imagePicker.sourceType = .Camera
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
+        imagePicker.showsCameraControls = true
         
-        let sightWidth = CGFloat(40) // DEPENDS ON PHONE?
+        // make blinders
+        let sightHeight = CGFloat(40) // DEPENDS ON PHONE?
         let cameraTopBar = CGFloat(40) // DPEENDS ON PHONE!!! MUST FIX!!! (and diff for ipad!!!)
         let cameraBottomBar = CGFloat(101) // DEPENDS ON PHONE!!!
+        
+        // this is to deal with the Retake/Cancel screen otherwise moving the image and making things look bad. it's hardcoded though - so must fix for each device
+        imagePicker.cameraViewTransform = CGAffineTransformMakeTranslation(0, CGFloat(32))
         
         let overlayView = UIView(frame: CGRectMake(0, cameraTopBar, imagePicker.view.frame.size.width, imagePicker.view.frame.size.height - cameraBottomBar - cameraTopBar))
         overlayView.backgroundColor = UIColor.clearColor()
         
         
-        let blinderWidth = (overlayView.frame.size.width / 2) - (sightWidth / 2)
-        let blinderHeight = overlayView.frame.size.height
+        let blinderWidth = (overlayView.frame.size.width)
+        let blinderHeight = (overlayView.frame.size.height / 2) - (sightHeight / 2)
         
-        let overlayLeft = UIView(frame: CGRectMake(0, 0, blinderWidth, blinderHeight))
-        overlayLeft.backgroundColor = UIColor.blackColor()
-        overlayLeft.alpha = 0.8
-        overlayView.addSubview(overlayLeft)
+        let overlayTop = UIView(frame: CGRectMake(0, 0, blinderWidth, blinderHeight))
+        overlayTop.backgroundColor = UIColor.blueColor()
+        overlayTop.alpha = 0.7
+        overlayView.addSubview(overlayTop)
         
-        let overlayRight = UIView(frame: CGRectMake(blinderWidth + sightWidth, 0, blinderWidth, blinderHeight))
-        overlayRight.backgroundColor = UIColor.blackColor()
-        overlayRight.alpha = 0.8
-        overlayView.addSubview(overlayRight)
+        let overlayBottom = UIView(frame: CGRectMake(0, blinderHeight + sightHeight, blinderWidth, blinderHeight))
+        overlayBottom.backgroundColor = UIColor.redColor()
+        overlayBottom.alpha = 0.7
+        overlayView.addSubview(overlayBottom)
         
-        // make shape
-        
-        
-        
-        
-        // attach custom view to controller
         imagePicker.cameraOverlayView = overlayView
         
         return imagePicker

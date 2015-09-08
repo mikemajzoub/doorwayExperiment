@@ -88,12 +88,14 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
         imagePicker.showsCameraControls = true
         
         // make blinders
+        let shiftingImagePreviewBugFix = CGFloat(31)
         let sightHeight = CGFloat(40) // DEPENDS ON PHONE?
-        let cameraTopBar = CGFloat(40) // DPEENDS ON PHONE!!! MUST FIX!!! (and diff for ipad!!!)
-        let cameraBottomBar = CGFloat(101) // DEPENDS ON PHONE!!!
+        let cameraTopBar = CGFloat(40) + shiftingImagePreviewBugFix // DPEENDS ON PHONE!!! MUST FIX!!! (and diff for ipad!!!)
+        let cameraBottomBar = CGFloat(101) - shiftingImagePreviewBugFix // DEPENDS ON PHONE!!!
+        
         
         // this is to deal with the Retake/Cancel screen otherwise moving the image and making things look bad. it's hardcoded though - so must fix for each device
-        imagePicker.cameraViewTransform = CGAffineTransformMakeTranslation(0, CGFloat(32))
+        imagePicker.cameraViewTransform = CGAffineTransformMakeTranslation(0, shiftingImagePreviewBugFix)
         
         let overlayView = UIView(frame: CGRectMake(0, cameraTopBar, imagePicker.view.frame.size.width, imagePicker.view.frame.size.height - cameraBottomBar - cameraTopBar))
         overlayView.backgroundColor = UIColor.clearColor()
@@ -103,13 +105,13 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
         let blinderHeight = (overlayView.frame.size.height / 2) - (sightHeight / 2)
         
         let overlayTop = UIView(frame: CGRectMake(0, 0, blinderWidth, blinderHeight))
-        overlayTop.backgroundColor = UIColor.blueColor()
-        overlayTop.alpha = 0.7
+        overlayTop.backgroundColor = UIColor.blackColor()
+        overlayTop.alpha = 1.0
         overlayView.addSubview(overlayTop)
         
         let overlayBottom = UIView(frame: CGRectMake(0, blinderHeight + sightHeight, blinderWidth, blinderHeight))
-        overlayBottom.backgroundColor = UIColor.redColor()
-        overlayBottom.alpha = 0.7
+        overlayBottom.backgroundColor = UIColor.blackColor()
+        overlayBottom.alpha = 1.0
         overlayView.addSubview(overlayBottom)
         
         imagePicker.cameraOverlayView = overlayView

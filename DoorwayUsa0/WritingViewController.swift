@@ -95,7 +95,7 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
         spinner.startAnimating()
         
         var takenPicture = info[UIImagePickerControllerOriginalImage] as! UIImage?
-        abbyyEngine.processImage(takenPicture)
+        abbyyEngine.processImage(takenPicture, withAnswer: currentQuestion)
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController)

@@ -275,7 +275,19 @@
                     <view key="view" contentMode="scaleToFill" id="oGE-4r-k6q">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8KY-69-77K">
+                                <rect key="frame" x="277" y="550" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="8KY-69-77K" secondAttribute="centerX" id="hCD-RP-FdF"/>
+                            <constraint firstItem="spe-Oo-d8E" firstAttribute="top" secondItem="8KY-69-77K" secondAttribute="bottom" constant="20" id="qEL-oU-YFu"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Civics" id="fse-vm-p9T">
                         <barButtonItem key="backBarButtonItem" title="Practice" id="ozc-Rh-z6u"/>

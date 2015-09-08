@@ -28,7 +28,7 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate, NSURLConnectionDelegate, NSURL
     /// let kProcessImageUrlMinusParameters = "http://cloud.ocrsdk.com/processImage?"
     /// let kProcessImageParameters = "language=English&exportFormat=txt"
     let kProcessTextFieldUrlMinusParameters = "http://cloud.ocrsdk.com/processTextField?"
-    let kProcessTextFieldParameters = "letterSet=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz.,'&regExp=(HELLO),(GEORGE)&textType=handprinted&oneTextLine=true&writingStyle=american"
+    let kConstantParameters = "letterSet=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz.,'&textType=handprinted&oneTextLine=true&writingStyle=american"
     
     
     
@@ -63,19 +63,22 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate, NSURLConnectionDelegate, NSURL
     }
     
     // MARK: - Logic
-    func processImage(takenPicture: UIImage?)
+    func processImage(takenPicture: UIImage?, withAnswer answer: String)
     {
         if let image = takenPicture
         {
-            sendPhoto(takenPicture as UIImage!)
+            sendPhoto(takenPicture as UIImage!, withAnswer: answer)
         }
     }
     
-    func sendPhoto(photoToSend: UIImage)
+    func sendPhoto(photoToSend: UIImage, withAnswer answer: String)
     {
         connectionState = .Uploading
         
-        let url = NSURL(string: (kProcessTextFieldUrlMinusParameters + kProcessTextFieldParameters))
+        let regExParameter = "&regExp=(\(answer))"
+        let parameters = kConstantParameters + regExParameter
+        
+        let url = NSURL(string: (kProcessTextFieldUrlMinusParameters + parameters))
         let request = NSMutableURLRequest(URL: url!)
         request.HTTPMethod = kHttpMethodPost
         request.setValue("application/octet-stream", forHTTPHeaderField: "Content-Type")

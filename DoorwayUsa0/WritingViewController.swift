@@ -22,6 +22,8 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
+    @IBOutlet weak var actionButton: UIButton!
+    
     override func viewDidLoad()
     {
         
@@ -32,15 +34,13 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
         openEarsEngine.delegate = self
         abbyyEngine.delegate = self
         
+        actionButton.setTitle("Play Question", forState: .Normal)
+        actionButton.enabled = true
+        
+        setUpNextQuestion()
+        
         super.viewWillAppear(animated)
         
-    }
-    
-    override func viewDidAppear(animated: Bool)
-    {
-        super.viewDidAppear(animated)
-        
-        //////////////////////////////////////// beginPractice()
     }
     
     override func viewWillDisappear(animated: Bool)
@@ -49,13 +49,8 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
         abbyyEngine.stopEngine()
     }
     
-    func beginPractice()
-    {
-        askQuestion()
-    }
-    
     // Grab next question, speak it, and begin listening for user's answer
-    func askQuestion()
+    func setUpNextQuestion()
     {
         questionCycleIsFinishing = false
         
@@ -63,17 +58,12 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
         
         if let question = dataModel.writingQuestionBank?.nextQuestion()
         {
-            
             currentQuestion = question
-            
-            var sayThis = "Write the following sentence on a sheet of paper, and then take a picture of it. \(currentQuestion)"
-            
-            openEarsEngine.say(sayThis)
         }
     }
     
     // MARK: - Repeat sentence
-    @IBAction func repeatSentence()
+    @IBAction func playSentence()
     {
         openEarsEngine.say(currentQuestion)
     }
@@ -96,6 +86,9 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
         
         var takenPicture = info[UIImagePickerControllerOriginalImage] as! UIImage?
         abbyyEngine.processImage(takenPicture, withAnswer: currentQuestion)
+        
+        actionButton.setTitle("Reading text...", forState: .Disabled)
+        actionButton.enabled = false
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController)
@@ -109,6 +102,7 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
     {
         // TODO: split string into words, see if answer is subest of textFromPicture, allow for margin of error
         
+        questionCycleIsFinishing = true
         
         println(textFromPicture)
         
@@ -123,7 +117,12 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
     {
         if questionCycleIsFinishing
         {
-            askQuestion()
+            setUpNextQuestion()
+            actionButton.enabled = true
+        }
+        else
+        {
+            
         }
     }
     

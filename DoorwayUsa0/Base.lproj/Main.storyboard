@@ -378,21 +378,19 @@
                             <activityIndicatorView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="4lY-Ky-AgP">
                                 <rect key="frame" x="290" y="164" width="20" height="20"/>
                             </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W2q-0T-0wF">
-                                <rect key="frame" x="242" y="550" width="116" height="30"/>
-                                <state key="normal" title="Repeat sentence">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RxW-OH-4K3">
+                                <rect key="frame" x="277" y="562" width="46" height="30"/>
+                                <state key="normal" title="Button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="repeatSentence" destination="bKR-xX-aOf" eventType="touchUpInside" id="dmY-Nm-bI2"/>
+                                    <action selector="playSentence" destination="bKR-xX-aOf" eventType="touchUpInside" id="z9C-cY-AGT"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="fxB-gj-zJA" secondAttribute="centerX" id="THd-rm-PQx"/>
-                            <constraint firstItem="78C-Yl-gtu" firstAttribute="top" secondItem="W2q-0T-0wF" secondAttribute="bottom" constant="20" id="b3o-Rj-dbk"/>
-                            <constraint firstAttribute="centerX" secondItem="W2q-0T-0wF" secondAttribute="centerX" id="dmr-Mn-Wzd"/>
                             <constraint firstAttribute="centerY" secondItem="fxB-gj-zJA" secondAttribute="centerY" id="idS-Gp-8Wd"/>
                             <constraint firstItem="4lY-Ky-AgP" firstAttribute="top" secondItem="fpT-O0-GHb" secondAttribute="bottom" constant="100" id="oxC-a3-k9w"/>
                             <constraint firstAttribute="centerX" secondItem="4lY-Ky-AgP" secondAttribute="centerX" id="z8B-MK-Ugj"/>
@@ -402,6 +400,7 @@
                         <barButtonItem key="backBarButtonItem" title="Practice" id="zem-9P-8zF"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="actionButton" destination="RxW-OH-4K3" id="gGz-tQ-kZ5"/>
                         <outlet property="spinner" destination="4lY-Ky-AgP" id="ZXP-eb-yhy"/>
                     </connections>
                 </viewController>

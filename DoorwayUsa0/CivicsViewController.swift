@@ -15,6 +15,8 @@ class CivicsViewController: UIViewController, OpenEarsEngineDelegate
     
     var currentQuestion: CivicsQuestion!
     
+    @IBOutlet weak var actionButton: UIButton!
+    
     // Whenever computer finishes speaking, it checks to see if the question
     // cycle is finishing. If the cycle is marked as finishing, it means that
     // it is time to choose a new question for the user. 
@@ -29,13 +31,20 @@ class CivicsViewController: UIViewController, OpenEarsEngineDelegate
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        
+        openEarsEngine.delegate = self
+        
+        actionButton.setTitle("Play Question", forState: .Normal)
+        actionButton.enabled = true
+    }
+    
     override func viewDidAppear(animated: Bool)
     {
         super.viewDidAppear(animated)
         
-        openEarsEngine.delegate = self
-        
-        beginPractice()
     }
     
     override func viewWillDisappear(animated: Bool)
@@ -43,18 +52,16 @@ class CivicsViewController: UIViewController, OpenEarsEngineDelegate
         openEarsEngine.stopEngine()
     }
     
-    func beginPractice()
-    {
-        askQuestion()
-    }
-    
     // Grab next question, speak it, and begin listening for user's answer
-    func askQuestion()
+    @IBAction func askQuestion()
     {
         dataModel.civicsQuestionBank.refreshActiveBoundaryIndex()
         
         if let question = dataModel.civicsQuestionBank.nextQuestion()
         {
+            actionButton.setTitle("Listen...", forState: .Disabled)
+            actionButton.enabled = false
+            
             questionCycleIsFinishing = false
             
             currentQuestion = question
@@ -73,6 +80,8 @@ class CivicsViewController: UIViewController, OpenEarsEngineDelegate
         println("OpenEarsEngineDelegate heard: \(words), with score: \(recognitionScore)")
         
         openEarsEngine.stopListening()
+        
+        actionButton.setTitle("Speak Now...", forState: .Disabled)
         
         if let heardWords = words
         {
@@ -159,7 +168,11 @@ class CivicsViewController: UIViewController, OpenEarsEngineDelegate
     {
         if questionCycleIsFinishing
         {
-            askQuestion()
+            actionButton.enabled = true
+        }
+        else
+        {
+            actionButton.setTitle("Speak Now...", forState: .Disabled)
         }
     }
     

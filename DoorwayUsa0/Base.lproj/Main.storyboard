@@ -281,6 +281,9 @@
                                 <state key="normal" title="Button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="askQuestion" destination="Akl-DO-gaB" eventType="touchUpInside" id="Psn-1Q-H1g"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -292,6 +295,9 @@
                     <navigationItem key="navigationItem" title="Civics" id="fse-vm-p9T">
                         <barButtonItem key="backBarButtonItem" title="Practice" id="ozc-Rh-z6u"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="actionButton" destination="8KY-69-77K" id="fXB-3D-qwe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gaI-Sa-PYW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -310,16 +316,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dDF-vz-0vR">
-                                <rect key="frame" x="16" y="72" width="568" height="503"/>
+                                <rect key="frame" x="16" y="72" width="568" height="415"/>
                                 <color key="backgroundColor" red="0.80000001192092896" green="0.80000001192092896" blue="0.80000001192092896" alpha="1" colorSpace="calibratedRGB"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="um5-i4-wD2">
+                                <rect key="frame" x="277" y="562" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="askQuestion" destination="Ta4-bg-Nq4" eventType="touchUpInside" id="xxI-Js-iZE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="6mc-Cl-Y5y" firstAttribute="top" secondItem="dDF-vz-0vR" secondAttribute="bottom" constant="25" id="FUD-0b-dBB"/>
+                            <constraint firstItem="6mc-Cl-Y5y" firstAttribute="top" secondItem="um5-i4-wD2" secondAttribute="bottom" constant="8" id="Gmw-xi-Vae"/>
+                            <constraint firstAttribute="centerX" secondItem="um5-i4-wD2" secondAttribute="centerX" id="MVZ-QB-CSa"/>
+                            <constraint firstItem="um5-i4-wD2" firstAttribute="top" secondItem="dDF-vz-0vR" secondAttribute="bottom" constant="75" id="bTH-8o-qS1"/>
                             <constraint firstItem="dDF-vz-0vR" firstAttribute="top" secondItem="c7q-6I-lnq" secondAttribute="bottom" constant="8" id="cxv-ut-DkD"/>
                             <constraint firstItem="dDF-vz-0vR" firstAttribute="trailing" secondItem="5o8-t0-5iO" secondAttribute="trailingMargin" id="pnr-RC-da7"/>
                             <constraint firstItem="dDF-vz-0vR" firstAttribute="leading" secondItem="5o8-t0-5iO" secondAttribute="leadingMargin" id="yvJ-eQ-6fj"/>
@@ -329,6 +346,7 @@
                         <barButtonItem key="backBarButtonItem" title="Practice" id="1f6-rg-o1m"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="actionButton" destination="um5-i4-wD2" id="IVr-L2-ev6"/>
                         <outlet property="textToRead" destination="dDF-vz-0vR" id="knI-dz-hLo"/>
                     </connections>
                 </viewController>

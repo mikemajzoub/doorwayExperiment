@@ -18,21 +18,18 @@ class ReadingViewController: UIViewController, OpenEarsEngineDelegate
     var questionCycleIsFinishing = true
     
     @IBOutlet weak var textToRead: UITextView!
+    @IBOutlet weak var actionButton: UIButton!
     
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
         
-        textToRead.text = "" // clear out lorem ipsum.
-    }
-    
-    override func viewDidAppear(animated: Bool)
-    {
-        super.viewDidAppear(animated)
-        
         openEarsEngine.delegate = self
         
-        beginPractice()
+        actionButton.setTitle("Play Question", forState: .Normal)
+        actionButton.enabled = true
+        
+        textToRead.text = "" // clear out lorem ipsum.
     }
     
     override func viewWillDisappear(animated: Bool)
@@ -40,18 +37,15 @@ class ReadingViewController: UIViewController, OpenEarsEngineDelegate
         openEarsEngine.stopEngine()
     }
     
-    func beginPractice()
-    {
-        askQuestion()
-    }
-    
     // Grab next question, speak it, and begin listening for user's answer
-    func askQuestion()
+    @IBAction func askQuestion()
     {
         dataModel.readingQuestionBank.refreshActiveBoundaryIndex()
         
         if let question = dataModel.readingQuestionBank?.nextQuestion()
         {
+            actionButton.enabled = false
+            
             questionCycleIsFinishing = false
             
             currentQuestion = question
@@ -75,6 +69,9 @@ class ReadingViewController: UIViewController, OpenEarsEngineDelegate
         
         if let heardWords = words
         {
+            actionButton.setTitle("Listen...", forState: .Disabled)
+            actionButton.enabled = false
+            
             dataModel.readingQuestionBank.updateWordsForSpokenResponse(heardWords, forSentencePrompt: currentQuestion)
             
             // TODO: Reading needs to be a bit more forgiving. Perhaps break into 2 sets, and allow response to have 2 incorrect words?, etc.
@@ -90,7 +87,11 @@ class ReadingViewController: UIViewController, OpenEarsEngineDelegate
     {
         if questionCycleIsFinishing
         {
-            askQuestion()
+            actionButton.enabled = true
+        }
+        else
+        {
+            actionButton.setTitle("Speak Now...", forState: .Disabled)
         }
     }
     

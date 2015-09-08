@@ -177,21 +177,29 @@ class ReadingQuestionBank: NSObject, NSCoding
     func updateWordsForSpokenResponse(response: String, forSentencePrompt prompt: String)
     {
         // TODO: this really should be a dictionary to handle multiple cases of same word, removing word after it's used
-        let responseSet = Set(response.componentsSeparatedByString(" "))
-        let promptSet = Set(response.componentsSeparatedByString(" "))
+        let responseArray = response.componentsSeparatedByString(" ")
+        let promptArray: NSArray = prompt.componentsSeparatedByString(" ")
+        let promptMutableArray = promptArray.mutableCopy() as! NSMutableArray
         
-        for word in responseSet
+        // mark correctly answered words, removing them from prompt
+        for word in responseArray
         {
-            var vocabularyTerm = vocabularyTermForText(word)
-            
-            if promptSet.contains(vocabularyTerm.text)
+            if promptMutableArray.indexOfObject(word) != NSNotFound
             {
+                var vocabularyTerm = vocabularyTermForText(word)
                 vocabularyTerm.answeredCorrectly()
+                
+                let indexOfTerm = promptMutableArray.indexOfObject(word)
+                promptMutableArray.removeObjectAtIndex(indexOfTerm)
             }
-            else
-            {
-                vocabularyTerm.answeredIncorrectly()
-            }
+        }
+        
+        // whatever remains in prompt at this time was not correctly answered
+        let notAnswered = promptMutableArray.copy() as! [String]
+        for word in notAnswered
+        {
+            let vocabularyTerm = vocabularyTermForText(word)
+            vocabularyTerm.answeredIncorrectly()
         }
     }
     

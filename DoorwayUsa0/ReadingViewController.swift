@@ -59,7 +59,7 @@ class ReadingViewController: UIViewController, OpenEarsEngineDelegate
             
             textToRead.text = question
             
-            openEarsEngine.say("Please reed this sentence aloud.") // 'reed' is NOT a typo. OE pronounces 'read' like 'red'
+            openEarsEngine.say("Please reed this sentence aloud.") // 'reed' is NOT a typo. OpenEars pronounces 'read' like 'red'
             
             openEarsEngine.startListening()
         }
@@ -79,15 +79,35 @@ class ReadingViewController: UIViewController, OpenEarsEngineDelegate
             actionButton.setTitle("Listen...", forState: .Disabled)
             actionButton.enabled = false
             
+            // grade the answer
             dataModel.readingQuestionBank.updateWordsForSpokenResponse(heardWords, forSentencePrompt: currentQuestion)
             
             // TODO: Reading needs to be a bit more forgiving. Perhaps break into 2 sets, and allow response to have 2 incorrect words?, etc.
-            var response = (heardWords == currentQuestion) ? "Correct. " : "Incorrect. The correct answer is. "
+            var response = correctUserResponse(words, forAnswer: currentQuestion) ? "Correct. " : "Incorrect. The correct answer is. "
             response += currentQuestion
             openEarsEngine.say(response)
             
             questionCycleIsFinishing = true
         }
+    }
+    
+    func correctUserResponse(userResponse: String, forAnswer correctAnswer: String) -> Bool
+    {
+        let responseArray = userResponse.componentsSeparatedByString(" ")
+        let answerArray: NSArray = correctAnswer.componentsSeparatedByString(" ")
+        let promptMutableArray = answerArray.mutableCopy() as! NSMutableArray
+        
+        for word in responseArray
+        {
+            if promptMutableArray.indexOfObject(word) != NSNotFound
+            {
+                let indexOfTerm = promptMutableArray.indexOfObject(word)
+                promptMutableArray.removeObjectAtIndex(indexOfTerm)
+            }
+        }
+        
+        // if more than 2 words were not answered correctly, mark answer incorrect
+        return promptMutableArray.count <= 2
     }
     
     @IBAction func repeatAnswer()

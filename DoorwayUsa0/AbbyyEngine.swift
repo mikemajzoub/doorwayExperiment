@@ -75,10 +75,15 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate, NSURLConnectionDelegate, NSURL
     {
         connectionState = .Uploading
         
-        let regExParameter = "&regExp=(\(answer))"
-        let parameters = kConstantParameters + regExParameter
+        let answerRegEx = answerToRegularExpression(answer)
         
-        let url = NSURL(string: (kProcessTextFieldUrlMinusParameters + parameters))
+        let regExParameter = "&regExp=(\(answerRegEx))"
+        let parameters = kConstantParameters + regExParameter
+        let urlString = kProcessTextFieldUrlMinusParameters + parameters
+        
+        println(urlString)
+        
+        let url = NSURL(string: urlString)
         let request = NSMutableURLRequest(URL: url!)
         request.HTTPMethod = kHttpMethodPost
         request.setValue("application/octet-stream", forHTTPHeaderField: "Content-Type")
@@ -88,6 +93,25 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate, NSURLConnectionDelegate, NSURL
         let connection = NSURLConnection(request: request, delegate: self, startImmediately: true)
         connection?.scheduleInRunLoop(NSRunLoop.mainRunLoop(), forMode: NSDefaultRunLoopMode)
         connection?.start()
+    }
+    
+    func answerToRegularExpression(answer: String) -> String
+    {
+        var regularExpression = ""
+        
+        let answerArray = answer.componentsSeparatedByString(" ")
+        
+        for (index, word) in enumerate(answerArray)
+        {
+            regularExpression += word
+            
+            if index < answerArray.count - 1
+            {
+                regularExpression += "%20"
+            }
+        }
+        
+        return regularExpression
     }
     
     func uploadingFinished(error: NSError?)

@@ -14,7 +14,7 @@ class CivicsQuestionBank: NSObject, NSCoding
     let kActiveBoundaryIndex = "ActiveBoundaryIndexName"
     
     // This contains every civics question.
-    var questions: [CivicsQuestion]!
+    var questions: [CivicsQuestion]
     
     // The activeBoundaryIndex is what keeps the user from being overwhelmed with too
     // many new questions at once. It starts by only quizzing user on X questions,
@@ -26,8 +26,8 @@ class CivicsQuestionBank: NSObject, NSCoding
     // MARK: - Init
     override init()
     {
-        activeBoundaryIndex = 3
         questions = [CivicsQuestion]()
+        activeBoundaryIndex = 3
         
         super.init()
         

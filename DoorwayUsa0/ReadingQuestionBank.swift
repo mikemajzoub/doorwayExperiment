@@ -15,22 +15,27 @@ class ReadingQuestionBank: NSObject, NSCoding
     let kActiveBoundaryIndex = "ActiveBoundaryIndexName"
     
     // This holds the vocab list the student must master
-    var vocabularyList = [VocabularyTerm]()
+    var vocabularyList: [VocabularyTerm]
     
-    // This holds sentences made up of the vocab list. The student practices
-    // with these sentences, instead of just reading random words.
-    var sentences = [String]()
+    // This holds sentences made up of words from the the vocab list. 
+    // The student practices with these sentences, instead of just reading 
+    // random words.
+    var sentences: [String]
     
     // The activeBoundaryIndex is what keeps the user from being overwhelmed with too
     // many new sentences at once. It starts by only quizzing user on X sentences,
     // and once the user has mastered these, it will quiz user on X + Y sentences.
     // It will continue this pattern of increasing the sentences can be randomly
     // selected until the entire sentence bank is revealed to the user.
-    var activeBoundaryIndex = 3
+    var activeBoundaryIndex: Int
     
     // MARK: - Init
     override init()
     {
+        vocabularyList = [VocabularyTerm]()
+        sentences = [String]()
+        activeBoundaryIndex = 3
+        
         super.init()
         
         initializeSentences()
@@ -103,6 +108,11 @@ class ReadingQuestionBank: NSObject, NSCoding
             }
         }
         
+        if vocabularyTermForText == ""
+        {
+            assert(false)
+        }
+        
         return vocabularyTermForText
     }
     
@@ -121,6 +131,11 @@ class ReadingQuestionBank: NSObject, NSCoding
                 maxSentenceWeight = sentenceWeight
                 maxSentence = sentence
             }
+        }
+        
+        if maxSentence == ""
+        {
+            assert(false)
         }
         
         return maxSentence
@@ -177,17 +192,16 @@ class ReadingQuestionBank: NSObject, NSCoding
     // Mark spoken words as correct/incorrect, updating their weights accordingly
     func updateWordsForSpokenResponse(response: String, forSentencePrompt prompt: String)
     {
-        // TODO: this really should be a dictionary to handle multiple cases of same word, removing word after it's used
-        let responseArray = response.componentsSeparatedByString(" ")
+        let spokenResponseArray = response.componentsSeparatedByString(" ")
         let promptArray: NSArray = prompt.componentsSeparatedByString(" ")
         let promptMutableArray = promptArray.mutableCopy() as! NSMutableArray
         
         // mark correctly answered words, removing them from prompt
-        for word in responseArray
+        for word in spokenResponseArray
         {
             if promptMutableArray.indexOfObject(word) != NSNotFound
             {
-                var vocabularyTerm = vocabularyTermForText(word)
+                let vocabularyTerm = vocabularyTermForText(word)
                 vocabularyTerm.answeredCorrectly()
                 
                 let indexOfTerm = promptMutableArray.indexOfObject(word)
@@ -292,8 +306,5 @@ class ReadingQuestionBank: NSObject, NSCoding
     }
     
     // MARK: - Debugging
-    func printSentenceWordCounts()
-    {
-        // TODO:
-    }
+    // TODO:
 }

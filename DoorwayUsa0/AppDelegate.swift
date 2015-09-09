@@ -13,23 +13,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    let dataModel = DataModel()
-    let openEarsEngine = OpenEarsEngine()
-    let abbyyEngine = AbbyyEngine()
+    var dataModel: DataModel!
+    var openEarsEngine: OpenEarsEngine!
+    var abbyyEngine: AbbyyEngine!
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
     {
-        // Build language models
-        let civicsLanguage = dataModel.getLanguageForLearningMode(.Civics)
-        openEarsEngine.makeLanguageModelLanguageForMode(.Civics, withLanguage:civicsLanguage)
-        
-        let readingLanguage = dataModel.getLanguageForLearningMode(.Reading)
-        openEarsEngine.makeLanguageModelLanguageForMode(.Reading, withLanguage:readingLanguage)
-        
-        let writingLanguage = dataModel.getLanguageForLearningMode(.Writing)
-        openEarsEngine.makeLanguageModelLanguageForMode(.Writing, withLanguage: writingLanguage)
-        
-        
+        dataModel = DataModel()
+        openEarsEngine = OpenEarsEngine(dataModel: dataModel)
+        abbyyEngine = AbbyyEngine()
         
         // Hook up data model and engines
         let navigationController = window!.rootViewController as! UINavigationController

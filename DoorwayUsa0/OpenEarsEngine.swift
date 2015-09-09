@@ -37,11 +37,38 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
     weak var delegate: OpenEarsEngineDelegate?
     
     // MARK: - Init
-    override init()
+    init(dataModel: DataModel)
     {
         super.init()
         
-        // Set up microphone sound effects.
+        setUpLanguageModelsWithDataModel(dataModel)
+        
+        setUpSoundEffects()
+
+        // Set up speech.
+        self.openEarsFliteController = OEFliteController()
+        self.slt = Slt()
+        
+        // Set up listening.
+        self.openEarsEventsObserver = OEEventsObserver()
+        self.openEarsEventsObserver.delegate = self
+    }
+    
+    func setUpLanguageModelsWithDataModel(dataModel: DataModel)
+    {
+        // Build language models here so OE can access data model
+        let civicsLanguage = dataModel.getLanguageForLearningMode(.Civics)
+        makeLanguageModelLanguageForMode(.Civics, withLanguage:civicsLanguage)
+        
+        let readingLanguage = dataModel.getLanguageForLearningMode(.Reading)
+        makeLanguageModelLanguageForMode(.Reading, withLanguage:readingLanguage)
+        
+        let writingLanguage = dataModel.getLanguageForLearningMode(.Writing)
+        makeLanguageModelLanguageForMode(.Writing, withLanguage: writingLanguage)
+    }
+    
+    func setUpSoundEffects()
+    {
         if let beginSoundPath = NSBundle.mainBundle().pathForResource("beep-xylo", ofType: "aif")
         {
             if let beginSoundUrl = NSURL(fileURLWithPath: beginSoundPath)
@@ -57,14 +84,6 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
                 endListeningSoundEffectPlayer = AVAudioPlayer(contentsOfURL: endSoundUrl, error: nil)
             }
         }
-        
-        // Set up speech.
-        self.openEarsFliteController = OEFliteController()
-        self.slt = Slt()
-        
-        // Set up listening.
-        self.openEarsEventsObserver = OEEventsObserver()
-        self.openEarsEventsObserver.delegate = self
     }
     
     func makeLanguageModelLanguageForMode(mode: LearningMode, withLanguage language: [String])

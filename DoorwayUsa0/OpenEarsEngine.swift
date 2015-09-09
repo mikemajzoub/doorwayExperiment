@@ -130,6 +130,7 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
             dictionaryPath = dictionaryPathWriting
         }
         
+        // TODO: you should only do this once per screen - not every time you start listening!
         OEPocketsphinxController.sharedInstance().setActive(true, error: nil)
         OEPocketsphinxController.sharedInstance().startListeningWithLanguageModelAtPath(languageModelPath, dictionaryAtPath: dictionaryPath, acousticModelAtPath: OEAcousticModel.pathToModel("AcousticModelEnglish"), languageModelIsJSGF: false)
     }

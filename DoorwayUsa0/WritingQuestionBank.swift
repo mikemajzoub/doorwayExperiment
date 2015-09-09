@@ -17,22 +17,26 @@ class WritingQuestionBank: NSObject, NSCoding
     let kActiveBoundaryIndex = "ActiveBoundaryIndexName"
     
     // This holds the vocab list the student must master
-    var vocabularyList = [VocabularyTerm]()
+    var vocabularyList: [VocabularyTerm]
     
     // This holds sentences made up of the vocab list. The student practices
     // with these sentences, instead of just reading random words.
-    var sentences = [String]()
+    var sentences: [String]
     
     // The activeBoundaryIndex is what keeps the user from being overwhelmed with too
     // many new sentences at once. It starts by only quizzing user on X sentences,
     // and once the user has mastered these, it will quiz user on X + Y sentences.
     // It will continue this pattern of increasing the sentences can be randomly
     // selected until the entire sentence bank is revealed to the user.
-    var activeBoundaryIndex = 3
+    var activeBoundaryIndex: Int
     
     // MARK: - Init
     override init()
     {
+        vocabularyList = [VocabularyTerm]()
+        sentences = [String]()
+        activeBoundaryIndex = 3
+        
         super.init()
         
         initializeSentences()
@@ -105,6 +109,11 @@ class WritingQuestionBank: NSObject, NSCoding
             }
         }
         
+        if vocabularyTermForText == ""
+        {
+            assert(false)
+        }
+        
         return vocabularyTermForText
     }
     
@@ -123,6 +132,11 @@ class WritingQuestionBank: NSObject, NSCoding
                 maxSentenceWeight = sentenceWeight
                 maxSentence = sentence
             }
+        }
+        
+        if maxSentence == ""
+        {
+            assert(false)
         }
         
         return maxSentence
@@ -158,6 +172,12 @@ class WritingQuestionBank: NSObject, NSCoding
         }
         
         return Float(totalMastered) / Float(total)
+    }
+    
+    // Return vocab list as array
+    func generateLanguage() -> [String]
+    {
+        return ["DUMMY_TEXT"] // empty because writing VC listens for nothing
     }
     
     // Mark spoken words as correct/incorrect, updating their weights accordingly
@@ -281,15 +301,6 @@ class WritingQuestionBank: NSObject, NSCoding
         vocabularyList.append(VocabularyTerm(text: "WHITE"))
     }
     
-    // Return vocab list as array
-    func generateLanguage() -> [String]
-    {
-        return ["DUMMY_TEXT"] // empty because writing VC listens for nothing
-    }
-    
     // MARK: - Debugging
-    func printSentenceWordCounts()
-    {
-        // TODO:
-    }
+    // TODO:
 }

@@ -101,17 +101,11 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate, NSURLConnectionDelegate, NSURL
         
         for (index, word) in enumerate(answerArray)
         {
-            regularExpression += ""
-            
             regularExpression += word
             
             if index < answerArray.count - 1
             {
                 regularExpression += ","
-            }
-            else
-            {
-                regularExpression += ""
             }
         }
         
@@ -152,6 +146,7 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate, NSURLConnectionDelegate, NSURL
         }
         else
         {
+            // Incomplete. Poll again.
             uploadingFinished(nil)
         }
     }
@@ -199,7 +194,7 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate, NSURLConnectionDelegate, NSURL
             }
             else if elementName == "error"
             {
-                // TODO:
+                assert(false)
             }
         }
     }

@@ -101,9 +101,17 @@ class DataModel
         {
             return generateCivicsLanguage()
         }
-        else // Else, mode == .Reading
+        else if mode == .Reading
         {
             return generateReadingLanguage()
+        }
+        else if mode == .Writing
+        {
+            return generateWritingLanguage()
+        }
+        else
+        {
+            assert(false)
         }
     }
     
@@ -115,6 +123,11 @@ class DataModel
     func generateReadingLanguage() -> [String]
     {
         return readingQuestionBank.generateLanguage()
+    }
+    
+    func generateWritingLanguage() -> [String]
+    {
+        return writingQuestionBank.generateLanguage()
     }
     
     // MARK: - Save/Load Banks

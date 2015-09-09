@@ -26,6 +26,8 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
     var dictionaryPathCivics: String!
     var languageModelPathReading: String!
     var dictionaryPathReading: String!
+    var languageModelPathWriting: String!
+    var dictionaryPathWriting: String!
     
     // Play tones for user to know when microphone is active/inactive
     var beginListeningSoundEffectPlayer: AVAudioPlayer!
@@ -69,19 +71,29 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
     {
         var languageModelGenerator = OELanguageModelGenerator()
         
-        var name = (mode == .Civics) ? "CivicsLanguageModel" : "ReadingLangaugeModel"
-        languageModelGenerator.generateLanguageModelFromArray(language, withFilesNamed: name, forAcousticModelAtPath: OEAcousticModel.pathToModel("AcousticModelEnglish"))
-        
         // Hook up generated paths
         if mode == .Civics
         {
+            let name = "CivicsLanguageModel"
+            languageModelGenerator.generateLanguageModelFromArray(language, withFilesNamed: name, forAcousticModelAtPath: OEAcousticModel.pathToModel("AcousticModelEnglish"))
+            
             languageModelPathCivics = languageModelGenerator.pathToSuccessfullyGeneratedLanguageModelWithRequestedName(name)
             dictionaryPathCivics = languageModelGenerator.pathToSuccessfullyGeneratedDictionaryWithRequestedName(name)
         }
-        else // For this case, mode == .Reading
+        else if mode == .Reading
         {
+            let name = "ReadingLanguageModel"
+            languageModelGenerator.generateLanguageModelFromArray(language, withFilesNamed: name, forAcousticModelAtPath: OEAcousticModel.pathToModel("AcousticModelEnglish"))
+            
             languageModelPathReading = languageModelGenerator.pathToSuccessfullyGeneratedLanguageModelWithRequestedName(name)
             dictionaryPathReading = languageModelGenerator.pathToSuccessfullyGeneratedDictionaryWithRequestedName(name)
+        }
+        else // mode == .Writing
+        {
+            let name = "WritingLanguageModel"
+            languageModelGenerator.generateLanguageModelFromArray(language, withFilesNamed: name, forAcousticModelAtPath: OEAcousticModel.pathToModel("AcousticModelEnglish"))
+            languageModelPathWriting = languageModelGenerator.pathToSuccessfullyGeneratedLanguageModelWithRequestedName(name)
+            dictionaryPathWriting = languageModelGenerator.pathToSuccessfullyGeneratedDictionaryWithRequestedName(name)
         }
     }
     
@@ -107,10 +119,15 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
             languageModelPath = languageModelPathCivics
             dictionaryPath = dictionaryPathCivics
         }
-        else // In this case, currentLearningMode == .Reading
+        else if currentLearningMode == .Reading
         {
             languageModelPath = languageModelPathReading
             dictionaryPath = dictionaryPathReading
+        }
+        else // currentLearningMode == .Writing
+        {
+            languageModelPath = languageModelPathWriting
+            dictionaryPath = dictionaryPathWriting
         }
         
         OEPocketsphinxController.sharedInstance().setActive(true, error: nil)

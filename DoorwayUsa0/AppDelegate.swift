@@ -26,6 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let readingLanguage = dataModel.getLanguageForLearningMode(.Reading)
         openEarsEngine.makeLanguageModelLanguageForMode(.Reading, withLanguage:readingLanguage)
         
+        let writingLanguage = dataModel.getLanguageForLearningMode(.Writing)
+        openEarsEngine.makeLanguageModelLanguageForMode(.Writing, withLanguage: writingLanguage)
+        
         
         
         // Hook up data model and engines

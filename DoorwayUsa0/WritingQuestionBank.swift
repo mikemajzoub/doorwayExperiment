@@ -278,6 +278,12 @@ class WritingQuestionBank: NSObject, NSCoding
         vocabularyList.append(VocabularyTerm(text: "WHITE"))
     }
     
+    // Return vocab list as array
+    func generateLanguage() -> [String]
+    {
+        return ["DUMMY_TEXT"] // empty because writing VC listens for nothing
+    }
+    
     // MARK: - Debugging
     func printSentenceWordCounts()
     {

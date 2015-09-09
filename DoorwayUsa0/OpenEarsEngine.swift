@@ -16,6 +16,9 @@ protocol OpenEarsEngineDelegate: class
 
 class OpenEarsEngine: NSObject, OEEventsObserverDelegate
 {
+    // Constant Strings
+    let kAcousticModelEnglish = "AcousticModelEnglish"
+    
     // OpenEars
     var openEarsEventsObserver: OEEventsObserver!
     var openEarsFliteController: OEFliteController!
@@ -46,12 +49,12 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
         setUpSoundEffects()
 
         // Set up speech.
-        self.openEarsFliteController = OEFliteController()
-        self.slt = Slt()
+        openEarsFliteController = OEFliteController()
+        slt = Slt()
         
         // Set up listening.
-        self.openEarsEventsObserver = OEEventsObserver()
-        self.openEarsEventsObserver.delegate = self
+        openEarsEventsObserver = OEEventsObserver()
+        openEarsEventsObserver.delegate = self
     }
     
     func setUpLanguageModelsWithDataModel(dataModel: DataModel)
@@ -94,7 +97,7 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
         if mode == .Civics
         {
             let name = "CivicsLanguageModel"
-            languageModelGenerator.generateLanguageModelFromArray(language, withFilesNamed: name, forAcousticModelAtPath: OEAcousticModel.pathToModel("AcousticModelEnglish"))
+            languageModelGenerator.generateLanguageModelFromArray(language, withFilesNamed: name, forAcousticModelAtPath: OEAcousticModel.pathToModel(kAcousticModelEnglish))
             
             languageModelPathCivics = languageModelGenerator.pathToSuccessfullyGeneratedLanguageModelWithRequestedName(name)
             dictionaryPathCivics = languageModelGenerator.pathToSuccessfullyGeneratedDictionaryWithRequestedName(name)
@@ -102,7 +105,7 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
         else if mode == .Reading
         {
             let name = "ReadingLanguageModel"
-            languageModelGenerator.generateLanguageModelFromArray(language, withFilesNamed: name, forAcousticModelAtPath: OEAcousticModel.pathToModel("AcousticModelEnglish"))
+            languageModelGenerator.generateLanguageModelFromArray(language, withFilesNamed: name, forAcousticModelAtPath: OEAcousticModel.pathToModel(kAcousticModelEnglish))
             
             languageModelPathReading = languageModelGenerator.pathToSuccessfullyGeneratedLanguageModelWithRequestedName(name)
             dictionaryPathReading = languageModelGenerator.pathToSuccessfullyGeneratedDictionaryWithRequestedName(name)
@@ -110,7 +113,7 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
         else // mode == .Writing
         {
             let name = "WritingLanguageModel"
-            languageModelGenerator.generateLanguageModelFromArray(language, withFilesNamed: name, forAcousticModelAtPath: OEAcousticModel.pathToModel("AcousticModelEnglish"))
+            languageModelGenerator.generateLanguageModelFromArray(language, withFilesNamed: name, forAcousticModelAtPath: OEAcousticModel.pathToModel(kAcousticModelEnglish))
             languageModelPathWriting = languageModelGenerator.pathToSuccessfullyGeneratedLanguageModelWithRequestedName(name)
             dictionaryPathWriting = languageModelGenerator.pathToSuccessfullyGeneratedDictionaryWithRequestedName(name)
         }
@@ -133,6 +136,7 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
     {
         let languageModelPath: String
         let dictionaryPath: String
+        
         if currentLearningMode == .Civics
         {
             languageModelPath = languageModelPathCivics
@@ -152,7 +156,7 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
         // TODO: you should only do this once per screen - not every time you start listening!
         OEPocketsphinxController.sharedInstance().setActive(true, error: nil)
         OEPocketsphinxController.sharedInstance().secondsOfSilenceToDetect = 2.0
-        OEPocketsphinxController.sharedInstance().startListeningWithLanguageModelAtPath(languageModelPath, dictionaryAtPath: dictionaryPath, acousticModelAtPath: OEAcousticModel.pathToModel("AcousticModelEnglish"), languageModelIsJSGF: false)
+        OEPocketsphinxController.sharedInstance().startListeningWithLanguageModelAtPath(languageModelPath, dictionaryAtPath: dictionaryPath, acousticModelAtPath: OEAcousticModel.pathToModel(kAcousticModelEnglish), languageModelIsJSGF: false)
     }
     
     func stopListening()

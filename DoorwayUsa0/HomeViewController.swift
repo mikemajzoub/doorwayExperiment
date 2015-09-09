@@ -30,12 +30,6 @@ class HomeViewController: UIViewController
         super.viewDidLoad()
     }
     
-    override func viewWillAppear(animated: Bool)
-    {
-        super.viewWillAppear(animated)
-        
-    }
-    
     override func viewDidAppear(animated: Bool)
     {
         super.viewDidAppear(animated)
@@ -43,6 +37,7 @@ class HomeViewController: UIViewController
         // Not learning anything right now, so no learning mode.
         currentLearningMode = nil
         
+        // Must be placed in viewDidAppear so that view sizes all set up
         makeGraphForView(civicsView, andMode: .Civics)
         makeGraphForView(readingView, andMode: .Reading)
         makeGraphForView(writingView, andMode: .Writing)
@@ -93,7 +88,7 @@ class HomeViewController: UIViewController
         var piePiece = CAShapeLayer()
         piePiece.fillColor = UIColor.clearColor().CGColor
         piePiece.strokeColor = isCorrect ? UIColor.greenColor().CGColor : UIColor.redColor().CGColor
-        piePiece.lineWidth = view.bounds.width / 20
+        piePiece.lineWidth = view.bounds.width / 20 // adjust thickness dynamically with screen size
         
         // Get properties of circle
         let center = CGPointMake(view.bounds.width/2, view.bounds.width/2)
@@ -126,10 +121,6 @@ class HomeViewController: UIViewController
         {
             currentLearningMode = .Civics
             
-            // Must instantiate this sloppily in order for OE to work
-            openEarsEngine.startListening()
-            openEarsEngine.stopListening()
-            
             let navigationController = segue.destinationViewController as! UINavigationController
             let controller = navigationController.topViewController as! CivicsViewController
             controller.dataModel = dataModel // TODO: as design firms up, only pass question bank, keeping VC as dumb as possible
@@ -138,10 +129,6 @@ class HomeViewController: UIViewController
         else if segue.identifier == "ShowReading"
         {
             currentLearningMode = .Reading
-            
-            // Must instantiate this sloppily in order for OE to work
-            openEarsEngine.startListening()
-            openEarsEngine.stopListening()
             
             let navigationController = segue.destinationViewController as! UINavigationController
             let controller = navigationController.topViewController as! ReadingViewController
@@ -152,10 +139,6 @@ class HomeViewController: UIViewController
         {
             currentLearningMode = .Writing
             
-            // Must instantiate this sloppily in order for OE to work
-            openEarsEngine.startListening()
-            openEarsEngine.stopListening()
-            
             let navigationController = segue.destinationViewController as! UINavigationController
             let controller = navigationController.topViewController as! WritingViewController
             controller.dataModel = dataModel // TODO: as design firms up, only pass question bank, keeping VC as dumb as possible
@@ -165,6 +148,7 @@ class HomeViewController: UIViewController
     }
 }
 
+// MARK: - Extensions
 extension Float {
     var degreesToRadians : Float {
         return Float(self) * Float(M_PI) / 180.0

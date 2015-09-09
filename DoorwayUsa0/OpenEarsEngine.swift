@@ -55,6 +55,11 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
         // Set up listening.
         openEarsEventsObserver = OEEventsObserver()
         openEarsEventsObserver.delegate = self
+        
+        // This is a hacky fix to the OE api. Listening must start in order
+        // for speech to function.
+        startListening()
+        stopListening()
     }
     
     func setUpLanguageModelsWithDataModel(dataModel: DataModel)

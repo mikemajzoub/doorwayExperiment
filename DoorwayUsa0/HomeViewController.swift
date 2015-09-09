@@ -95,7 +95,7 @@ class HomeViewController: UIViewController
         piePiece.strokeColor = isCorrect ? UIColor.greenColor().CGColor : UIColor.redColor().CGColor
         piePiece.lineWidth = view.bounds.width / 20
         
-        // Get properties of circle.
+        // Get properties of circle
         let center = CGPointMake(view.bounds.width/2, view.bounds.width/2)
         let radius = view.bounds.width/2 - piePiece.lineWidth/2.0
         

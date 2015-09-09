@@ -142,13 +142,6 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
         let imageReference = CGImageCreateWithImageInRect(rotatedImage?.CGImage, croppedRectangle)
         let croppedImage = UIImage(CGImage: imageReference)!
 
-        /*
-        let croppedRectangle = CGRectMake(takenPicture.size.width/2 + 260, 0, 340, takenPicture.size.height)
-        let imageReference = CGImageCreateWithImageInRect(takenPicture?.CGImage, croppedRectangle)
-        let croppedImage = UIImage(CGImage: imageReference)!
-        let unwrappedCroppedImage = croppedImage
-*/
-
         abbyyEngine.processImage(croppedImage, withAnswer: currentQuestion)
         
         actionButton.setTitle("Reading text...", forState: .Disabled)
@@ -171,11 +164,42 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
         
         questionCycleIsFinishing = true
         
-        println(textFromPicture)
+        println("processed text: \(textFromPicture)")
+        
+        dataModel.writingQuestionBank.gradeResponse(textFromPicture, forAnswer: currentQuestion)
+        
+        if isUserResponseCorrect(textFromPicture, forAnswer: currentQuestion)
+        {
+            openEarsEngine.say("Correct")
+        }
+        else
+        {
+            openEarsEngine.say("Incorrect")
+        }
         
         spinner.stopAnimating()
         
         
+    }
+    
+    func isUserResponseCorrect(userResponse: String, forAnswer correctAnswer: String) -> Bool
+    {
+        let answerArray: NSArray = correctAnswer.componentsSeparatedByString(" ")
+        let incorrectWords = answerArray.mutableCopy() as! NSMutableArray
+        
+        for word in answerArray
+        {
+            let wordInAnswer = word as! String
+            
+            if userResponse.rangeOfString(wordInAnswer) != nil
+            {
+                let indexOfAnsweredWord = incorrectWords.indexOfObject(word)
+                incorrectWords.removeObjectAtIndex(indexOfAnsweredWord)
+            }
+        }
+
+        // if more than 2 words were not answered correctly, mark answer incorrect
+        return incorrectWords.count <= 2
     }
     
     // MARK: - OpenEarsEngineDelegate

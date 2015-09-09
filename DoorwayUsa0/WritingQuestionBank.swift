@@ -158,17 +158,18 @@ class WritingQuestionBank: NSObject, NSCoding
     }
     
     // Mark spoken words as correct/incorrect, updating their weights accordingly
-    func updateWordsForWrittenResponse(response: String, forSentencePrompt prompt: String)
+    func gradeResponse(responseProcessedFromPicture: String, forAnswer answer: String)
     {
-        // TODO: this really should be a dictionary to handle multiple cases of same word, removing word after it's used
-        let responseSet = Set(response.componentsSeparatedByString(" "))
-        let promptSet = Set(response.componentsSeparatedByString(" "))
+        let answerArray: NSArray = answer.componentsSeparatedByString(" ")
+        let incorrectWords = answerArray.mutableCopy() as! NSMutableArray
         
-        for word in responseSet
+        for word in answerArray
         {
-            var vocabularyTerm = vocabularyTermForText(word)
+            let wordInAnswer = word as! String
             
-            if promptSet.contains(vocabularyTerm.text)
+            let vocabularyTerm = vocabularyTermForText(wordInAnswer)
+            
+            if responseProcessedFromPicture.rangeOfString(wordInAnswer) != nil
             {
                 vocabularyTerm.answeredCorrectly()
             }

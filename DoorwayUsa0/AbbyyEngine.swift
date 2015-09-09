@@ -69,8 +69,6 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate, NSURLConnectionDelegate, NSURL
     {
         connectionState = .Uploading
         
-        
-        
         let processTextFieldUrlMinusParameters = "http://cloud.ocrsdk.com/processTextField?"
         let constantParameters = "textType=handprinted&oneTextLine=true"
         

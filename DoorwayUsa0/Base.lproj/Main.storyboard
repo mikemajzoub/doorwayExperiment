@@ -411,6 +411,7 @@
                     <connections>
                         <outlet property="actionButton" destination="RxW-OH-4K3" id="gGz-tQ-kZ5"/>
                         <outlet property="spinner" destination="4lY-Ky-AgP" id="ZXP-eb-yhy"/>
+                        <outlet property="takePictureButton" destination="fxB-gj-zJA" id="icI-zO-hUp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZIa-X2-GuS" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -14,8 +14,6 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
     var openEarsEngine: OpenEarsEngine!
     var abbyyEngine: AbbyyEngine!
     
-    var takenPicture: UIImage?
-    
     var currentQuestion: String!
     
     var questionCycleIsFinishing = true
@@ -23,14 +21,12 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     @IBOutlet weak var actionButton: UIButton!
+    @IBOutlet weak var takePictureButton: UIButton!
     
     override func viewWillAppear(animated: Bool)
     {
         openEarsEngine.delegate = self
         abbyyEngine.delegate = self
-        
-        actionButton.setTitle("Play Question", forState: .Normal)
-        actionButton.enabled = true
         
         setUpNextQuestion()
         
@@ -49,12 +45,17 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
     {
         questionCycleIsFinishing = false
         
+        actionButton.setTitle("Play Question", forState: .Normal)
+        actionButton.enabled = true
+        
+        takePictureButton.enabled = false
+        
         dataModel.writingQuestionBank.refreshActiveBoundaryIndex()
         
         if let question = dataModel.writingQuestionBank?.nextQuestion()
         {
             currentQuestion = question
-            println(currentQuestion)
+            println("next question selected: \(currentQuestion)")
         }
     }
     
@@ -64,6 +65,9 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
         openEarsEngine.say(currentQuestion)
         
         println(currentQuestion)
+        
+        actionButton.setTitle("Replay Question", forState: .Normal)
+        takePictureButton.enabled = true
     }
     
     // MARK: - TakePicture
@@ -72,8 +76,10 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
         let imagePicker = makeCameraViewController()
         imagePicker.sourceType = .Camera
         imagePicker.delegate = self
-        imagePicker.allowsEditing = true ////
+        imagePicker.allowsEditing = true
         presentViewController(imagePicker, animated: true, completion: nil)
+        
+        takePictureButton.enabled = false
     }
     
     func makeCameraViewController() -> UIImagePickerController
@@ -120,10 +126,24 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
         dismissViewControllerAnimated(true, completion: nil)
         
         spinner.startAnimating()
+        
         // picture is currently rotated 90 degrees counter clockwise. fixing this...
         let takenPicture = info[UIImagePickerControllerOriginalImage] as! UIImage!
+        let cleanedPicture = rotateAndCropImage(takenPicture)
+        
+        abbyyEngine.processImage(cleanedPicture, withAnswer: currentQuestion)
+
+        actionButton.setTitle("Reading text...", forState: .Disabled)
+        actionButton.enabled = false
+        
+        UIGraphicsEndImageContext()
+
+    }
+    
+    func rotateAndCropImage(dirtyImage: UIImage) -> UIImage
+    {
         let t = CGAffineTransformMakeRotation(CGFloat(0))
-        let currentRect = CGRect(origin: CGPointMake(0,0), size: takenPicture.size)
+        let currentRect = CGRect(origin: CGPointMake(0,0), size: dirtyImage.size)
         let newRect = CGRectApplyAffineTransform(currentRect, t)
         let newSize = newRect.size
         
@@ -131,22 +151,15 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
         let context = UIGraphicsGetCurrentContext()
         CGContextTranslateCTM(context, newSize.width / 2.0, newSize.height / 2.0)
         CGContextRotateCTM(context, CGFloat(0))
-        takenPicture.drawInRect(CGRectMake(-takenPicture.size.width / 2.0, -takenPicture.size.width / 2.0, takenPicture.size.width, takenPicture.size.height))
+        dirtyImage.drawInRect(CGRectMake(-dirtyImage.size.width / 2.0, -dirtyImage.size.width / 2.0, dirtyImage.size.width, dirtyImage.size.height))
         let rotatedImage = UIGraphicsGetImageFromCurrentImageContext()
-
+        
         // crop the image
         let croppedRectangle = CGRectMake(0, rotatedImage.size.height/2 + 240, rotatedImage.size.width, 340)
         let imageReference = CGImageCreateWithImageInRect(rotatedImage?.CGImage, croppedRectangle)
         let croppedImage = UIImage(CGImage: imageReference)!
-
-        abbyyEngine.processImage(croppedImage, withAnswer: currentQuestion)
-
         
-        actionButton.setTitle("Reading text...", forState: .Disabled)
-        actionButton.enabled = false
-        
-        UIGraphicsEndImageContext()
-
+        return croppedImage
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController)

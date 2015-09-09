@@ -24,11 +24,6 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
     
     @IBOutlet weak var actionButton: UIButton!
     
-    override func viewDidLoad()
-    {
-        
-    }
-    
     override func viewWillAppear(animated: Bool)
     {
         openEarsEngine.delegate = self
@@ -93,13 +88,11 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
         let cameraTopBar = CGFloat(40) + shiftingImagePreviewBugFix // DPEENDS ON PHONE!!! MUST FIX!!! (and diff for ipad!!!)
         let cameraBottomBar = CGFloat(101) - shiftingImagePreviewBugFix // DEPENDS ON PHONE!!!
         
-        
         // this is to deal with the Retake/Cancel screen otherwise moving the image and making things look bad. it's hardcoded though - so must fix for each device
         imagePicker.cameraViewTransform = CGAffineTransformMakeTranslation(0, shiftingImagePreviewBugFix)
         
         let overlayView = UIView(frame: CGRectMake(0, cameraTopBar, imagePicker.view.frame.size.width, imagePicker.view.frame.size.height - cameraBottomBar - cameraTopBar))
         overlayView.backgroundColor = UIColor.clearColor()
-        
         
         let blinderWidth = (overlayView.frame.size.width)
         let blinderHeight = (overlayView.frame.size.height / 2) - (sightHeight / 2)
@@ -125,11 +118,35 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
         
         spinner.startAnimating()
         
-        var takenPicture = info[UIImagePickerControllerOriginalImage] as! UIImage?
+        // picture is currently rotated 90 degrees counter clockwise. fixing this...
+        let takenPicture = info[UIImagePickerControllerOriginalImage] as! UIImage!
+        let t = CGAffineTransformMakeRotation(CGFloat(0))
+        let currentRect = CGRect(origin: CGPointMake(0,0), size: takenPicture.size)
+        let newRect = CGRectApplyAffineTransform(currentRect, t)
+        let newSize = newRect.size
+        
+        UIGraphicsBeginImageContext(newSize)
+        let context = UIGraphicsGetCurrentContext()
+        CGContextTranslateCTM(context, newSize.width / 2.0, newSize.height / 2.0)
+        CGContextRotateCTM(context, CGFloat(0))
+        takenPicture.drawInRect(CGRectMake(-takenPicture.size.width / 2.0, -takenPicture.size.width / 2.0, takenPicture.size.width, takenPicture.size.height))
+        let rotatedImage = UIGraphicsGetImageFromCurrentImageContext()
+        
+        let unwrappedRotated = rotatedImage!
+
+        // crop the image
+        let croppedRectangle = CGRectMake(0, rotatedImage.size.height/2 + 240, rotatedImage.size.width, 340)
+        let imageReference = CGImageCreateWithImageInRect(rotatedImage?.CGImage, croppedRectangle)
+        let croppedImage = UIImage(CGImage: imageReference)!
+
+        
         abbyyEngine.processImage(takenPicture, withAnswer: currentQuestion)
         
         actionButton.setTitle("Reading text...", forState: .Disabled)
         actionButton.enabled = false
+        
+        UIGraphicsEndImageContext()
+
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController)

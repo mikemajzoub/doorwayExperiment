@@ -34,6 +34,9 @@ class WritingQuestionBank: NSObject, NSCoding
     override init()
     {
         super.init()
+        
+        initializeSentences()
+        initializeVocabularyList()
     }
     
     required init(coder aDecoder: NSCoder)

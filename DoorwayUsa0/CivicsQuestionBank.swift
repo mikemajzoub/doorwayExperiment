@@ -28,6 +28,7 @@ class CivicsQuestionBank: NSObject, NSCoding
     {
         super.init()
         
+        initializeQuestions()
     }
     
     required init(coder aDecoder: NSCoder)

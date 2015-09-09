@@ -79,18 +79,11 @@ class DataModel
         let firstTime = userDefaults.boolForKey(kFirstTime)
         if firstTime
         {
-            civicsQuestionBank = CivicsQuestionBank()
-            civicsQuestionBank.initializeQuestions()
-            
-            readingQuestionBank = ReadingQuestionBank()
-            readingQuestionBank.initializeSentences()
-            readingQuestionBank.initializeVocabularyList()
-            
-            writingQuestionBank = WritingQuestionBank()
-            writingQuestionBank.initializeSentences()
-            writingQuestionBank.initializeVocabularyList()
-
             userDefaults.setBool(false, forKey: kFirstTime)
+            
+            civicsQuestionBank = CivicsQuestionBank()
+            readingQuestionBank = ReadingQuestionBank()
+            writingQuestionBank = WritingQuestionBank()
         }
     }
     

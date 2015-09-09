@@ -65,7 +65,7 @@ class CivicsViewController: UIViewController, OpenEarsEngineDelegate
     {
         dataModel.civicsQuestionBank.refreshActiveBoundaryIndex()
         
-        if let question = dataModel.civicsQuestionBank.nextQuestion()
+        if let question = dataModel.civicsQuestionBank?.nextQuestion()
         {
             actionButton.setTitle("Listen...", forState: .Disabled)
             actionButton.enabled = false

@@ -14,18 +14,21 @@ class CivicsQuestionBank: NSObject, NSCoding
     let kActiveBoundaryIndex = "ActiveBoundaryIndexName"
     
     // This contains every civics question.
-    var questions = [CivicsQuestion]()
+    var questions: [CivicsQuestion]!
     
     // The activeBoundaryIndex is what keeps the user from being overwhelmed with too
     // many new questions at once. It starts by only quizzing user on X questions,
     // and once the user has mastered these, it will quiz user on X + Y questions.
     // It will continue this pattern of increasing the questions can be randomly
     // selected until the entire question bank is revealed to the user.
-    var activeBoundaryIndex = 3
+    var activeBoundaryIndex: Int
     
     // MARK: - Init
     override init()
     {
+        activeBoundaryIndex = 3
+        questions = [CivicsQuestion]()
+        
         super.init()
         
         initializeQuestions()
@@ -84,7 +87,7 @@ class CivicsQuestionBank: NSObject, NSCoding
     // available questions (determined by the activeBoundaryIndex). Note
     // that questions with large weights have a higher probability of being
     // selected.
-    func nextQuestion() -> CivicsQuestion?
+    func nextQuestion() -> CivicsQuestion
     {
         var totalWeight = 0
         
@@ -110,15 +113,12 @@ class CivicsQuestionBank: NSObject, NSCoding
             }
         }
         
-        return questionToReturn
-    }
-    
-    func printQuestions()
-    {
-        for q in questions
+        if questionToReturn == nil
         {
-            println("q: \(q.question)\naSpoken: \(q.answersSpoken)\naKeywords: \(q.answersKeywords)")
+            assert(false)
         }
+        
+        return questionToReturn!
     }
     
     func percentMastered() -> Float
@@ -135,11 +135,11 @@ class CivicsQuestionBank: NSObject, NSCoding
         }
         
         let percentMastered = Float(correctQuestions) / Float(allQuestions)
-        println("percent mastered: \(percentMastered)")
         
         return percentMastered
     }
     
+    // MARK: - Language For OpenEars
     func generateLanguage() -> [String]
     {
         var language = [String]()
@@ -200,5 +200,14 @@ class CivicsQuestionBank: NSObject, NSCoding
             answersSpoken: ["TWENTY-SEVEN"],
         answersKeywords: [ ["TWENTY-SEVEN"] ])
         questions.append(question)
+    }
+    
+    // MARK: - Debugging
+    func printQuestions()
+    {
+        for q in questions
+        {
+            println("q: \(q.question)\naSpoken: \(q.answersSpoken)\naKeywords: \(q.answersKeywords)")
+        }
     }
 }

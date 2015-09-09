@@ -54,6 +54,6 @@ class VocabularyTerm: NSObject
     
     func isMastered() -> Bool
     {
-        return weight <= ((ORIGINAL_WEIGHT / 2) / 2) // TODO: use swift's exponental syntax
+        return weight <= MASTERED_WEIGHT
     }
 }

@@ -120,11 +120,8 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
         dismissViewControllerAnimated(true, completion: nil)
         
         spinner.startAnimating()
-        
-        let takenPicture = info[UIImagePickerControllerOriginalImage] as! UIImage!
-        let unwrappedTakenPicture = takenPicture!
-        
         // picture is currently rotated 90 degrees counter clockwise. fixing this...
+        let takenPicture = info[UIImagePickerControllerOriginalImage] as! UIImage!
         let t = CGAffineTransformMakeRotation(CGFloat(0))
         let currentRect = CGRect(origin: CGPointMake(0,0), size: takenPicture.size)
         let newRect = CGRectApplyAffineTransform(currentRect, t)
@@ -143,6 +140,7 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
         let croppedImage = UIImage(CGImage: imageReference)!
 
         abbyyEngine.processImage(croppedImage, withAnswer: currentQuestion)
+
         
         actionButton.setTitle("Reading text...", forState: .Disabled)
         actionButton.enabled = false

@@ -158,15 +158,15 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
     
     func retrievedText(textFromPicture: String)
     {
-        // TODO: split string into words, see if answer is subest of textFromPicture, allow for margin of error
+        let uppercaseTextFromPicture = textFromPicture.uppercaseString
         
         questionCycleIsFinishing = true
         
-        println("processed text: \(textFromPicture)")
+        println("processed text: \(uppercaseTextFromPicture)")
         
-        dataModel.writingQuestionBank.gradeResponse(textFromPicture, forAnswer: currentQuestion)
+        dataModel.writingQuestionBank.gradeResponse(uppercaseTextFromPicture, forAnswer: currentQuestion)
         
-        if isUserResponseCorrect(textFromPicture, forAnswer: currentQuestion)
+        if isUserResponseCorrect(uppercaseTextFromPicture, forAnswer: currentQuestion)
         {
             openEarsEngine.say("Correct")
         }
@@ -176,12 +176,12 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
         }
         
         spinner.stopAnimating()
-        
-        
     }
     
     func isUserResponseCorrect(userResponse: String, forAnswer correctAnswer: String) -> Bool
     {
+        let uppercaseUserResponse = userResponse.uppercaseString
+        
         let answerArray: NSArray = correctAnswer.componentsSeparatedByString(" ")
         let incorrectWords = answerArray.mutableCopy() as! NSMutableArray
         
@@ -189,7 +189,7 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
         {
             let wordInAnswer = word as! String
             
-            if userResponse.rangeOfString(wordInAnswer) != nil
+            if uppercaseUserResponse.rangeOfString(wordInAnswer) != nil
             {
                 let indexOfAnsweredWord = incorrectWords.indexOfObject(word)
                 incorrectWords.removeObjectAtIndex(indexOfAnsweredWord)

@@ -25,12 +25,6 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate, NSURLConnectionDelegate, NSURL
     
     let kHttpHeaderFieldAuthorization = "Authorization"
     let kHttpMethodPost = "POST"
-    /// let kProcessImageUrlMinusParameters = "http://cloud.ocrsdk.com/processImage?"
-    /// let kProcessImageParameters = "language=English&exportFormat=txt"
-    let kProcessTextFieldUrlMinusParameters = "http://cloud.ocrsdk.com/processTextField?"
-    let kConstantParameters = "letterSet=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz.,'&textType=handprinted&oneTextLine=true&writingStyle=american"
-    
-    
     
     // Delegate
     weak var delegate: AbbyyEngineDelegate?
@@ -75,11 +69,17 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate, NSURLConnectionDelegate, NSURL
     {
         connectionState = .Uploading
         
-        let answerRegEx = answerToRegularExpression(answer)
         
+        
+        let processTextFieldUrlMinusParameters = "http://cloud.ocrsdk.com/processTextField?"
+        let constantParameters = "textType=handprinted&oneTextLine=true"
+        
+        let answerRegEx = answerToRegularExpression(answer)
         let regExParameter = "&regExp=(\(answerRegEx))"
-        let parameters = kConstantParameters + regExParameter
-        let urlString = kProcessTextFieldUrlMinusParameters + parameters
+        let placeholdersCountParameter = "&placeholdersCount=\(count(answer) + 1)" // +1 for punctuation '.' at end
+        let letterSetParameter = "&letterSet=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz.,'"
+        let parameters = constantParameters + placeholdersCountParameter + letterSetParameter + regExParameter
+        let urlString = processTextFieldUrlMinusParameters + parameters
         
         println(urlString)
         
@@ -103,11 +103,17 @@ class AbbyyEngine: NSObject, NSXMLParserDelegate, NSURLConnectionDelegate, NSURL
         
         for (index, word) in enumerate(answerArray)
         {
+            regularExpression += ""
+            
             regularExpression += word
             
             if index < answerArray.count - 1
             {
-                regularExpression += "%20"
+                regularExpression += ","
+            }
+            else
+            {
+                regularExpression += ""
             }
         }
         

@@ -54,6 +54,7 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
         if let question = dataModel.writingQuestionBank?.nextQuestion()
         {
             currentQuestion = question
+            println(currentQuestion)
         }
     }
     
@@ -61,6 +62,8 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
     @IBAction func playSentence()
     {
         openEarsEngine.say(currentQuestion)
+        
+        println(currentQuestion)
     }
     
     // MARK: - TakePicture
@@ -118,8 +121,10 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
         
         spinner.startAnimating()
         
-        // picture is currently rotated 90 degrees counter clockwise. fixing this...
         let takenPicture = info[UIImagePickerControllerOriginalImage] as! UIImage!
+        let unwrappedTakenPicture = takenPicture!
+        
+        // picture is currently rotated 90 degrees counter clockwise. fixing this...
         let t = CGAffineTransformMakeRotation(CGFloat(0))
         let currentRect = CGRect(origin: CGPointMake(0,0), size: takenPicture.size)
         let newRect = CGRectApplyAffineTransform(currentRect, t)
@@ -131,16 +136,20 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
         CGContextRotateCTM(context, CGFloat(0))
         takenPicture.drawInRect(CGRectMake(-takenPicture.size.width / 2.0, -takenPicture.size.width / 2.0, takenPicture.size.width, takenPicture.size.height))
         let rotatedImage = UIGraphicsGetImageFromCurrentImageContext()
-        
-        let unwrappedRotated = rotatedImage!
 
         // crop the image
         let croppedRectangle = CGRectMake(0, rotatedImage.size.height/2 + 240, rotatedImage.size.width, 340)
         let imageReference = CGImageCreateWithImageInRect(rotatedImage?.CGImage, croppedRectangle)
         let croppedImage = UIImage(CGImage: imageReference)!
 
-        
-        abbyyEngine.processImage(takenPicture, withAnswer: currentQuestion)
+        /*
+        let croppedRectangle = CGRectMake(takenPicture.size.width/2 + 260, 0, 340, takenPicture.size.height)
+        let imageReference = CGImageCreateWithImageInRect(takenPicture?.CGImage, croppedRectangle)
+        let croppedImage = UIImage(CGImage: imageReference)!
+        let unwrappedCroppedImage = croppedImage
+*/
+
+        abbyyEngine.processImage(croppedImage, withAnswer: currentQuestion)
         
         actionButton.setTitle("Reading text...", forState: .Disabled)
         actionButton.enabled = false

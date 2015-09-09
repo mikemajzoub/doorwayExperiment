@@ -71,11 +71,9 @@ class WritingQuestionBank: NSObject, NSCoding
                     if !vocabularyTerm.isMastered()
                     {
                         allMastered = false
-                        break // TODO: investigate how far this breaks me
+                        break
                     }
-                    println("will this print? 1")
                 }
-                println("will this print? 2")
             }
         }
         

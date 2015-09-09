@@ -408,7 +408,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="playSentence" destination="bKR-xX-aOf" eventType="touchUpInside" id="z9C-cY-AGT"/>
+                                    <action selector="playSentence" destination="bKR-xX-aOf" eventType="touchUpInside" id="RQE-GK-4Mq"/>
                                 </connections>
                             </button>
                         </subviews>

@@ -136,7 +136,6 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
         actionButton.setTitle("Reading text...", forState: .Disabled)
         actionButton.enabled = false
         
-        UIGraphicsEndImageContext()
 
     }
     
@@ -153,6 +152,7 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
         CGContextRotateCTM(context, CGFloat(0))
         dirtyImage.drawInRect(CGRectMake(-dirtyImage.size.width / 2.0, -dirtyImage.size.width / 2.0, dirtyImage.size.width, dirtyImage.size.height))
         let rotatedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
         
         // crop the image
         let croppedRectangle = CGRectMake(0, rotatedImage.size.height/2 + 240, rotatedImage.size.width, 340)
@@ -182,10 +182,12 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
         if isUserResponseCorrect(uppercaseTextFromPicture, forAnswer: currentQuestion)
         {
             openEarsEngine.say("Correct")
+            println("Correct")
         }
         else
         {
             openEarsEngine.say("Incorrect")
+            println("Incorrect")
         }
         
         spinner.stopAnimating()

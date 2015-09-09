@@ -99,35 +99,20 @@ class DataModel
     {
         if mode == .Civics
         {
-            return generateCivicsLanguage()
+            return civicsQuestionBank.generateLanguage()
         }
         else if mode == .Reading
         {
-            return generateReadingLanguage()
+            return readingQuestionBank.generateLanguage()
         }
         else if mode == .Writing
         {
-            return generateWritingLanguage()
+            return writingQuestionBank.generateLanguage()
         }
         else
         {
             assert(false)
         }
-    }
-    
-    func generateCivicsLanguage() -> [String]
-    {
-        return civicsQuestionBank.generateLanguage()
-    }
-    
-    func generateReadingLanguage() -> [String]
-    {
-        return readingQuestionBank.generateLanguage()
-    }
-    
-    func generateWritingLanguage() -> [String]
-    {
-        return writingQuestionBank.generateLanguage()
     }
     
     // MARK: - Save/Load Banks

@@ -21,3 +21,4 @@ var currentLearningMode: LearningMode?
 
 // Weigh questions and words to determine probability of being quizzed in future.
 let ORIGINAL_WEIGHT = 256
+let MASTERED_WEIGHT = ((ORIGINAL_WEIGHT / 2) / 2)

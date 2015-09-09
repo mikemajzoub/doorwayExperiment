@@ -22,12 +22,12 @@ class DataModel
     // MARK: - Init
     init()
     {
-        loadQuestionBanks()
+        loadQuestionBanksFromFile()
         registerDefaults()
         handleFirstTime()
     }
     
-    func loadQuestionBanks()
+    func loadQuestionBanksFromFile()
     {
         // Civics
         let civicsPath = dataFilePath(kCivicsQuestionBank)
@@ -87,7 +87,7 @@ class DataModel
         }
     }
     
-    // MARK: - Generate Language
+    // MARK: - Called by OpenEars engine to generate language models
     func getLanguageForLearningMode(mode: LearningMode) -> [String]
     {
         if mode == .Civics

@@ -9,5 +9,3 @@
 #import <OpenEars/OELogging.h>
 #import <OpenEars/OEAcousticModel.h>
 #import <Slt/Slt.h>
-
-// Abbyy

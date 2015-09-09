@@ -112,13 +112,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2D3503F41B9CD429006A17BF /* AbbyyOcrFiles */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = AbbyyOcrFiles;
-			sourceTree = "<group>";
-		};
 		2D53AC221B91FBDA00B3DFC7 = {
 			isa = PBXGroup;
 			children = (
@@ -239,7 +232,6 @@
 		2DD64D4B1B987D930023BF7C /* Speak, Listen, See */ = {
 			isa = PBXGroup;
 			children = (
-				2D3503F41B9CD429006A17BF /* AbbyyOcrFiles */,
 				2DB68F461B9A65B600BD32A0 /* AbbyyKeys.swift */,
 				2DB853D71B93EFA300377750 /* OpenEarsEngine.swift */,
 				2D3BD51F1B9C86960054A145 /* AbbyyEngine.swift */,

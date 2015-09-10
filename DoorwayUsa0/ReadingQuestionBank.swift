@@ -119,6 +119,8 @@ class ReadingQuestionBank: NSObject, NSCoding
     // Of sentences currently being quizzed, return one with greatest weight.
     func nextQuestion() -> String
     {
+        refreshActiveBoundaryIndex()
+        
         var maxSentence = ""
         var maxSentenceWeight = 0
         

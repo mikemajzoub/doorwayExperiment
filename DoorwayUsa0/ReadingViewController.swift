@@ -43,9 +43,7 @@ class ReadingViewController: UIViewController, OpenEarsEngineDelegate
     
     // Grab next question, speak it, and begin listening for user's answer
     @IBAction func askQuestion()
-    {
-        dataModel.readingQuestionBank.refreshActiveBoundaryIndex()
-        
+    {        
         if let question = dataModel.readingQuestionBank?.nextQuestion()
         {
             questionCycleIsFinishing = false

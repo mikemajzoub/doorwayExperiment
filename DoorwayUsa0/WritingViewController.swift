@@ -16,10 +16,9 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
     
     var currentQuestion: String!
     
-    var questionCycleIsFinishing = true
+    var questionCycleIsFinishing = false
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
-    
     @IBOutlet weak var actionButton: UIButton!
     @IBOutlet weak var takePictureButton: UIButton!
     
@@ -47,7 +46,6 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
         
         actionButton.setTitle("Play Question", forState: .Normal)
         actionButton.enabled = true
-        
         takePictureButton.enabled = false
         
         dataModel.writingQuestionBank.refreshActiveBoundaryIndex()

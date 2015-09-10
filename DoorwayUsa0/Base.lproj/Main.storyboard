@@ -332,7 +332,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="repeatAnswer" destination="Ta4-bg-Nq4" eventType="touchUpInside" id="hGA-b7-wt0"/>
+                                    <action selector="replayAnswer" destination="Ta4-bg-Nq4" eventType="touchUpInside" id="qgM-mS-HpW"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -353,7 +353,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="actionButton" destination="um5-i4-wD2" id="IVr-L2-ev6"/>
-                        <outlet property="replayAnswer" destination="L9W-Cj-NvS" id="CX2-a7-4jE"/>
+                        <outlet property="replayAnswerButton" destination="L9W-Cj-NvS" id="Phk-R6-4XF"/>
                         <outlet property="textToRead" destination="dDF-vz-0vR" id="knI-dz-hLo"/>
                     </connections>
                 </viewController>

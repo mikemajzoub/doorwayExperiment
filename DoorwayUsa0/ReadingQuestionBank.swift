@@ -218,6 +218,25 @@ class ReadingQuestionBank: NSObject, NSCoding
         }
     }
     
+    func isCorrectUserResponse(userResponse: String, forAnswer correctAnswer: String) -> Bool
+    {
+        let responseArray = userResponse.componentsSeparatedByString(" ")
+        let answerArray: NSArray = correctAnswer.componentsSeparatedByString(" ")
+        let promptMutableArray = answerArray.mutableCopy() as! NSMutableArray
+        
+        for word in responseArray
+        {
+            if promptMutableArray.indexOfObject(word) != NSNotFound
+            {
+                let indexOfTerm = promptMutableArray.indexOfObject(word)
+                promptMutableArray.removeObjectAtIndex(indexOfTerm)
+            }
+        }
+        
+        // if more than 2 words were not answered correctly, mark answer incorrect
+        return promptMutableArray.count <= 2
+    }
+    
     // MARK: - Initialize Data
     
     // There is nothing special about these sentences, aside from them being made up entirely of words from the vocab list.

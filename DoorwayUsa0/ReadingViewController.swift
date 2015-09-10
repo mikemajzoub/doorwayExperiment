@@ -19,7 +19,7 @@ class ReadingViewController: UIViewController, OpenEarsEngineDelegate
     
     @IBOutlet weak var textToRead: UITextView!
     @IBOutlet weak var actionButton: UIButton!
-    @IBOutlet weak var replayAnswer: UIButton!
+    @IBOutlet weak var replayAnswerButton: UIButton!
     
     override func viewWillAppear(animated: Bool)
     {
@@ -29,8 +29,7 @@ class ReadingViewController: UIViewController, OpenEarsEngineDelegate
         
         actionButton.setTitle("Play Question", forState: .Normal)
         actionButton.enabled = true
-        
-        replayAnswer.hidden = true
+        replayAnswerButton.hidden = true
         
         textToRead.text = "" // clear out lorem ipsum.
     }
@@ -39,7 +38,7 @@ class ReadingViewController: UIViewController, OpenEarsEngineDelegate
     {
         openEarsEngine.stopEngine()
         
-        replayAnswer.hidden = true
+        replayAnswerButton.hidden = true
     }
     
     // Grab next question, speak it, and begin listening for user's answer
@@ -49,11 +48,11 @@ class ReadingViewController: UIViewController, OpenEarsEngineDelegate
         
         if let question = dataModel.readingQuestionBank?.nextQuestion()
         {
-            replayAnswer.hidden = true
+            questionCycleIsFinishing = false
             
+            replayAnswerButton.hidden = true
             actionButton.enabled = false
             
-            questionCycleIsFinishing = false
             
             currentQuestion = question
             
@@ -76,43 +75,24 @@ class ReadingViewController: UIViewController, OpenEarsEngineDelegate
         
         if let heardWords = words
         {
+            questionCycleIsFinishing = true
+            
             actionButton.setTitle("Listen...", forState: .Disabled)
             actionButton.enabled = false
             
             // grade the answer
             dataModel.readingQuestionBank.updateWordsForSpokenResponse(heardWords, forSentencePrompt: currentQuestion)
-            
-            // TODO: Reading needs to be a bit more forgiving. Perhaps break into 2 sets, and allow response to have 2 incorrect words?, etc.
-            var response = correctUserResponse(words, forAnswer: currentQuestion) ? "Correct. " : "Incorrect. The correct answer is. "
+
+            // say the answer
+            var response = dataModel.readingQuestionBank.isCorrectUserResponse(words, forAnswer: currentQuestion) ? "Correct. " : "Incorrect. The correct answer is. "
             response += currentQuestion
             openEarsEngine.say(response)
-            
-            questionCycleIsFinishing = true
         }
     }
     
-    func correctUserResponse(userResponse: String, forAnswer correctAnswer: String) -> Bool
+    @IBAction func replayAnswer()
     {
-        let responseArray = userResponse.componentsSeparatedByString(" ")
-        let answerArray: NSArray = correctAnswer.componentsSeparatedByString(" ")
-        let promptMutableArray = answerArray.mutableCopy() as! NSMutableArray
-        
-        for word in responseArray
-        {
-            if promptMutableArray.indexOfObject(word) != NSNotFound
-            {
-                let indexOfTerm = promptMutableArray.indexOfObject(word)
-                promptMutableArray.removeObjectAtIndex(indexOfTerm)
-            }
-        }
-        
-        // if more than 2 words were not answered correctly, mark answer incorrect
-        return promptMutableArray.count <= 2
-    }
-    
-    @IBAction func repeatAnswer()
-    {
-        replayAnswer.hidden = true
+        replayAnswerButton.hidden = true
         actionButton.enabled = false
         
         openEarsEngine.say(currentQuestion)
@@ -123,7 +103,7 @@ class ReadingViewController: UIViewController, OpenEarsEngineDelegate
         if questionCycleIsFinishing
         {
             actionButton.enabled = true
-            replayAnswer.hidden = false
+            replayAnswerButton.hidden = false
         }
         else
         {

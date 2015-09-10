@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D2A48FC1BA11ECF0088CE40 /* CustomCameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2A48FB1BA11ECF0088CE40 /* CustomCameraController.swift */; };
 		2D3BD5201B9C86960054A145 /* AbbyyEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3BD51F1B9C86960054A145 /* AbbyyEngine.swift */; };
 		2D53AC311B91FBDA00B3DFC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D53AC301B91FBDA00B3DFC7 /* AppDelegate.swift */; };
 		2D53AC361B91FBDA00B3DFC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D53AC341B91FBDA00B3DFC7 /* Main.storyboard */; };
@@ -50,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D2A48FB1BA11ECF0088CE40 /* CustomCameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCameraController.swift; sourceTree = "<group>"; };
 		2D3BD51F1B9C86960054A145 /* AbbyyEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbbyyEngine.swift; sourceTree = "<group>"; };
 		2D53AC2B1B91FBDA00B3DFC7 /* DoorwayUsa0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoorwayUsa0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D53AC2F1B91FBDA00B3DFC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 				2DE14EE01B92047000C27CB7 /* CivicsViewController.swift */,
 				2DE47EEA1B99CA3B0029BE0F /* ReadingViewController.swift */,
 				2DB68F481B9A821100BD32A0 /* WritingViewController.swift */,
+				2D2A48FB1BA11ECF0088CE40 /* CustomCameraController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				2DB853D81B93EFA300377750 /* OpenEarsEngine.swift in Sources */,
 				2DE14EE11B92047000C27CB7 /* CivicsViewController.swift in Sources */,
 				2DB68F491B9A821100BD32A0 /* WritingViewController.swift in Sources */,
+				2D2A48FC1BA11ECF0088CE40 /* CustomCameraController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

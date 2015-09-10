@@ -120,6 +120,8 @@ class WritingQuestionBank: NSObject, NSCoding
     // Of sentences currently being quizzed, return one with greatest weight.
     func nextQuestion() -> String
     {
+        refreshActiveBoundaryIndex()
+        
         var maxSentence = ""
         var maxSentenceWeight = 0
         
@@ -183,6 +185,8 @@ class WritingQuestionBank: NSObject, NSCoding
     // Mark spoken words as correct/incorrect, updating their weights accordingly
     func gradeResponse(responseProcessedFromPicture: String, forAnswer answer: String)
     {
+        let response = responseProcessedFromPicture.uppercaseString
+        
         let answerArray: NSArray = answer.componentsSeparatedByString(" ")
         let incorrectWords = answerArray.mutableCopy() as! NSMutableArray
         
@@ -192,7 +196,7 @@ class WritingQuestionBank: NSObject, NSCoding
             
             let vocabularyTerm = vocabularyTermForText(wordInAnswer)
             
-            if responseProcessedFromPicture.rangeOfString(wordInAnswer) != nil
+            if response.rangeOfString(wordInAnswer) != nil
             {
                 vocabularyTerm.answeredCorrectly()
             }
@@ -201,6 +205,28 @@ class WritingQuestionBank: NSObject, NSCoding
                 vocabularyTerm.answeredIncorrectly()
             }
         }
+    }
+    
+    func isUserResponseCorrect(userResponse: String, forAnswer correctAnswer: String) -> Bool
+    {
+        let uppercaseUserResponse = userResponse.uppercaseString
+        
+        let answerArray: NSArray = correctAnswer.componentsSeparatedByString(" ")
+        let incorrectWords = answerArray.mutableCopy() as! NSMutableArray
+        
+        for word in answerArray
+        {
+            let wordInAnswer = word as! String
+            
+            if uppercaseUserResponse.rangeOfString(wordInAnswer) != nil
+            {
+                let indexOfAnsweredWord = incorrectWords.indexOfObject(word)
+                incorrectWords.removeObjectAtIndex(indexOfAnsweredWord)
+            }
+        }
+        
+        // if more than 2 words were not answered correctly, mark answer incorrect
+        return incorrectWords.count <= 2
     }
     
     // MARK: - Initialize Data

@@ -18,8 +18,6 @@ class ReadingViewController: UIViewController, OpenEarsEngineDelegate
     var questionCycleIsFinishing = true
     
     @IBOutlet weak var textToRead: UITextView!
-    @IBOutlet weak var actionButton: UIButton!
-    @IBOutlet weak var replayAnswerButton: UIButton!
     
     override func viewWillAppear(animated: Bool)
     {
@@ -27,18 +25,12 @@ class ReadingViewController: UIViewController, OpenEarsEngineDelegate
         
         openEarsEngine.delegate = self
         
-        actionButton.setTitle("Play Question", forState: .Normal)
-        actionButton.enabled = true
-        replayAnswerButton.hidden = true
-        
         textToRead.text = "" // clear out lorem ipsum.
     }
     
     override func viewWillDisappear(animated: Bool)
     {
         openEarsEngine.stopEngine()
-        
-        replayAnswerButton.hidden = true
     }
     
     // Grab next question, speak it, and begin listening for user's answer
@@ -47,10 +39,6 @@ class ReadingViewController: UIViewController, OpenEarsEngineDelegate
         if let question = dataModel.readingQuestionBank?.nextQuestion()
         {
             questionCycleIsFinishing = false
-            
-            replayAnswerButton.hidden = true
-            actionButton.enabled = false
-            
             
             currentQuestion = question
             
@@ -75,9 +63,6 @@ class ReadingViewController: UIViewController, OpenEarsEngineDelegate
         {
             questionCycleIsFinishing = true
             
-            actionButton.setTitle("Listen...", forState: .Disabled)
-            actionButton.enabled = false
-            
             // grade the answer
             dataModel.readingQuestionBank.updateWordsForSpokenResponse(heardWords, forSentencePrompt: currentQuestion)
 
@@ -90,9 +75,6 @@ class ReadingViewController: UIViewController, OpenEarsEngineDelegate
     
     @IBAction func replayAnswer()
     {
-        replayAnswerButton.hidden = true
-        actionButton.enabled = false
-        
         openEarsEngine.say(currentQuestion)
     }
     
@@ -100,12 +82,11 @@ class ReadingViewController: UIViewController, OpenEarsEngineDelegate
     {
         if questionCycleIsFinishing
         {
-            actionButton.enabled = true
-            replayAnswerButton.hidden = false
+
         }
         else
         {
-            actionButton.setTitle("Speak Now...", forState: .Disabled)
+
         }
     }
     

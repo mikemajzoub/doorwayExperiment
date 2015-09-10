@@ -15,9 +15,6 @@ class CivicsViewController: UIViewController, OpenEarsEngineDelegate
     
     var currentQuestion: CivicsQuestion!
     
-    @IBOutlet weak var actionButton: UIButton!
-    @IBOutlet weak var replayAnswerButton: UIButton!
-    
     // Whenever computer finishes speaking, it checks to see if the question
     // cycle is finishing. If the cycle is marked as finishing, it means that
     // it is time to choose a new question for the user. 
@@ -27,30 +24,32 @@ class CivicsViewController: UIViewController, OpenEarsEngineDelegate
     // yet.
     var questionCycleIsFinishing = false
     
+    @IBOutlet weak var startNextQuestionButton: UIButton!
+    @IBOutlet weak var replayAnswerButton: UIButton!
+    
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
         
         openEarsEngine.delegate = self
         
-        actionButton.setTitle("Play Question", forState: .Normal)
-        actionButton.enabled = true
-        replayAnswerButton.hidden = true
+        startNextQuestionButton.enabled = true
+        replayAnswerButton.enabled = false
     }
     
     override func viewWillDisappear(animated: Bool)
     {
-        actionButton.enabled = true
-        replayAnswerButton.hidden = true
-        
         questionCycleIsFinishing = false
         
         openEarsEngine.stopEngine()
     }
     
     // Grab next question, speak it, and begin listening for user's answer
-    @IBAction func askQuestion()
+    @IBAction func startNextQuestion()
     {
+        startNextQuestionButton.enabled = false
+        replayAnswerButton.enabled = false
+        
         if let question = dataModel.civicsQuestionBank?.nextQuestion()
         {
             questionCycleIsFinishing = false
@@ -59,19 +58,16 @@ class CivicsViewController: UIViewController, OpenEarsEngineDelegate
             
             openEarsEngine.say(question.question)
             openEarsEngine.startListening()
-            
-            actionButton.setTitle("Listen...", forState: .Disabled)
-            actionButton.enabled = false
-            replayAnswerButton.hidden = true
         }
     }
     
     @IBAction func replayAnswer()
     {
+        startNextQuestionButton.enabled = false
         replayAnswerButton.enabled = false
-        actionButton.enabled = false
         
         let response = allPossibleAnswersResponse()
+        println("response: " + response)
         
         openEarsEngine.say(response)
     }
@@ -111,8 +107,6 @@ class CivicsViewController: UIViewController, OpenEarsEngineDelegate
         
         openEarsEngine.stopListening()
         
-        actionButton.setTitle("Listen...", forState: .Disabled)
-        
         dataModel.civicsQuestionBank.gradeResponse(words, forQuestion: currentQuestion)
         
         let response: String
@@ -136,12 +130,12 @@ class CivicsViewController: UIViewController, OpenEarsEngineDelegate
     {
         if questionCycleIsFinishing
         {
-            actionButton.enabled = true
-            replayAnswerButton.hidden = false
+            startNextQuestionButton.enabled = true
+            replayAnswerButton.enabled = true
         }
         else
         {
-            actionButton.setTitle("Speak Now...", forState: .Disabled)
+            
         }
     }
     

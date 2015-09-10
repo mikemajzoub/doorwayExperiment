@@ -19,8 +19,6 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
     var questionCycleIsFinishing = false
     
     @IBOutlet weak var spinner: UIActivityIndicatorView!
-    @IBOutlet weak var actionButton: UIButton!
-    @IBOutlet weak var takePictureButton: UIButton!
     
     override func viewWillAppear(animated: Bool)
     {
@@ -44,10 +42,6 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
     {
         questionCycleIsFinishing = false
         
-        actionButton.setTitle("Play Question", forState: .Normal)
-        actionButton.enabled = true
-        takePictureButton.enabled = false
-        
         if let question = dataModel.writingQuestionBank?.nextQuestion()
         {
             currentQuestion = question
@@ -58,9 +52,6 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
     @IBAction func playSentence()
     {
         openEarsEngine.say(currentQuestion)
-        
-        actionButton.setTitle("Replay Question", forState: .Normal)
-        takePictureButton.enabled = true
     }
     
     // MARK: - TakePicture
@@ -70,8 +61,6 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
         customCamera.delegate = self
         
         presentViewController(customCamera.imagePicker, animated: true, completion: nil)
-        
-        takePictureButton.enabled = false
     }
     
     // MARK: - CustomCameraControllerDelegate
@@ -85,9 +74,7 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
     func cameraDidTakePicture(picture: UIImage)
     {
         dismissViewControllerAnimated(true, completion: nil)
-        
-        actionButton.setTitle("Reading text...", forState: .Disabled)
-        actionButton.enabled = false
+
         spinner.stopAnimating()
         
         abbyyEngine.processImage(picture, withAnswer: currentQuestion)
@@ -125,7 +112,6 @@ class WritingViewController: UIViewController, OpenEarsEngineDelegate, AbbyyEngi
         if questionCycleIsFinishing
         {
             setUpNextQuestion()
-            actionButton.enabled = true
         }
     }
     

@@ -160,7 +160,7 @@ class OpenEarsEngine: NSObject, OEEventsObserverDelegate
         
         // TODO: you should only do this once per screen - not every time you start listening!
         OEPocketsphinxController.sharedInstance().setActive(true, error: nil)
-        OEPocketsphinxController.sharedInstance().secondsOfSilenceToDetect = 2.0
+        OEPocketsphinxController.sharedInstance().secondsOfSilenceToDetect = 1.3
         OEPocketsphinxController.sharedInstance().startListeningWithLanguageModelAtPath(languageModelPath, dictionaryAtPath: dictionaryPath, acousticModelAtPath: OEAcousticModel.pathToModel(kAcousticModelEnglish), languageModelIsJSGF: false)
     }
     

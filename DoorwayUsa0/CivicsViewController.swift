@@ -16,8 +16,7 @@ class CivicsViewController: UIViewController, OpenEarsEngineDelegate
     var currentQuestion: CivicsQuestion!
     
     @IBOutlet weak var actionButton: UIButton!
-    
-    @IBOutlet weak var replayAnswer: UIButton!
+    @IBOutlet weak var replayAnswerButton: UIButton!
     
     // Whenever computer finishes speaking, it checks to see if the question
     // cycle is finishing. If the cycle is marked as finishing, it means that
@@ -28,11 +27,6 @@ class CivicsViewController: UIViewController, OpenEarsEngineDelegate
     // yet.
     var questionCycleIsFinishing = false
     
-    override func viewDidLoad()
-    {
-        super.viewDidLoad()
-    }
-    
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
@@ -41,56 +35,50 @@ class CivicsViewController: UIViewController, OpenEarsEngineDelegate
         
         actionButton.setTitle("Play Question", forState: .Normal)
         actionButton.enabled = true
-        
-        replayAnswer.hidden = true
-    }
-    
-    override func viewDidAppear(animated: Bool)
-    {
-        super.viewDidAppear(animated)
-        
+        replayAnswerButton.hidden = true
     }
     
     override func viewWillDisappear(animated: Bool)
     {
-        openEarsEngine.stopEngine()
         actionButton.enabled = true
+        replayAnswerButton.hidden = true
+        
         questionCycleIsFinishing = false
         
-        replayAnswer.hidden = true
+        openEarsEngine.stopEngine()
     }
     
     // Grab next question, speak it, and begin listening for user's answer
     @IBAction func askQuestion()
     {
-        dataModel.civicsQuestionBank.refreshActiveBoundaryIndex()
-        
         if let question = dataModel.civicsQuestionBank?.nextQuestion()
         {
-            actionButton.setTitle("Listen...", forState: .Disabled)
-            actionButton.enabled = false
-            
-            replayAnswer.hidden = true
-            
             questionCycleIsFinishing = false
-            
+
             currentQuestion = question
             
             openEarsEngine.say(question.question)
-            
             openEarsEngine.startListening()
+            
+            actionButton.setTitle("Listen...", forState: .Disabled)
+            actionButton.enabled = false
+            replayAnswerButton.hidden = true
         }
     }
     
-    @IBAction func sayAnswer()
+    @IBAction func replayAnswer()
     {
-        replayAnswer.hidden = true
-        
-        questionCycleIsFinishing = true
-        
+        replayAnswerButton.enabled = false
         actionButton.enabled = false
         
-        var response: String = ""
+        let response = allPossibleAnswersResponse()
+        
+        openEarsEngine.say(response)
+    }
+    
+    func allPossibleAnswersResponse() -> String
+    {
+        var response = ""
         
         if currentQuestion!.answersSpoken.count == 1
         {
@@ -111,7 +99,7 @@ class CivicsViewController: UIViewController, OpenEarsEngineDelegate
             }
         }
         
-        openEarsEngine.say(response)
+        return response
     }
     
     // MARK: - OpenEarsEngineDelegate
@@ -125,85 +113,23 @@ class CivicsViewController: UIViewController, OpenEarsEngineDelegate
         
         actionButton.setTitle("Listen...", forState: .Disabled)
         
-        if let heardWords = words
-        {
-            var response: String
-            
-            if answerIsCorrectForWords(heardWords)
-            {
-                currentQuestion.answeredCorrectly()
-                
-                let answerToSpeak = answerToSpeakForWords(heardWords)
-                
-                response = "Correct. \(answerToSpeak)"
-            }
-            else
-            {
-                currentQuestion.answeredIncorrectly()
-                
-                response = "Incorrect. "
-                
-                if currentQuestion!.answersSpoken.count == 1
-                {
-                    response += "The correct answer is \(currentQuestion!.answersSpoken[0])"
-                }
-                else
-                {
-                    response += "There are multiple correct answers. You could say "
-                    
-                    for (index, answer) in enumerate(currentQuestion!.answersSpoken)
-                    {
-                        response += answer
-                        
-                        if index != currentQuestion!.answersSpoken.count - 1
-                        {
-                            response += "... or you could say "
-                        }
-                    }
-                }
-            }
-            
-            openEarsEngine.say(response)
-            
-            questionCycleIsFinishing = true
-        }
-    }
-    
-    // TODO: refactor this into civics question bank...
-    func answerIsCorrectForWords(heardWords: String) -> Bool
-    {
-        let heardWordsSet = Set(heardWords.componentsSeparatedByString(" "))
+        dataModel.civicsQuestionBank.gradeResponse(words, forQuestion: currentQuestion)
         
-        let keywords = currentQuestion.answersKeywords
-        for answerArray in keywords
+        let response: String
+        if dataModel.civicsQuestionBank.answerIsCorrectForWords(words, forQuestion: currentQuestion)
         {
-            let answerSet = Set(answerArray)
-            
-            if answerSet.isSubsetOf(heardWordsSet)
-            {
-                return true
-            }
+            let spokenCorrectAnswer = dataModel.civicsQuestionBank.answerToSpeakForWords(words, forQuestion: currentQuestion)
+            response = "Correct. " + spokenCorrectAnswer
+        }
+        else
+        {
+            let allPossibleAnswers = allPossibleAnswersResponse()
+            response = "Incorrect. " + allPossibleAnswers
         }
         
-        return false
-    }
-    
-    func answerToSpeakForWords(heardWords: String) -> String
-    {
-        let heardWordsSet = Set(heardWords.componentsSeparatedByString(" "))
+        openEarsEngine.say(response)
         
-        let keywords = currentQuestion.answersKeywords
-        for (index, answerArray) in enumerate(keywords)
-        {
-            let answerSet = Set(answerArray)
-            
-            if answerSet.isSubsetOf(heardWordsSet)
-            {
-                return currentQuestion.answersSpoken[index]
-            }
-        }
-        
-        return "ERROR FINDING ANSWER TO SPEAK"
+        questionCycleIsFinishing = true
     }
     
     func computerFinishedSpeaking()
@@ -211,8 +137,7 @@ class CivicsViewController: UIViewController, OpenEarsEngineDelegate
         if questionCycleIsFinishing
         {
             actionButton.enabled = true
-            
-            replayAnswer.hidden = false
+            replayAnswerButton.hidden = false
         }
         else
         {

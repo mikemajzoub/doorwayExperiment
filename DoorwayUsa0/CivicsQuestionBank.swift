@@ -89,6 +89,8 @@ class CivicsQuestionBank: NSObject, NSCoding
     // selected.
     func nextQuestion() -> CivicsQuestion
     {
+        refreshActiveBoundaryIndex()
+        
         var totalWeight = 0
         
         for index in 0..<activeBoundaryIndex
@@ -137,6 +139,54 @@ class CivicsQuestionBank: NSObject, NSCoding
         let percentMastered = Float(correctQuestions) / Float(allQuestions)
         
         return percentMastered
+    }
+    
+    func gradeResponse(words: String, forQuestion question: CivicsQuestion)
+    {
+        if answerIsCorrectForWords(words, forQuestion: question)
+        {
+            question.answeredCorrectly()
+        }
+        else
+        {
+            question.answeredIncorrectly()
+        }
+    }
+    
+    func answerIsCorrectForWords(heardWords: String, forQuestion question: CivicsQuestion) -> Bool
+    {
+        let heardWordsSet = Set(heardWords.componentsSeparatedByString(" "))
+        
+        let keywords = question.answersKeywords
+        for answerArray in keywords
+        {
+            let answerSet = Set(answerArray)
+            
+            if answerSet.isSubsetOf(heardWordsSet)
+            {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+    func answerToSpeakForWords(heardWords: String, forQuestion question: CivicsQuestion) -> String
+    {
+        let heardWordsSet = Set(heardWords.componentsSeparatedByString(" "))
+        
+        let keywords = question.answersKeywords
+        for (index, answerArray) in enumerate(keywords)
+        {
+            let answerSet = Set(answerArray)
+            
+            if answerSet.isSubsetOf(heardWordsSet)
+            {
+                return question.answersSpoken[index]
+            }
+        }
+        
+        return "ERROR FINDING ANSWER TO SPEAK"
     }
     
     // MARK: - Language For OpenEars

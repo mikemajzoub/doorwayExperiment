@@ -274,7 +274,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="sayAnswer" destination="Akl-DO-gaB" eventType="touchUpInside" id="SuU-Jm-T4F"/>
+                                    <action selector="replayAnswer" destination="Akl-DO-gaB" eventType="touchUpInside" id="eUq-vB-GVd"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -291,7 +291,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="actionButton" destination="8KY-69-77K" id="fXB-3D-qwe"/>
-                        <outlet property="replayAnswer" destination="H7U-he-V80" id="juh-vj-MVC"/>
+                        <outlet property="replayAnswerButton" destination="H7U-he-V80" id="cna-MK-a6n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gaI-Sa-PYW" userLabel="First Responder" sceneMemberID="firstResponder"/>

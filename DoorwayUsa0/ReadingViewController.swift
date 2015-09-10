@@ -18,6 +18,8 @@ class ReadingViewController: UIViewController, OpenEarsEngineDelegate
     var questionCycleIsFinishing = true
     
     @IBOutlet weak var textToRead: UITextView!
+    @IBOutlet weak var startNextQuestionButton: UIButton!
+    @IBOutlet weak var replayAnswerButton: UIButton!
     
     override func viewWillAppear(animated: Bool)
     {
@@ -26,6 +28,9 @@ class ReadingViewController: UIViewController, OpenEarsEngineDelegate
         openEarsEngine.delegate = self
         
         textToRead.text = "" // clear out lorem ipsum.
+        
+        startNextQuestionButton.enabled = true
+        replayAnswerButton.enabled = false
     }
     
     override func viewWillDisappear(animated: Bool)
@@ -34,8 +39,11 @@ class ReadingViewController: UIViewController, OpenEarsEngineDelegate
     }
     
     // Grab next question, speak it, and begin listening for user's answer
-    @IBAction func askQuestion()
+    @IBAction func startNextQuestion()
     {        
+        startNextQuestionButton.enabled = false
+        replayAnswerButton.enabled = false
+        
         if let question = dataModel.readingQuestionBank?.nextQuestion()
         {
             questionCycleIsFinishing = false
@@ -75,6 +83,9 @@ class ReadingViewController: UIViewController, OpenEarsEngineDelegate
     
     @IBAction func replayAnswer()
     {
+        startNextQuestionButton.enabled = false
+        replayAnswerButton.enabled = false
+        
         openEarsEngine.say(currentQuestion)
     }
     
@@ -82,7 +93,8 @@ class ReadingViewController: UIViewController, OpenEarsEngineDelegate
     {
         if questionCycleIsFinishing
         {
-
+            startNextQuestionButton.enabled = true
+            replayAnswerButton.enabled = true
         }
         else
         {

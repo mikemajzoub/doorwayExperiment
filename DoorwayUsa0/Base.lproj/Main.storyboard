@@ -317,12 +317,34 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ALQ-4Y-OtE">
+                                <rect key="frame" x="249" y="550" width="103" height="30"/>
+                                <state key="normal" title="Replay Answer">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="replayAnswer" destination="Ta4-bg-Nq4" eventType="touchUpInside" id="0Ms-2D-RZW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jNo-DU-I4v">
+                                <rect key="frame" x="232" y="495" width="136" height="30"/>
+                                <state key="normal" title="Start Next Question">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="startNextQuestion" destination="Ta4-bg-Nq4" eventType="touchUpInside" id="U96-MG-th9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="ALQ-4Y-OtE" secondAttribute="centerX" constant="-0.5" id="5CS-Vc-1dt"/>
                             <constraint firstItem="6mc-Cl-Y5y" firstAttribute="top" secondItem="dDF-vz-0vR" secondAttribute="bottom" constant="113" id="6QQ-IQ-0Vk"/>
+                            <constraint firstItem="6mc-Cl-Y5y" firstAttribute="top" secondItem="ALQ-4Y-OtE" secondAttribute="bottom" constant="20" id="8xR-yi-ZkJ"/>
                             <constraint firstItem="dDF-vz-0vR" firstAttribute="top" secondItem="c7q-6I-lnq" secondAttribute="bottom" constant="8" id="cxv-ut-DkD"/>
                             <constraint firstItem="dDF-vz-0vR" firstAttribute="trailing" secondItem="5o8-t0-5iO" secondAttribute="trailingMargin" id="pnr-RC-da7"/>
+                            <constraint firstAttribute="centerX" secondItem="jNo-DU-I4v" secondAttribute="centerX" id="s7v-hS-NPA"/>
+                            <constraint firstItem="jNo-DU-I4v" firstAttribute="top" secondItem="dDF-vz-0vR" secondAttribute="bottom" constant="8" id="uKA-AV-VGq"/>
                             <constraint firstItem="dDF-vz-0vR" firstAttribute="leading" secondItem="5o8-t0-5iO" secondAttribute="leadingMargin" id="yvJ-eQ-6fj"/>
                         </constraints>
                     </view>
@@ -330,6 +352,8 @@
                         <barButtonItem key="backBarButtonItem" title="Practice" id="1f6-rg-o1m"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="replayAnswerButton" destination="ALQ-4Y-OtE" id="qZn-yY-YWm"/>
+                        <outlet property="startNextQuestionButton" destination="jNo-DU-I4v" id="GBV-Ib-jSl"/>
                         <outlet property="textToRead" destination="dDF-vz-0vR" id="knI-dz-hLo"/>
                     </connections>
                 </viewController>
